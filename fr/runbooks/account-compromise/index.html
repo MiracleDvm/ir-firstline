@@ -1,0 +1,1421 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+      
+      
+      
+        <link rel="canonical" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/account-compromise/">
+      
+      
+        <link rel="prev" href="../ransomware/">
+      
+      
+        <link rel="next" href="../phishing-bec/">
+      
+      
+        
+          <link rel="alternate" href="../../../runbooks/account-compromise/" hreflang="en">
+        
+          <link rel="alternate" href="./" hreflang="fr">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Compromission de compte - IR Firstline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/print.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#compromission-de-compte" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../" title="IR Firstline" class="md-header__button md-logo" aria-label="IR Firstline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IR Firstline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Compromission de compte
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Sélectionner la langue">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../runbooks/account-compromise/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="fr" class="md-select__link">
+              Français
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MiracleDvm/ir-firstline" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ir-firstline
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ransomware/" class="md-tabs__link">
+          
+  
+  
+  Runbooks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quick-reference/ransomware/" class="md-tabs__link">
+          
+  
+  
+  Aide-mémoire
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../finding-your-csirt/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Trouver son CSIRT
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../templates/runbook-template/" class="md-tabs__link">
+          
+  
+  
+  Modèles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contribuer
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="IR Firstline" class="md-nav__button md-logo" aria-label="IR Firstline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IR Firstline
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MiracleDvm/ir-firstline" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ir-firstline
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ransomware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rançongiciel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission de compte
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission de compte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-criteres-de-declenchement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Critères de déclenchement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objectifs-de-temps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objectifs de temps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arbre de décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-actions-l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Actions L1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-actions-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Actions L2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications-escalade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Notifications &amp; escalade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-erreurs-a-eviter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Erreurs à éviter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ressources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ressources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-sources-dinspiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Sources d'inspiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phishing-bec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hameçonnage / BEC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aide-mémoire
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aide-mémoire
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/ransomware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rançongiciel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/account-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission de compte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/phishing-bec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hameçonnage / BEC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../finding-your-csirt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trouver son CSIRT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modèles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/runbook-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèle de runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/quick-reference-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèle d'aide-mémoire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contribuer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-criteres-de-declenchement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Critères de déclenchement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objectifs-de-temps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objectifs de temps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arbre de décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-actions-l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Actions L1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-actions-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Actions L2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications-escalade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Notifications &amp; escalade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-erreurs-a-eviter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Erreurs à éviter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ressources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ressources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-sources-dinspiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Sources d'inspiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/MiracleDvm/ir-firstline/edit/master/docs/fr/runbooks/account-compromise.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="compromission-de-compte">Compromission de compte<a class="headerlink" href="#compromission-de-compte" title="Permanent link">&para;</a></h1>
+<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<hr />
+<h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
+<p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
+<ul>
+<li>Une alerte de connexion ou un score de risque se déclenche pour une activité anormale : nouveau pays, nouvel appareil, déplacement impossible entre deux connexions, ou connexion depuis une IP connue comme malveillante.</li>
+<li>Un utilisateur signale une demande MFA qu'il n'a pas initiée, ou une notification de réinitialisation de mot de passe qu'il n'a pas demandée.</li>
+<li>Une alerte SIEM, pare-feu ou fournisseur d'identité montre un grand nombre de connexions échouées sur un ou plusieurs comptes en peu de temps (motif de password spray).</li>
+<li>Un utilisateur signale avoir reçu un email suspect peu avant de remarquer un comportement anormal sur son compte.</li>
+<li>Des règles de transfert de messagerie, des règles de transport, ou un accès délégué à une boîte aux lettres apparaissent sans qu'aucun administrateur ne les ait configurés.</li>
+<li>Une alerte se déclenche pour une « application à risque », ou un octroi de consentement OAuth inattendu apparaît dans le journal d'audit.</li>
+<li>Des données semblent quitter la boîte aux lettres ou le stockage de fichiers d'un compte à un volume ou à une heure inhabituels.</li>
+</ul>
+<h2 id="2-objectifs-de-temps">2. Objectifs de temps<a class="headerlink" href="#2-objectifs-de-temps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>L1 :</strong> contenir le(s) compte(s) affecté(s) en &lt; 30 min après déclenchement.</li>
+<li><strong>L2 :</strong> achever l'éradication en &lt; 4 h après confinement.</li>
+</ul>
+<p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires.</p>
+<h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TD
+    A[Suspicious sign-in / account alert] --&gt; B{Compromise confirmed?}
+    B --&gt;|No| C[Monitor, close alert]
+    B --&gt;|Yes| D[Disable account + revoke sessions]
+    D --&gt; E[Reset credentials]
+    E --&gt; F[Check for persistence]
+    F --&gt; G{Other accounts affected?}
+    G --&gt;|Yes| H[Escalate to L2 - multi-account]
+    G --&gt;|No| I[Escalate to L2 - single account]
+    H --&gt; J[Find root cause]
+    I --&gt; J
+    J --&gt; K[Remove persistence + harden]
+    K --&gt; L[Notify + lessons learned]</code></pre>
+<h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Confirmez la compromission.</strong> Recoupez l'alerte avec les journaux de connexion/audit à la recherche d'anomalies : nouveau pays, nouvel appareil ou navigateur, déplacement impossible entre deux connexions, ou échecs MFA suivis d'un succès.</li>
+<li><strong>Outil dédié</strong> : détection de risque / journal de connexion de votre fournisseur d'identité (ex. Microsoft Entra ID Protection, Okta System Log).</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : exportez et filtrez le journal de connexion via l'API/CLI gratuite de votre fournisseur d'identité (ex. <code>Get-MgAuditLogSignIn</code> via le module gratuit Microsoft Graph PowerShell) ; pour les systèmes auto-hébergés, filtrez <code>auth.log</code>/<code>journalctl</code> à la recherche de connexions répétées ou géographiquement incohérentes.</p>
+</li>
+<li>
+<p><strong>Désactivez le compte et révoquez immédiatement toutes les sessions et jetons actifs.</strong> Une simple réinitialisation de mot de passe ne met pas fin à une session déjà ouverte par l'attaquant.</p>
+</li>
+<li><strong>Outil dédié</strong> : action « révoquer les sessions » / « bloquer la connexion » de la console d'administration du fournisseur d'identité.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : <code>Revoke-MgUserSignInSession</code> (module gratuit Microsoft Graph PowerShell) ou l'API de révocation de session de votre fournisseur d'identité ; pour les comptes locaux/LDAP, désactivez le compte et tuez les sessions/tickets actifs au niveau du serveur d'annuaire.</p>
+</li>
+<li>
+<p><strong>Réinitialisez les identifiants du compte, et supprimez tout facteur d'authentification (méthode MFA) que vous ne reconnaissez pas.</strong></p>
+</li>
+<li><strong>Outil dédié</strong> : réinitialisation des identifiants depuis la console du fournisseur d'identité.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : commande de réinitialisation de mot de passe de l'annuaire (ex. <code>Set-ADAccountPassword</code> pour un AD sur site) ; supprimez manuellement les méthodes MFA non reconnues dans l'enregistrement de l'utilisateur, depuis la même console.</p>
+</li>
+<li>
+<p><strong>Recherchez une persistance mise en place par l'attaquant via le compte</strong> : règles de transfert ou de boîte de réception, règles de flux de messagerie/transport, accès délégué à la boîte aux lettres, ou applications tierces (OAuth) nouvellement consenties.</p>
+</li>
+<li><strong>Outil dédié</strong> : inspecteur de règles de la console d'administration de messagerie / inventaire des consentements d'applications.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : exportez les règles de boîte de réception/transport via la CLI d'administration gratuite de votre plateforme de messagerie, ou inspectez-les manuellement via l'interface web de messagerie ; pour les applications OAuth, un court script contre l'API gratuite de votre fournisseur d'identité listant les consentements accordés par l'utilisateur.</p>
+</li>
+<li>
+<p><strong>Préservez les preuves.</strong> Conservez l'email de phishing original s'il existe, les entrées exactes du journal de connexion, la liste des applications consenties et leurs permissions, et des horodatages précis.</p>
+</li>
+<li><strong>Outil dédié</strong> : export de dossier SIEM / export du journal d'audit du fournisseur d'identité.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : exportez manuellement les lignes de journal pertinentes vers un fichier texte horodaté ; conservez l'email de phishing avec ses en-têtes complets intacts.</p>
+</li>
+<li>
+<p><strong>Escaladez vers le L2 avec ce que vous avez</strong> — compte(s) affecté(s), point d'entrée suspecté (phishing, password spray, octroi de consentement), et si d'autres comptes montrent le même motif.</p>
+</li>
+<li><strong>Outil dédié</strong> : votre plateforme de gestion de cas/tickets.</li>
+<li><strong>Alternative CLI / open source</strong> : TheHive, ou un document d'incident partagé — ce que votre équipe utilise déjà pour la passation de dossiers.</li>
+</ol>
+<h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Déterminez le point d'entrée.</strong> S'agit-il d'un email de phishing (vérifiez les en-têtes, l'expéditeur, les liens/pièces jointes), d'un motif de password spray/force brute (nombreuses connexions échouées sur de nombreux comptes depuis un petit nombre d'IP), d'un identifiant réutilisé/divulgué, ou d'une attaque de phishing par consentement ?</li>
+<li><strong>Outil dédié</strong> : recherche forensique de la passerelle de sécurité email, combinée aux détails de détection de risque de votre fournisseur d'identité.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : examinez manuellement les en-têtes des emails (résultats SPF/DKIM/DMARC) et corrélez les horodatages de connexions échouées et les IP sources entre comptes dans vos journaux exportés.</p>
+</li>
+<li>
+<p><strong>Inventoriez chaque application tierce (OAuth)</strong> ayant accès au compte ou à l'organisation, et les permissions accordées à chacune.</p>
+</li>
+<li><strong>Outil dédié</strong> : console de sécurité des applications cloud / CASB.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : un script contre l'API gratuite de votre fournisseur d'identité (des scripts communautaires comme <code>Get-AzureADPSPermissions</code> existent pour cela) ou une revue manuelle via la page d'administration des consentements d'applications.</p>
+</li>
+<li>
+<p><strong>Désactivez — ne supprimez pas — toute application présentant des permissions illégitimes ou excessives.</strong> La supprimer peut lui permettre de revenir silencieusement si un utilisateur y consent à nouveau plus tard ; la désactiver la bloque définitivement pendant que vous terminez le cadrage.</p>
+</li>
+<li><strong>Outil dédié</strong> : action « désactiver l'application » du fournisseur d'identité.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : un appel API désactivant le principal de service / l'enregistrement client OAuth de l'application.</p>
+</li>
+<li>
+<p><strong>Déterminez le périmètre complet.</strong> Quels autres comptes ont reçu le même email de phishing, partagent les mêmes IP sources de password spray, ou ont consenti à la même application malveillante ?</p>
+</li>
+<li><strong>Outil dédié</strong> : recherche de corrélation SIEM à l'échelle de l'organisation.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : filtrez ou scriptez sur vos journaux exportés à la recherche du même expéditeur, des mêmes IP sources, ou du même identifiant d'application.</p>
+</li>
+<li>
+<p><strong>Bloquez la ou les IP sources de l'attaquant et tout domaine d'envoi confirmé malveillant</strong>, en traitant cela comme une mesure temporaire — les attaquants derrière un VPN ou une infrastructure cloud changent d'IP rapidement.</p>
+</li>
+<li><strong>Outil dédié</strong> : déploiement de politique sur pare-feu / accès conditionnel.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : une entrée manuelle dans les ACL du pare-feu ou dans la liste de blocage de la passerelle de messagerie.</p>
+</li>
+<li>
+<p><strong>Supprimez toute la persistance trouvée en L1, sur chaque compte affecté</strong> : supprimez les règles de boîte de réception/transport malveillantes, révoquez les consentements d'applications malveillantes à l'échelle de l'organisation, et supprimez les méthodes MFA non reconnues et les accès délégués.</p>
+</li>
+<li><strong>Outil dédié</strong> : remédiation en masse via la console d'administration ou un runbook d'automatisation.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : un court script répétant les mêmes étapes de suppression manuelle sur la liste des comptes affectés.</p>
+</li>
+<li>
+<p><strong>Durcissez pour éviter une répétition.</strong> Imposez le MFA sur tous les comptes s'il n'est pas déjà universel, désactivez les protocoles d'authentification hérités/basiques qui contournent le MFA, et activez des politiques de connexion basées sur le risque si votre fournisseur d'identité le permet.</p>
+</li>
+<li><strong>Outil dédié</strong> : configuration d'accès conditionnel / politique de risque du fournisseur d'identité.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : pour les fournisseurs d'identité auto-hébergés, imposez le MFA au niveau de l'application ou du reverse-proxy avec une passerelle d'authentification gratuite (ex. Authelia, Keycloak), et désactivez les points d'accès aux protocoles hérités dans la configuration.</p>
+</li>
+<li>
+<p><strong>Surveillez une seconde vague.</strong> Un attaquant ayant réussi à réutiliser un identifiant phishé ou un octroi de consentement cible souvent d'autres utilisateurs de la même organisation peu après.</p>
+</li>
+<li><strong>Outil dédié</strong> : une règle d'alerte SIEM ajustée sur les indicateurs confirmés (expéditeur, IP source, identifiant d'application).</li>
+<li><strong>Alternative CLI / open source</strong> : une tâche planifiée de filtrage de journaux surveillant ces mêmes indicateurs.</li>
+</ol>
+<h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+</blockquote>
+<h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Réinitialiser le mot de passe sans révoquer les sessions et jetons actifs</strong> — la session existante de l'attaquant survit à un changement de mot de passe.</li>
+<li><strong>Supprimer une application malveillante plutôt que la désactiver</strong> — elle peut regagner silencieusement l'accès si un utilisateur y consent à nouveau plus tard.</li>
+<li><strong>Considérer un seul compte compromis comme le périmètre complet</strong> — le password spray et le phishing par consentement sont des techniques de campagne qui visent généralement de nombreux comptes à la fois.</li>
+<li><strong>Remettre le compte en service normal avant d'avoir supprimé les règles de transfert, l'accès délégué et les méthodes MFA non reconnues</strong> — ces éléments survivent à une réinitialisation de mot de passe et laissent l'attaquant revenir silencieusement.</li>
+<li><strong>Considérer un blocage d'IP comme un confinement durable</strong> — les attaquants derrière un VPN ou une infrastructure cloud changent rapidement d'IP source.</li>
+<li><strong>Supposer que le MFA seul arrête un attaquant qui détient déjà un jeton de session actif ou un octroi de consentement OAuth</strong> — aucun des deux ne nécessite de se ré-authentifier.</li>
+</ul>
+<h2 id="8-ressources">8. Ressources<a class="headerlink" href="#8-ressources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1078/">T1078</a> — Valid Accounts.</li>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1110/">T1110</a> — Brute Force (le password spray est la sous-technique T1110.003).</li>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1098/001/">T1098.001</a> — Account Manipulation: Additional Cloud Credentials.</li>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1114/003/">T1114.003</a> — Email Collection: Email Forwarding Rule.</li>
+<li>Outils cités en exemple : le module gratuit Microsoft Graph PowerShell, TheHive, MISP, des passerelles d'authentification open source comme Authelia ou Keycloak, fail2ban.</li>
+</ul>
+<h2 id="9-sources-dinspiration">9. Sources d'inspiration<a class="headerlink" href="#9-sources-dinspiration" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Microsoft — « Phishing investigation » (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0 (contenu documentaire).</li>
+<li>Microsoft — « Password spray investigation » (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
+<li>Microsoft — « App consent grant investigation » (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
+<li>Microsoft — « Compromised and malicious applications investigation » (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

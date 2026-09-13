@@ -1,0 +1,1425 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+      
+      
+      
+        <link rel="canonical" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/phishing-bec/">
+      
+      
+        <link rel="prev" href="../account-compromise/">
+      
+      
+        <link rel="next" href="../../quick-reference/ransomware/">
+      
+      
+        
+          <link rel="alternate" href="../../../runbooks/phishing-bec/" hreflang="en">
+        
+          <link rel="alternate" href="./" hreflang="fr">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Hameçonnage / BEC - IR Firstline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/print.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#phishing-compromission-de-messagerie-professionnelle-bec" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../" title="IR Firstline" class="md-header__button md-logo" aria-label="IR Firstline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IR Firstline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hameçonnage / BEC
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Sélectionner la langue">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../runbooks/phishing-bec/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="fr" class="md-select__link">
+              Français
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MiracleDvm/ir-firstline" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ir-firstline
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ransomware/" class="md-tabs__link">
+          
+  
+  
+  Runbooks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quick-reference/ransomware/" class="md-tabs__link">
+          
+  
+  
+  Aide-mémoire
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../finding-your-csirt/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Trouver son CSIRT
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../templates/runbook-template/" class="md-tabs__link">
+          
+  
+  
+  Modèles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contribuer
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="IR Firstline" class="md-nav__button md-logo" aria-label="IR Firstline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IR Firstline
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MiracleDvm/ir-firstline" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ir-firstline
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ransomware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rançongiciel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../account-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission de compte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hameçonnage / BEC
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hameçonnage / BEC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-criteres-de-declenchement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Critères de déclenchement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objectifs-de-temps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objectifs de temps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arbre de décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-actions-l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Actions L1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-actions-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Actions L2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications-escalade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Notifications &amp; escalade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-erreurs-a-eviter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Erreurs à éviter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ressources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ressources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-sources-dinspiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Sources d'inspiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aide-mémoire
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aide-mémoire
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/ransomware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rançongiciel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/account-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission de compte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/phishing-bec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hameçonnage / BEC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../finding-your-csirt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trouver son CSIRT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modèles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/runbook-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèle de runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/quick-reference-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèle d'aide-mémoire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contribuer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-criteres-de-declenchement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Critères de déclenchement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objectifs-de-temps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objectifs de temps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arbre de décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-actions-l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Actions L1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-actions-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Actions L2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications-escalade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Notifications &amp; escalade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-erreurs-a-eviter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Erreurs à éviter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ressources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ressources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-sources-dinspiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Sources d'inspiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/MiracleDvm/ir-firstline/edit/master/docs/fr/runbooks/phishing-bec.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="phishing-compromission-de-messagerie-professionnelle-bec">Phishing / Compromission de messagerie professionnelle (BEC)<a class="headerlink" href="#phishing-compromission-de-messagerie-professionnelle-bec" title="Permanent link">&para;</a></h1>
+<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<hr />
+<h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
+<p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
+<ul>
+<li>Un utilisateur signale un email suspect, ou un outil de sécurité de messagerie en signale un (piège à spam, flux de threat intelligence, correspondance avec un annuaire de phishing).</li>
+<li>Un email demande un virement, une modification des coordonnées bancaires/de paiement, ou des informations sensibles — en particulier avec un ton urgent ou confidentiel.</li>
+<li>Le ton, le langage ou la mise en forme d'un email dévie de la façon dont un contact connu ou un dirigeant écrit habituellement.</li>
+<li>Plusieurs utilisateurs reçoivent des messages suspects quasi identiques en peu de temps.</li>
+<li>Une nouvelle règle de boîte de réception apparaît, transférant ou supprimant automatiquement des messages, sans que personne ne l'ait configurée.</li>
+<li>Un membre de l'équipe finance ou comptabilité fournisseurs signale une demande inhabituelle de modification de paiement fournisseur.</li>
+<li>Les logs web montrent un trafic inattendu vers un domaine usurpant votre marque, ou un annuaire de phishing surveillé liste votre organisation comme cible.</li>
+</ul>
+<h2 id="2-objectifs-de-temps">2. Objectifs de temps<a class="headerlink" href="#2-objectifs-de-temps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>L1 :</strong> contenir le(s) compte(s)/message(s) affecté(s) en &lt; 30 min après déclenchement.</li>
+<li><strong>L2 :</strong> achever l'éradication en &lt; 4 h après confinement.</li>
+</ul>
+<p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires. Remarque : si un virement frauduleux est en jeu, la fenêtre pour demander un rappel bancaire se compte en heures, pas en jours — traitez cette étape spécifique comme plus urgente que les objectifs généraux ci-dessus.</p>
+<h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TD
+    A[Suspicious email / fraud report] --&gt; B{Financial request involved?}
+    B --&gt;|Yes| C[Verify out-of-band before acting]
+    C --&gt; D{Confirmed fraudulent?}
+    D --&gt;|Yes| E[Contain account + attempt payment recall]
+    B --&gt;|No| F[Analyze message + block indicators]
+    D --&gt;|No| F
+    E --&gt; G[Escalate to L2]
+    F --&gt; G
+    G --&gt; H[Scope the campaign]
+    H --&gt; I[Eradicate + harden]
+    I --&gt; J[Notify + lessons learned]</code></pre>
+<h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Confirmez le signalement.</strong> Récupérez le message suspect lui-même — en-têtes, corps, pièces jointes, liens — sans ouvrir de pièce jointe ni suivre de lien depuis un appareil ayant accès à des données sensibles ou des identifiants.</li>
+<li><strong>Outil dédié</strong> : trace des messages / vue de mise en quarantaine de la passerelle de sécurité email.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : exportez le message brut (<code>.eml</code>) via « afficher la source » / « télécharger le message » dans le client de messagerie, et examinez-le hors ligne sur une machine isolée.</p>
+</li>
+<li>
+<p><strong>Si une demande financière est en jeu (virement, modification de coordonnées de paiement, cartes-cadeaux), vérifiez-la hors bande avant d'agir</strong> — appelez le demandeur à un numéro déjà enregistré, jamais celui fourni dans le message.</p>
+</li>
+<li><strong>Outil dédié</strong> : un annuaire de contacts fournisseurs/dirigeants préétabli dans votre système financier.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : une liste de contacts partagée, hors ligne (tableur ou fiche imprimée), maintenue en dehors de la messagerie.</p>
+</li>
+<li>
+<p><strong>Si un virement a déjà été effectué, contactez immédiatement votre banque ou prestataire de paiement pour demander un rappel ou un blocage.</strong> La rapidité compte ici plus que presque partout ailleurs dans ce projet — les fenêtres de rappel se ferment en quelques heures.</p>
+</li>
+<li><strong>Outil dédié</strong> : la hotline fraude/litige de votre banque ou son portail de signalement de fraude en ligne.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : il n'existe pas d'alternative CLI à un appel à votre banque — faites-le immédiatement, et confirmez par écrit ensuite pour la traçabilité.</p>
+</li>
+<li>
+<p><strong>Identifiez qui d'autre a reçu le même message</strong>, et si quelqu'un a cliqué sur un lien, ouvert une pièce jointe, ou saisi des identifiants.</p>
+</li>
+<li><strong>Outil dédié</strong> : recherche « qui a reçu ceci » de la passerelle de sécurité email, ou corrélation SIEM.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : recherchez dans les logs de votre serveur de messagerie le même expéditeur, sujet, ou identifiant de message à travers les boîtes aux lettres.</p>
+</li>
+<li>
+<p><strong>Confinez tout compte ayant saisi des identifiants ou montrant des signes de compromission</strong> : désactivez-le, révoquez les sessions actives, et réinitialisez son mot de passe — voir <code>runbooks/account-compromise.md</code> pour la procédure complète.</p>
+</li>
+<li><strong>Outil dédié</strong> : console d'administration du fournisseur d'identité.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : les mêmes commandes gratuites que dans le runbook Compromission de compte (ex. <code>Disable-ADAccount</code>, <code>Revoke-MgUserSignInSession</code>).</p>
+</li>
+<li>
+<p><strong>Bloquez l'expéditeur et tout domaine, lien ou pièce jointe malveillants trouvés</strong>, et supprimez le message des autres boîtes de réception si possible.</p>
+</li>
+<li><strong>Outil dédié</strong> : déploiement de politique de la passerelle de sécurité email.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : une règle côté serveur de messagerie bloquant l'expéditeur/le sujet, ou un script supprimant le message via la CLI d'administration gratuite de votre plateforme de messagerie.</p>
+</li>
+<li>
+<p><strong>Escaladez vers le L2 avec ce que vous avez</strong> — le message lui-même, qui a été ciblé, et si des identifiants ou de l'argent ont été compromis.</p>
+</li>
+<li><strong>Outil dédié</strong> : votre plateforme de gestion de cas/tickets.</li>
+<li><strong>Alternative CLI / open source</strong> : TheHive, ou un document d'incident partagé.</li>
+</ol>
+<h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Analysez le message et toute pièce jointe/lien dans un environnement isolé ou sandboxé.</strong> Vérifiez les en-têtes (résultats SPF/DKIM/DMARC, serveur d'origine) et soumettez liens/pièces jointes/hashs à un service d'analyse.</li>
+<li><strong>Outil dédié</strong> : sandbox d'entreprise / plateforme de threat intelligence.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : soumettez hashs et URL à VirusTotal, ou détonnez les pièces jointes dans une sandbox gratuite comme Cuckoo ou une VM jetable.</p>
+</li>
+<li>
+<p><strong>Déterminez le type de campagne</strong> — collecte d'identifiants, diffusion de malware, ou tentative de fraude BEC — et si elle est ciblée ou opportuniste.</p>
+</li>
+<li><strong>Outil dédié</strong> : corrélation de la plateforme de threat intelligence avec des campagnes connues.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : vérifiez manuellement le message dans un annuaire public de phishing comme PhishTank ou Google Safe Browsing.</p>
+</li>
+<li>
+<p><strong>Auditez les règles de boîte de réception et l'accès délégué</strong> de chaque compte ayant reçu le message ou montrant des signes de compromission, à la recherche de règles de transfert ou de suppression automatique plantées par l'attaquant.</p>
+</li>
+<li><strong>Outil dédié</strong> : inspecteur de règles de la console d'administration de messagerie.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : exportez les règles de boîte de réception/transport via la CLI d'administration gratuite de votre plateforme de messagerie, comme dans <code>runbooks/account-compromise.md</code>.</p>
+</li>
+<li>
+<p><strong>Déterminez le périmètre complet</strong> : nombre total d'utilisateurs ciblés et affectés, services impliqués, et exposition financière totale si une tentative de fraude a réussi.</p>
+</li>
+<li><strong>Outil dédié</strong> : recherche de corrélation SIEM à l'échelle de l'organisation.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : filtrez ou scriptez sur les logs de messagerie et d'authentification exportés à la recherche du même expéditeur, des mêmes liens, ou du même identifiant de message.</p>
+</li>
+<li>
+<p><strong>Si un contenu frauduleux est hébergé en ligne</strong> (page de connexion usurpée, portail de facture frauduleux), identifiez son hébergeur et son bureau d'enregistrement, et déposez une demande d'abus/retrait avec les preuves jointes (en-têtes, captures d'écran, horodatages).</p>
+</li>
+<li><strong>Outil dédié</strong> : un service de protection de marque / de retrait de contenu.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : faites un <code>whois</code> du domaine vous-même, prenez une copie horodatée de la page avec un outil gratuit comme HTTrack, et écrivez directement au contact abus de l'hébergeur.</p>
+</li>
+<li>
+<p><strong>Durcissez l'authentification email et les défenses de la messagerie.</strong> Confirmez que SPF, DKIM et DMARC sont correctement configurés, désactivez les protocoles d'authentification hérités qui contournent le MFA, et resserrez les filtres selon les indicateurs trouvés.</p>
+</li>
+<li><strong>Outil dédié</strong> : configuration de politique de la passerelle de sécurité email.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : publiez ou ajustez vous-même vos enregistrements DNS SPF/DMARC (gratuit, DNS standard) et vérifiez qu'ils résolvent correctement avec <code>dig txt</code> et un vérificateur DMARC gratuit en ligne.</p>
+</li>
+<li>
+<p><strong>Si de l'argent a été transféré, travaillez avec la finance pour documenter la perte</strong> et ajoutez une friction temporaire au processus de paiement — vérification hors bande, second validateur — jusqu'à confirmation que la faille de contrôle sous-jacente est corrigée.</p>
+</li>
+<li><strong>Outil dédié</strong> : configuration du workflow du système finance/ERP.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : une checklist appliquée manuellement exigeant un rappel téléphonique avant toute modification de coordonnées de paiement, jusqu'au rétablissement du contrôle automatisé.</p>
+</li>
+<li>
+<p><strong>Surveillez une seconde vague ou une nouvelle tentative contre la même cible.</strong> Les tentatives de BEC réussies sont fréquemment suivies d'une seconde demande, plus urgente, dans les jours qui suivent.</p>
+</li>
+<li><strong>Outil dédié</strong> : une règle d'alerte SIEM ajustée sur les indicateurs confirmés (expéditeur, domaine, motif du message).</li>
+<li><strong>Alternative CLI / open source</strong> : une tâche planifiée de filtrage de journaux surveillant ces mêmes indicateurs.</li>
+</ol>
+<h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+</blockquote>
+<h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Appeler le numéro de téléphone ou répondre à l'adresse email fournie dans le message suspect pour « vérifier »</strong> — cela ne fait que confirmer vos informations à l'attaquant. Utilisez toujours un numéro ou une adresse déjà enregistrés.</li>
+<li><strong>Attendre que l'investigation interne soit « plus avancée » avant de contacter la banque</strong> — les fenêtres de rappel de paiement se ferment en heures, pas en jours.</li>
+<li><strong>Considérer un seul email signalé comme le périmètre complet</strong> — les campagnes de phishing et de BEC ciblent généralement de nombreux utilisateurs de la même organisation à la fois.</li>
+<li><strong>Corriger le compte compromis sans vérifier les règles de boîte de réception ou l'accès délégué plantés par l'attaquant</strong> — ceux-ci survivent à une réinitialisation de mot de passe.</li>
+<li><strong>Supposer qu'un email bien écrit et sans faute ne peut pas être du phishing</strong> — les messages de BEC en particulier sont souvent soigneusement conçus pour imiter exactement le ton d'un dirigeant.</li>
+<li><strong>Sauter la vérification hors bande parce que la demande « semble urgente »</strong> — l'urgence est l'outil principal de l'attaquant, pas une raison de sauter la vérification.</li>
+</ul>
+<h2 id="8-ressources">8. Ressources<a class="headerlink" href="#8-ressources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1566/">T1566</a> — Phishing (T1566.001 Spearphishing Attachment, T1566.002 Spearphishing Link).</li>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1114/003/">T1114.003</a> — Email Collection: Email Forwarding Rule.</li>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1585/002/">T1585.002</a> — Establish Accounts: Email Accounts.</li>
+<li>Outils cités en exemple : VirusTotal, PhishTank, Cuckoo Sandbox, Hybrid Analysis, HTTrack, TheHive, MISP.</li>
+</ul>
+<h2 id="9-sources-dinspiration">9. Sources d'inspiration<a class="headerlink" href="#9-sources-dinspiration" title="Permanent link">&para;</a></h2>
+<ul>
+<li>CERT Société Générale — IRM #16 « Phishing » (v2.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
+<li>CERT Société Générale — IRM #22 « Business Email Compromise » (v1.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
+<li>Counteractive — « Playbook: Phishing » — <code>github.com/counteractive/incident-response-plan-template</code> — Apache License 2.0.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
