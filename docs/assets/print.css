@@ -1,0 +1,32 @@
+/* Print refinements on top of Material for MkDocs' built-in print styles.
+   Material already hides the header, sidebar, and tabs when printing —
+   this file only fixes the handful of things it doesn't cover. */
+
+@media print {
+  /* Mermaid diagrams render as inline SVG with background fills; most
+     browsers strip background colors on print unless told otherwise. */
+  .mermaid,
+  .mermaid svg {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  /* Keep quick-reference checkboxes visible instead of a barely-there
+     default disabled-input outline. */
+  .task-list-control .task-list-indicator::before {
+    border-color: #000 !important;
+  }
+
+  /* Avoid splitting a heading from the content right after it. */
+  h1, h2, h3, h4 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  /* Avoid splitting a Mermaid diagram across a page boundary. */
+  .mermaid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+}

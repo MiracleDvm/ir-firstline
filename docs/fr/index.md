@@ -32,6 +32,11 @@ réel confirme qu'il a fait ses preuves lors d'un incident — voir
   notification est nécessaire, voir
   [Trouver son CSIRT](finding-your-csirt.md) — un annuaire de CERT nationaux
   et régionaux pour identifier qui contacter.
+- **Fonctionne hors ligne.** N'importe quelle page — un runbook, un
+  aide-mémoire — peut être enregistrée en PDF depuis la boîte de dialogue
+  d'impression de votre navigateur (la navigation et la barre latérale sont
+  automatiquement exclues), pour garder une copie sous la main sans
+  connexion pendant un incident.
 
 ## Contribuer
 

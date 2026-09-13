@@ -28,6 +28,10 @@ held up in an actual incident — see [Contributing](contributing.md).
   agency or a numeric legal deadline. When you need to notify someone, see
   [Finding your CSIRT](finding-your-csirt.md) — a directory of national and
   regional CERTs to help you find who to contact.
+- **Works offline.** Any page — a runbook, a quick reference — can be
+  saved as a PDF from your browser's print dialog (the navigation and
+  sidebar are automatically left out), so you can keep a copy on hand
+  without a live connection during an incident.
 
 ## Contributing
 

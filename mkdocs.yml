@@ -1,7 +1,9 @@
 site_name: IR Firstline
 site_description: Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.
+site_url: https://MiracleDvm.github.io/ir-firstline/
 repo_name: ir-firstline
-# repo_url: set once the GitHub repository is created
+repo_url: https://github.com/MiracleDvm/ir-firstline
+edit_uri: edit/master/docs/
 docs_dir: docs
 
 # MkDocs excludes any top-level "/templates/" folder in docs_dir by default
@@ -58,6 +60,9 @@ plugins:
             Account Compromise: Compromission de compte
             Runbook Template: Modèle de runbook
             Quick Reference Template: Modèle d'aide-mémoire
+
+extra_css:
+  - assets/print.css
 
 markdown_extensions:
   - admonition
