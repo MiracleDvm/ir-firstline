@@ -1,0 +1,92 @@
+site_name: IR Firstline
+site_description: Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.
+repo_name: ir-firstline
+# repo_url: set once the GitHub repository is created
+docs_dir: docs
+
+# MkDocs excludes any top-level "/templates/" folder in docs_dir by default
+# (reserved for theme override templates) — un-exclude ours, since this
+# project keeps its contribution templates at docs/templates/.
+exclude_docs: |
+  !/templates/
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: red
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: red
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: fr
+          name: Français
+          build: true
+          nav_translations:
+            Home: Accueil
+            Runbooks: Runbooks
+            Quick Reference: Aide-mémoire
+            Templates: Modèles
+            Finding your CSIRT: Trouver son CSIRT
+            Contributing: Contribuer
+            Ransomware: Rançongiciel
+            Phishing / BEC: Hameçonnage / BEC
+            Account Compromise: Compromission de compte
+            Runbook Template: Modèle de runbook
+            Quick Reference Template: Modèle d'aide-mémoire
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - tables
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Home: index.md
+  - Runbooks:
+      - Ransomware: runbooks/ransomware.md
+      - Account Compromise: runbooks/account-compromise.md
+      - Phishing / BEC: runbooks/phishing-bec.md
+  - Quick Reference:
+      - Ransomware: quick-reference/ransomware.md
+      - Account Compromise: quick-reference/account-compromise.md
+      - Phishing / BEC: quick-reference/phishing-bec.md
+  - Finding your CSIRT: finding-your-csirt.md
+  - Templates:
+      - Runbook Template: templates/runbook-template.md
+      - Quick Reference Template: templates/quick-reference-template.md
+  - Contributing: contributing.md

@@ -1,0 +1,18 @@
+# MkDocs build output
+site/
+
+# Research working folder (source material for runbooks, never committed)
+research/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
