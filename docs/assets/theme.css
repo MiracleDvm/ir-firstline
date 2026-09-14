@@ -1,0 +1,246 @@
+/* IR Firstline — custom theme
+   One brand color (a sober teal) carries the site's identity — logo,
+   links, active states — independent of light/dark surface tokens. A
+   separate ember accent is reserved strictly for real urgency inside
+   runbook content (Pitfalls, time-critical steps), never for chrome.
+   Graphite, not pure black; soft neutral, not stark white. */
+
+:root {
+  --irf-border-radius: 8px;
+  /* Brand color: same hue in both themes, only luminosity adjusts. */
+  --irf-brand-dark: #35c5bb;
+  --irf-brand-light: #1c8a80;
+}
+
+/* ---------- Dark (default) ---------- */
+[data-md-color-scheme="slate"] {
+  --irf-bg: #12151a;
+  --irf-bg-raised: #1b1f27;
+  --irf-fg: #e7e9ec;
+  --irf-fg-muted: #8b93a1;
+  --irf-brand: var(--irf-brand-dark);
+  --irf-brand-tint: #35c5bb17;
+  --irf-accent-critical: #d2694a;
+  --irf-border: #262b34;
+
+  --md-default-bg-color: var(--irf-bg);
+  --md-default-fg-color: var(--irf-fg);
+  --md-default-fg-color--light: var(--irf-fg-muted);
+  --md-default-fg-color--lighter: #565d6b;
+  --md-default-fg-color--lightest: #2a2f3a;
+
+  --md-primary-fg-color: var(--irf-bg-raised);
+  --md-primary-bg-color: var(--irf-fg);
+  --md-primary-fg-color--light: var(--irf-bg-raised);
+  --md-primary-fg-color--dark: var(--irf-bg);
+
+  --md-accent-fg-color: var(--irf-brand);
+  --md-accent-fg-color--transparent: var(--irf-brand-tint);
+  --md-accent-bg-color: var(--irf-fg);
+
+  --md-typeset-a-color: var(--irf-brand);
+
+  --md-code-bg-color: var(--irf-bg-raised);
+  --md-code-fg-color: var(--irf-fg);
+}
+
+/* ---------- Light ----------
+   Softened on purpose: lower contrast than a typical light theme,
+   warm-neutral surfaces instead of nearly-white, muted (not saturated)
+   accents. Still comfortably readable, just gentler to stare at. */
+[data-md-color-scheme="default"] {
+  --irf-bg: #eeece7;
+  --irf-bg-raised: #f6f4f0;
+  --irf-fg: #40434a;
+  --irf-fg-muted: #767b84;
+  --irf-brand: var(--irf-brand-light);
+  --irf-brand-tint: #1c8a8014;
+  --irf-accent-critical: #a85a3f;
+  --irf-border: #ddd9d0;
+
+  --md-default-bg-color: var(--irf-bg);
+  --md-default-fg-color: var(--irf-fg);
+  --md-default-fg-color--light: var(--irf-fg-muted);
+  --md-default-fg-color--lighter: #9a9ea5;
+  --md-default-fg-color--lightest: #ddd9d0;
+
+  --md-primary-fg-color: var(--irf-bg-raised);
+  --md-primary-bg-color: var(--irf-fg);
+  --md-primary-fg-color--light: var(--irf-bg-raised);
+  --md-primary-fg-color--dark: var(--irf-bg);
+
+  --md-accent-fg-color: var(--irf-brand);
+  --md-accent-fg-color--transparent: var(--irf-brand-tint);
+  --md-accent-bg-color: var(--irf-fg);
+
+  --md-typeset-a-color: var(--irf-brand);
+
+  --md-code-bg-color: #eae8e4;
+  --md-code-fg-color: var(--irf-fg);
+}
+
+/* Header and nav tabs sit on the raised surface with a hairline border
+   instead of a saturated brand-color bar — the brand color shows up in
+   links and active states, not as chrome. */
+.md-header,
+.md-tabs {
+  border-bottom: 1px solid var(--irf-border);
+  box-shadow: none;
+}
+
+.md-header {
+  color: var(--irf-fg);
+}
+
+.md-header__button.md-logo :is(img, svg) {
+  filter: none;
+}
+
+.md-tabs__link {
+  opacity: 0.7;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.md-tabs__link--active,
+.md-tabs__link:hover {
+  opacity: 1;
+}
+
+/* Flat, bordered surfaces — softened corners, no drop shadows */
+.md-typeset table:not([class]),
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: var(--irf-border-radius);
+  box-shadow: none;
+  border: 1px solid var(--irf-border);
+}
+
+.md-typeset code {
+  border-radius: 4px;
+}
+
+/* A quiet danger admonition variant for Pitfalls-style content, using the
+   ember accent — the one place in runbook content that borrows it. */
+.md-typeset .admonition.danger,
+.md-typeset .admonition.warning {
+  border-color: var(--irf-accent-critical);
+}
+
+.md-typeset .admonition.danger > .admonition-title,
+.md-typeset .admonition.warning > .admonition-title {
+  background-color: color-mix(in srgb, var(--irf-accent-critical) 12%, transparent);
+}
+
+/* ---------- Homepage runbook grid ---------- */
+.irf-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 2rem;
+}
+
+.irf-card {
+  display: block;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--irf-border);
+  border-left: 3px solid var(--irf-cat-color, var(--irf-brand));
+  border-radius: var(--irf-border-radius);
+  background: var(--irf-bg-raised);
+  text-decoration: none !important;
+  color: var(--irf-fg) !important;
+  transition: transform 0.15s ease, border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.irf-card:hover {
+  border-color: var(--irf-cat-color, var(--irf-brand));
+  background: color-mix(in srgb, var(--irf-cat-color, var(--irf-brand)) 6%, var(--irf-bg-raised));
+  transform: translateY(-1px);
+}
+
+.irf-card .irf-card-title {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.irf-card .irf-card-desc {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--irf-fg-muted);
+  line-height: 1.45;
+}
+
+.irf-card .irf-card-tag {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-family: var(--md-code-font-family, "IBM Plex Mono", monospace);
+  font-size: 0.68rem;
+  color: var(--irf-fg-muted);
+  letter-spacing: 0.02em;
+}
+
+.irf-group-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--irf-fg-muted);
+  margin: 1.75rem 0 0;
+}
+
+.irf-group-title:first-of-type {
+  margin-top: 0.5rem;
+}
+
+/* Category accent colors — informational only, deliberately distinct from
+   the brand teal so a category tag never reads as a primary action. */
+.irf-card[data-cat="identity"] { --irf-cat-color: #8b7fd1; }
+.irf-card[data-cat="infra"]    { --irf-cat-color: #d2694a; }
+.irf-card[data-cat="data"]     { --irf-cat-color: #5b8def; }
+.irf-card[data-cat="process"]  { --irf-cat-color: #8b93a1; }
+
+[data-md-color-scheme="default"] .irf-card[data-cat="identity"] { --irf-cat-color: #756bb0; }
+[data-md-color-scheme="default"] .irf-card[data-cat="infra"]    { --irf-cat-color: #a85a3f; }
+[data-md-color-scheme="default"] .irf-card[data-cat="data"]     { --irf-cat-color: #4a6bb0; }
+[data-md-color-scheme="default"] .irf-card[data-cat="process"]  { --irf-cat-color: #767b84; }
+
+/* ---------- Hero ---------- */
+.irf-hero {
+  position: relative;
+  margin: 0.5rem 0 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--irf-border);
+}
+
+.irf-hero::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: -2rem;
+  width: 22rem;
+  height: 16rem;
+  background: radial-gradient(circle, var(--irf-brand-tint) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.irf-hero .irf-kicker {
+  font-family: var(--md-code-font-family, "IBM Plex Mono", monospace);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--irf-brand);
+  letter-spacing: 0.03em;
+}
+
+.irf-hero h1 {
+  margin: 0.4rem 0 0.7rem !important;
+  font-size: 2.6rem !important;
+  letter-spacing: -0.01em;
+}
+
+.irf-hero p {
+  max-width: 44em;
+  font-size: 1.1rem;
+  line-height: 1.55;
+  color: var(--irf-fg-muted);
+}

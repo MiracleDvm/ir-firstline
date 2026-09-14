@@ -1,51 +1,69 @@
-# IR Firstline
+<div class="irf-hero" markdown>
+<span class="irf-kicker">OPEN SOURCE, CONSTRUIT AU GRAND JOUR</span>
 
-Collection open source de runbooks d'incident response bilingues (EN/FR)
-pour analystes SOC L1/L2 — utilisable dans n'importe quelle organisation,
-sous n'importe quelle juridiction, y compris les structures à faibles
-ressources sans EDR ni SIEM commercial.
+# La première réponse ne devrait pas dépendre de votre budget.
 
-Ouvrez le runbook correspondant à votre incident, suivez la checklist,
-contenez la situation — quel que soit votre outillage, quel que soit votre
-pays.
+La plupart des guides de réponse à incident sont écrits pour la
+législation d'un seul pays, la console d'un seul éditeur, ou une équipe
+ayant les moyens d'acheter les deux. Ce projet non. Chaque action ici
+fonctionne que vous ayez un EDR commercial ou un poste Windows sans rien
+d'installé dessus.
+</div>
 
-## État du projet
+## Le problème
 
-Dix runbooks sont disponibles — Ransomware, Compromission de compte,
-Phishing/BEC, DDoS, Compromission web, Vulnérabilité critique, Chaîne
-d'approvisionnement, Fuite de données, Menace interne, et Infection
-malware — tous au statut brouillon (0.x). Un runbook ne passe en v1.0
-qu'une fois qu'un retour d'expérience réel confirme qu'il a fait ses
-preuves lors d'un incident — voir [Contribuer](contributing.md).
+Les analystes L1 et L2 gèrent la majorité des incidents. Ce qu'on leur
+donne pour travailler tient généralement en trois catégories : enfermé
+dans le wiki interne d'une seule organisation, écrit autour de la
+réglementation d'un seul pays, ou construit autour de la console d'un
+seul éditeur. Rien de tout ça n'aide un analyste dans une petite équipe,
+dans un pays que les auteurs d'origine n'ont jamais envisagé, sans
+l'outillage que le runbook suppose silencieusement.
 
-## Fonctionnement
+Les leçons du terrain — ce qui a vraiment fonctionné, ce qu'un objectif
+« 30 minutes » a réellement pris — restent le plus souvent dans le Slack
+privé d'une équipe, au lieu de nourrir la documentation que tout le
+monde utilise.
 
-- **Runbooks** (`docs/runbooks/`) — procédures complètes : critères de
-  déclenchement, objectifs de temps, arbre de décision, actions L1/L2,
-  notifications & escalade, erreurs à éviter, ressources et sources.
-- **Aide-mémoire** (`docs/quick-reference/`) — une checklist condensée et
-  imprimable, dérivée de chaque runbook, pour un usage en pleine crise.
-- **Chaque action technique** propose deux options : un outil commercial
-  dédié, et une alternative CLI/open source gratuite obtenant le même
-  résultat — voir les modèles dans `docs/templates/` pour le motif exact.
-- **Aucune juridiction n'est présumée.** Les runbooks ne nomment jamais une
-  agence gouvernementale précise ni un délai légal chiffré. Quand une
-  notification est nécessaire, voir
-  [Trouver son CSIRT](finding-your-csirt.md) — un annuaire de CERT nationaux
-  et régionaux pour identifier qui contacter.
-- **Fonctionne hors ligne.** N'importe quelle page — un runbook, un
-  aide-mémoire — peut être enregistrée en PDF depuis la boîte de dialogue
-  d'impression de votre navigateur (la navigation et la barre latérale sont
-  automatiquement exclues), pour garder une copie sous la main sans
-  connexion pendant un incident.
+## Ce qui change ici
+
+- **Le cœur technique est universel.** Aucun nom d'agence, aucune
+  exigence d'éditeur, aucun délai légal ne vit dans le corps d'un
+  runbook. Jamais.
+- **Chaque action a un chemin gratuit.** Chaque étape propose un outil
+  dédié et une alternative CLI/open source obtenant le même résultat —
+  un analyste avec seulement les outils natifs de l'OS peut exécuter le
+  runbook en entier.
+- **Bilingue par construction.** Anglais et français, même structure,
+  même profondeur — pas un résumé dans une langue et le vrai contenu
+  dans l'autre.
+- **La qualité se prouve, elle ne se déclare pas.** Un runbook reste un
+  brouillon jusqu'à ce que quelqu'un rapporte qu'il a tenu lors d'un
+  incident réel. Personne — pas même les mainteneurs — ne marque son
+  propre travail « validé ».
+
+## Comment un runbook est construit
+
+Chacun suit la même forme : les signaux qui indiquent de l'ouvrir, des
+objectifs de temps internes pour le confinement et l'éradication, un
+arbre de décision, des actions numérotées pour la première réponse et
+pour l'investigation approfondie, un renvoi générique vers l'autorité de
+votre propre juridiction — jamais une autorité précise — et ce qui
+détruit les preuves si on s'y prend mal.
+
+[Parcourir les runbooks →](runbooks/index.md)
 
 ## Contribuer
 
-Voir [Contribuer](contributing.md) pour savoir comment soumettre un retour
-d'expérience réel, proposer un nouveau scénario, ou corriger une traduction
-— les templates d'Issues sont en place pour les trois.
+Vous avez utilisé l'un d'eux lors d'un incident réel ? C'est la chose la
+plus précieuse que vous puissiez rapporter — c'est littéralement ce qui
+fait passer un runbook en v1.0. Un scénario manquant, ou une section
+française qui sonne comme une traduction plutôt que comme le vrai
+contenu ? Même porte, autre sujet.
 
-## Licence
+[Comment contribuer →](contributing.md)
+
+---
 
 Le contenu est publié sous licence
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
