@@ -1,6 +1,7 @@
 # Insider Threat — Quick Reference
 
 **Status:** 0.1 (draft) — derived from [`runbooks/insider-threat.md`](../runbooks/insider-threat.md); do not edit independently.
+{: .irf-status }
 
 - [ ] 1. Confirm the report is credible against logs for the specific account only — not the whole environment.
 - [ ] 2. Do **not** take containment or confrontational action yourself — escalate to L2 immediately.
@@ -15,4 +16,4 @@
 - [ ] 11. Determine the full scope: what data/systems were accessed, and what left the organization's control.
 - [ ] 12. If malicious/fraudulent activity is confirmed, stop independent investigation and hand off to legal counsel.
 - [ ] 13. If nothing malicious is confirmed, restore access and close the case discreetly.
-- [ ] 14. Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See `finding-your-csirt.md` to identify who to contact.
+- [ ] 14. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See `finding-your-csirt.md` if your organization needs help identifying which external body to reach.

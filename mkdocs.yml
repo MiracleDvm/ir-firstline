@@ -84,6 +84,9 @@ extra_css:
   - assets/theme.css
   - assets/print.css
 
+extra_javascript:
+  - assets/search-lang.js
+
 markdown_extensions:
   - admonition
   - attr_list

@@ -1,6 +1,7 @@
 # Compromission tierce-partie / supply chain
 
 **Statut :** 0.1 (brouillon)
+{: .irf-status }
 
 ---
 
@@ -44,66 +45,66 @@ flowchart TD
 ## 4. Actions L1
 
 1. **Confirmez le signal.** Recoupez la mention sur le site de fuite, le rapport de threat intel, ou la notification du tiers lui-même, avec l'accès ou l'interconnexion réel que ce fournisseur a dans votre environnement.
-   - **Outil dédié** : inventaire de fournisseurs/actifs ou entrée CMDB pour le tiers.
-   - **Alternative CLI / open source** : un tableur ou fichier texte maintenu listant les comptes et interconnexions fournisseurs — filtrez-le à la recherche du nom du fournisseur.
+    - **Outil dédié** : inventaire de fournisseurs/actifs ou entrée CMDB pour le tiers.
+    - **Alternative CLI / open source** : un tableur ou fichier texte maintenu listant les comptes et interconnexions fournisseurs — filtrez-le à la recherche du nom du fournisseur.
 
 2. **Coupez ou suspendez immédiatement l'interconnexion** si la compromission est confirmée, ou si l'accès critique pour l'activité ne dépend pas du maintien de la connexion. N'attendez pas le calendrier propre du fournisseur.
-   - **Outil dédié** : déploiement de politique pare-feu / segmentation réseau (une action de coupure planifiée à l'avance).
-   - **Alternative CLI / open source** : une règle pare-feu manuelle désactivant la route, le tunnel VPN, ou la plage IP spécifique liée au fournisseur (`iptables`, ACL pfSense/OPNsense), ou désactivez directement l'intégration/clé API spécifique.
+    - **Outil dédié** : déploiement de politique pare-feu / segmentation réseau (une action de coupure planifiée à l'avance).
+    - **Alternative CLI / open source** : une règle pare-feu manuelle désactivant la route, le tunnel VPN, ou la plage IP spécifique liée au fournisseur (`iptables`, ACL pfSense/OPNsense), ou désactivez directement l'intégration/clé API spécifique.
 
 3. **Désactivez tout compte, clé API, ou identifiant dédié à ce tiers** — accès support, compte d'intégration, ou compte de service.
-   - **Outil dédié** : désactivation ciblée depuis la console IAM/PAM.
-   - **Alternative CLI / open source** : `Disable-ADAccount -Identity <compte>`, ou révoquez la clé API/le jeton spécifique via la console d'administration du service concerné.
+    - **Outil dédié** : désactivation ciblée depuis la console IAM/PAM.
+    - **Alternative CLI / open source** : `Disable-ADAccount -Identity <compte>`, ou révoquez la clé API/le jeton spécifique via la console d'administration du service concerné.
 
 4. **Si l'email est le point d'interconnexion, mettez en quarantaine ou filtrez les messages du domaine du fournisseur affecté** plutôt que de le bloquer entièrement — vous aurez peut-être encore besoin de leurs mises à jour sur l'incident.
-   - **Outil dédié** : règle de la passerelle de sécurité email (redirection vers une boîte aux lettres sandboxée, suppression des pièces jointes/liens).
-   - **Alternative CLI / open source** : une règle côté serveur de messagerie retenant les messages du domaine pour une revue manuelle avant livraison.
+    - **Outil dédié** : règle de la passerelle de sécurité email (redirection vers une boîte aux lettres sandboxée, suppression des pièces jointes/liens).
+    - **Alternative CLI / open source** : une règle côté serveur de messagerie retenant les messages du domaine pour une revue manuelle avant livraison.
 
 5. **Préservez les logs de l'interconnexion** — trafic, authentification, appels API — avant qu'ils ne sortent de la rétention.
-   - **Outil dédié** : export SIEM filtré sur les IP/comptes sources du fournisseur.
-   - **Alternative CLI / open source** : exportez manuellement les logs pare-feu/VPN/passerelle API pertinents vers un fichier horodaté.
+    - **Outil dédié** : export SIEM filtré sur les IP/comptes sources du fournisseur.
+    - **Alternative CLI / open source** : exportez manuellement les logs pare-feu/VPN/passerelle API pertinents vers un fichier horodaté.
 
 6. **Escaladez vers le L2 avec ce que vous avez** — quel fournisseur, quel accès il avait, et si du trafic critique pour l'activité dépend du maintien de la connexion.
-   - **Outil dédié** : votre plateforme de gestion de cas/tickets.
-   - **Alternative CLI / open source** : TheHive, ou un document d'incident partagé.
+    - **Outil dédié** : votre plateforme de gestion de cas/tickets.
+    - **Alternative CLI / open source** : TheHive, ou un document d'incident partagé.
 
 ## 5. Actions L2
 
 1. **Établissez un canal de communication direct avec l'équipe sécurité du fournisseur**, en dehors de votre email habituel si ce canal pourrait lui-même être affecté.
-   - **Outil dédié** : le contact sécurité/incident dédié de votre fournisseur, depuis votre registre de risque fournisseurs.
-   - **Alternative CLI / open source** : un appel téléphonique à un numéro déjà enregistré, ou un canal de messagerie hors bande.
+    - **Outil dédié** : le contact sécurité/incident dédié de votre fournisseur, depuis votre registre de risque fournisseurs.
+    - **Alternative CLI / open source** : un appel téléphonique à un numéro déjà enregistré, ou un canal de messagerie hors bande.
 
 2. **Déterminez le périmètre complet de ce que le fournisseur pouvait atteindre** : quels systèmes, données, ou identifiants étaient exposés via cette interconnexion.
-   - **Outil dédié** : inventaire CMDB/actifs recoupé avec les logs d'accès.
-   - **Alternative CLI / open source** : recoupez manuellement vos logs pare-feu/VPN/passerelle API avec votre propre inventaire d'actifs.
+    - **Outil dédié** : inventaire CMDB/actifs recoupé avec les logs d'accès.
+    - **Alternative CLI / open source** : recoupez manuellement vos logs pare-feu/VPN/passerelle API avec votre propre inventaire d'actifs.
 
 3. **Recherchez des indicateurs de mouvement latéral** depuis le point d'accès du fournisseur vers votre propre environnement.
-   - **Outil dédié** : recherche d'IOC à l'échelle du parc via l'EDR/SIEM, en utilisant les indicateurs partagés par le fournisseur.
-   - **Alternative CLI / open source** : règles YARA et revue Sysmon/Sysinternals sur les postes accessibles depuis le point d'accès du fournisseur.
+    - **Outil dédié** : recherche d'IOC à l'échelle du parc via l'EDR/SIEM, en utilisant les indicateurs partagés par le fournisseur.
+    - **Alternative CLI / open source** : règles YARA et revue Sysmon/Sysinternals sur les postes accessibles depuis le point d'accès du fournisseur.
 
 4. **Si le fournisseur livre du logiciel, vérifiez si vous exécutez la version compromise**, et validez les mises à jour récentes contre des sommes de contrôle ou signatures connues comme saines avant de leur faire confiance.
-   - **Outil dédié** : plateforme d'analyse de composition logicielle / gestion de SBOM.
-   - **Alternative CLI / open source** : outils gratuits de SBOM et de dépendances comme Syft et Grype, ou `npm audit` / `pip-audit` selon l'écosystème concerné ; comparez les hashs de fichiers aux sommes de contrôle publiées par le fournisseur.
+    - **Outil dédié** : plateforme d'analyse de composition logicielle / gestion de SBOM.
+    - **Alternative CLI / open source** : outils gratuits de SBOM et de dépendances comme Syft et Grype, ou `npm audit` / `pip-audit` selon l'écosystème concerné ; comparez les hashs de fichiers aux sommes de contrôle publiées par le fournisseur.
 
 5. **Demandez un rapport d'incident formel et une liste d'indicateurs à jour au fournisseur**, et suivez la transparence de sa remédiation — traitez un fournisseur qui cesse de communiquer comme un risque toujours ouvert.
-   - **Outil dédié** : suivi d'incident de la plateforme de gestion du risque fournisseurs.
-   - **Alternative CLI / open source** : un document d'incident partagé consignant ce que le fournisseur a (et n'a pas) confirmé, mis à jour au fil des échanges.
+    - **Outil dédié** : suivi d'incident de la plateforme de gestion du risque fournisseurs.
+    - **Alternative CLI / open source** : un document d'incident partagé consignant ce que le fournisseur a (et n'a pas) confirmé, mis à jour au fil des échanges.
 
 6. **Coordonnez un confinement conjoint** lorsque la compromission se situe côté fournisseur — vous agissez de votre côté (désactiver, mettre en quarantaine) pendant qu'ils agissent du leur (révoquer l'accès de l'attaquant, faire tourner les secrets).
-   - **Outil dédié** : un pont/appel d'incident conjoint entre les deux équipes sécurité.
-   - **Alternative CLI / open source** : un journal d'incident partagé et horodaté, consultable et modifiable par les deux parties.
+    - **Outil dédié** : un pont/appel d'incident conjoint entre les deux équipes sécurité.
+    - **Alternative CLI / open source** : un journal d'incident partagé et horodaté, consultable et modifiable par les deux parties.
 
 7. **Avant de rouvrir l'interconnexion, vérifiez avec des preuves — pas seulement l'assurance du fournisseur — que son environnement est sain**, et faites tourner chaque identifiant ou secret partagé avec lui.
-   - **Outil dédié** : une évaluation de sécurité indépendante de la connexion restaurée avant remise en production.
-   - **Alternative CLI / open source** : revérifiez manuellement la correction du fournisseur par rapport aux indicateurs d'origine, et faites tourner vous-même les clés API, mots de passe et certificats, quoi qu'il rapporte.
+    - **Outil dédié** : une évaluation de sécurité indépendante de la connexion restaurée avant remise en production.
+    - **Alternative CLI / open source** : revérifiez manuellement la correction du fournisseur par rapport aux indicateurs d'origine, et faites tourner vous-même les clés API, mots de passe et certificats, quoi qu'il rapporte.
 
 8. **Réévaluez le profil de risque de ce fournisseur et le périmètre de son accès pour l'avenir** — a-t-il besoin du même niveau d'accès qu'avant ?
-   - **Outil dédié** : mise à jour du score de risque de la plateforme de gestion du risque fournisseurs.
-   - **Alternative CLI / open source** : mettez à jour votre propre tableur de suivi fournisseurs avec l'incident et une recommandation de réduction d'accès.
+    - **Outil dédié** : mise à jour du score de risque de la plateforme de gestion du risque fournisseurs.
+    - **Alternative CLI / open source** : mettez à jour votre propre tableur de suivi fournisseurs avec l'incident et une recommandation de réduction d'accès.
 
 ## 6. Notifications & escalade
 
-> Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir `finding-your-csirt.md` pour identifier qui contacter.
+> Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir `finding-your-csirt.md` si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.
 
 ## 7. Erreurs à éviter
 

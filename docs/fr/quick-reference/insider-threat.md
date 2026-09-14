@@ -1,6 +1,7 @@
 # Menace interne — Aide-mémoire
 
 **Statut :** 0.1 (brouillon) — dérivé de [`runbooks/insider-threat.md`](../runbooks/insider-threat.md) ; ne pas modifier indépendamment.
+{: .irf-status }
 
 - [ ] 1. Confirmez que le signalement est crédible en recoupant les journaux du compte concerné uniquement — pas de tout l'environnement.
 - [ ] 2. N'entreprenez **aucune** action de confinement ou de confrontation vous-même — escaladez immédiatement vers le L2.
@@ -15,4 +16,4 @@
 - [ ] 11. Déterminez le périmètre complet : quelles données/systèmes ont été accédés, et ce qui a quitté le contrôle de l'organisation.
 - [ ] 12. Si une activité malveillante/frauduleuse est confirmée, arrêtez l'investigation indépendante et transmettez au conseil juridique.
 - [ ] 13. Si rien de malveillant n'est confirmé, restaurez l'accès et clôturez le dossier discrètement.
-- [ ] 14. Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir `finding-your-csirt.md` pour identifier qui contacter.
+- [ ] 14. Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir `finding-your-csirt.md` si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.

@@ -1,10 +1,19 @@
 # Trouver son CSIRT
 
-Chaque runbook de ce projet vous demande, à l'étape de notification, de
-contacter votre autorité compétente — sans en nommer une, car aucune autorité
-unique ne s'applique partout. Cette page est le pointeur : un annuaire
-d'annuaires, pour vous aider à trouver rapidement votre CERT/CSIRT national
-ou régional, en pleine gestion d'incident.
+Chaque runbook de ce projet vous demande, à l'étape de notification,
+d'escalader d'abord en interne — c'est ensuite à votre direction et à votre
+service juridique/DPO de décider s'il faut contacter une autorité externe,
+et comment. Cette page est le pointeur pour cette étape : un annuaire
+d'annuaires, pour aider votre organisation à trouver rapidement le bon
+CERT/CSIRT national ou régional, sans avoir à fouiller les résultats de
+recherche en pleine gestion d'incident.
+
+**Un même terme, deux sens différents.** « CSIRT » et « CERT » peuvent
+désigner soit l'équipe interne de réponse à incident de votre propre
+organisation, soit un organisme externe national/gouvernemental qui
+coordonne la réponse à l'échelle d'un pays et qui peut être celui qui reçoit
+les notifications de violation. Cette page concerne le second sens — les
+organismes externes, nationaux ou régionaux — pas votre équipe interne.
 
 ## Annuaire mondial
 

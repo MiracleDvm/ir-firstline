@@ -1,6 +1,7 @@
 # DDoS — Quick Reference
 
 **Status:** 0.1 (draft) — derived from [`runbooks/ddos.md`](../runbooks/ddos.md); do not edit independently.
+{: .irf-status }
 
 - [ ] 1. Confirm it's actually a DDoS — not legitimate traffic, a deployment issue, or a misconfiguration.
 - [ ] 2. Classify the layer: network/volumetric, or application-layer.
@@ -16,4 +17,4 @@
 - [ ] 12. Configure egress filtering so your own systems don't add to the problem.
 - [ ] 13. Confirm recovery to baseline before rolling back anything.
 - [ ] 14. Roll back mitigation measures once traffic is confirmed normal.
-- [ ] 15. Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See `finding-your-csirt.md` to identify who to contact.
+- [ ] 15. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See `finding-your-csirt.md` if your organization needs help identifying which external body to reach.

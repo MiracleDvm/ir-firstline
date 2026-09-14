@@ -1,6 +1,7 @@
 # Web Application / Server Compromise — Quick Reference
 
 **Status:** 0.1 (draft) — derived from [`runbooks/web-compromise.md`](../runbooks/web-compromise.md); do not edit independently.
+{: .irf-status }
 
 - [ ] 1. Confirm the compromise: defaced content, unexpected file in the web root, unrecognized processes, or a WAF/IDS alert.
 - [ ] 2. Contain the host — isolate a critical service (stay powered on) or power off a non-critical one.
@@ -16,4 +17,4 @@
 - [ ] 12. Rebuild from a known-good image rather than manually cleaning if you're not fully confident.
 - [ ] 13. Restore content from a verified-clean backup and reset every affected account's credentials.
 - [ ] 14. Monitor closely after restoring service for signs of reinfection.
-- [ ] 15. Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See `finding-your-csirt.md` to identify who to contact.
+- [ ] 15. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See `finding-your-csirt.md` if your organization needs help identifying which external body to reach.

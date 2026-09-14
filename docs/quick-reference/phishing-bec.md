@@ -1,6 +1,7 @@
 # Phishing / BEC — Quick Reference
 
 **Status:** 0.1 (draft) — derived from [`runbooks/phishing-bec.md`](../runbooks/phishing-bec.md); do not edit independently.
+{: .irf-status }
 
 - [ ] 1. Confirm the report: get the message's headers, body, attachments, and links — don't open attachments or follow links on a sensitive device.
 - [ ] 2. If a financial request is involved, verify it out-of-band — call a number you already had on file, **never** one from the message.
@@ -16,4 +17,4 @@
 - [ ] 12. If fraudulent content is hosted online, file an abuse/takedown request with evidence attached.
 - [ ] 13. Harden email authentication (SPF/DKIM/DMARC) and disable legacy authentication protocols.
 - [ ] 14. If money moved, document the loss with finance and add temporary friction to the payment process.
-- [ ] 15. Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See `finding-your-csirt.md` to identify who to contact.
+- [ ] 15. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See `finding-your-csirt.md` if your organization needs help identifying which external body to reach.

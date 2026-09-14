@@ -11,6 +11,7 @@
 > fermée à son sujet — ne t'attribue jamais ce statut toi-même.
 
 **Statut :** 0.1 (brouillon)
+{: .irf-status }
 
 ---
 
@@ -77,9 +78,7 @@ Utilise exactement ce texte générique (traduit, jamais complété par un
 chiffre) — ne nomme jamais une autorité précise ni un délai de
 notification :
 
-> Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon
-> la réglementation applicable à votre juridiction — consultez votre conseil
-> juridique. Voir `finding-your-csirt.md` pour identifier qui contacter.
+> Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir `finding-your-csirt.md` si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.
 
 ## 7. Erreurs à éviter
 

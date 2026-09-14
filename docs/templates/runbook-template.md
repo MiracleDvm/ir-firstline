@@ -10,6 +10,7 @@
 > against it — never set that status yourself.
 
 **Status:** 0.1 (draft)
+{: .irf-status }
 
 ---
 
@@ -73,9 +74,7 @@ section 4, covering investigation and eradication steps.
 Use this exact generic wording (translated, never with a number added) —
 do not name a specific authority or a notification deadline:
 
-> Notify your competent authority (national CERT, DPO, regulator) according
-> to the regulations applicable in your jurisdiction — consult your legal
-> counsel. See `finding-your-csirt.md` to identify who to contact.
+> Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See `finding-your-csirt.md` if your organization needs help identifying which external body to reach.
 
 ## 7. Pitfalls to Avoid
 

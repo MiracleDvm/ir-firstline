@@ -1,6 +1,7 @@
 # Account Compromise — Quick Reference
 
 **Status:** 0.1 (draft) — derived from [`runbooks/account-compromise.md`](../runbooks/account-compromise.md); do not edit independently.
+{: .irf-status }
 
 - [ ] 1. Confirm the compromise: check sign-in/audit logs for new country, new device, impossible travel, or MFA failures followed by a success.
 - [ ] 2. Disable the account and revoke all active sessions and tokens immediately — a password reset alone does not end an open session.
@@ -16,4 +17,4 @@
 - [ ] 12. Remove all persistence found, across every affected account.
 - [ ] 13. Harden: enforce MFA, disable legacy/basic authentication, enable risk-based sign-in policies.
 - [ ] 14. Watch for a second wave targeting other users in the same organization.
-- [ ] 15. Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See `finding-your-csirt.md` to identify who to contact.
+- [ ] 15. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See `finding-your-csirt.md` if your organization needs help identifying which external body to reach.

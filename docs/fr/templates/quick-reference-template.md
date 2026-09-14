@@ -7,6 +7,7 @@
 > langues, dans la même tâche que le runbook qu'il condense.
 
 **Statut :** 0.1 (brouillon) — hérite du statut de son runbook parent.
+{: .irf-status }
 
 ---
 
@@ -24,10 +25,7 @@ seul coup d'œil.
 - [ ] 7. ...
 - [ ] 8. ...
 - [ ] 9. ...
-- [ ] 10. Notifiez votre autorité compétente (CERT national, DPO, régulateur)
-      selon la réglementation applicable à votre juridiction — consultez
-      votre conseil juridique. Voir `finding-your-csirt.md` pour identifier
-      qui contacter.
+- [ ] 10. Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir `finding-your-csirt.md` si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.
 
 > Cet item de notification est obligatoire sur chaque aide-mémoire — c'est
 > justement en pleine crise, checklist en main, qu'on l'oublie sinon. N'y

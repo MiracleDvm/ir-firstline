@@ -1,6 +1,7 @@
 # Compromission d'application/serveur web
 
 **Statut :** 0.1 (brouillon)
+{: .irf-status }
 
 ---
 
@@ -42,66 +43,90 @@ flowchart TD
 ## 4. Actions L1
 
 1. **Confirmez la compromission.** Vérifiez la présence d'un contenu défacé, d'un fichier inattendu dans la racine web, de processus ou connexions non reconnus, ou l'alerte à l'origine du déclenchement (règle WAF/IDS, contrôle d'intégrité de fichiers).
-   - **Outil dédié** : console d'alertes EDR/WAF, ou service de surveillance d'intégrité de site web.
-   - **Alternative CLI / open source** : comparez manuellement la page/les fichiers actuels à une référence saine connue ; listez les fichiers récemment modifiés avec `find /var/www -mtime -1 -type f` (Linux) ou `Get-ChildItem -Recurse | Sort-Object LastWriteTime -Descending` (Windows).
+    - **Outil dédié** : console d'alertes EDR/WAF, ou service de surveillance d'intégrité de site web.
+    - **Alternative CLI / open source** : comparez manuellement la page/les fichiers actuels à une référence saine connue, et listez les fichiers récemment modifiés.
+
+        === "Linux"
+
+            ```bash
+            find /var/www -mtime -1 -type f
+            ```
+
+        === "Windows"
+
+            ```powershell
+            Get-ChildItem -Recurse | Sort-Object LastWriteTime -Descending
+            ```
 
 2. **Confinez l'hôte.** Pour un service critique, isolez-le du réseau en le laissant allumé (préserve les preuves) ; pour un hôte non critique, vous pouvez l'éteindre directement — ce scénario ne présente pas le risque d'extinction destructrice propre au ransomware.
-   - **Outil dédié** : isolation réseau de l'EDR, ou règle de pare-feu/répartiteur de charge retirant l'hôte de la rotation.
-   - **Alternative CLI / open source** : désactivez la carte réseau (`ip link set <iface> down` / `netsh interface set interface "<nom>" admin=disable`), ou déconnectez physiquement l'hôte.
+    - **Outil dédié** : isolation réseau de l'EDR, ou règle de pare-feu/répartiteur de charge retirant l'hôte de la rotation.
+    - **Alternative CLI / open source** : désactivez la carte réseau (`ip link set <iface> down` / `netsh interface set interface "<nom>" admin=disable`), ou déconnectez physiquement l'hôte.
 
 3. **Si le contenu public est affecté, mettez-le hors ligne ou redirigez vers une page de maintenance statique** — HTML statique uniquement, aucun code dynamique, afin que la même vulnérabilité ne puisse pas être ré-exploitée pendant l'investigation.
-   - **Outil dédié** : règle de basculement CDN/WAF, ou mode maintenance.
-   - **Alternative CLI / open source** : pointez la racine documentaire du serveur web, ou votre cible DNS/répartiteur de charge, vers une page statique HTML préparée à l'avance.
+    - **Outil dédié** : règle de basculement CDN/WAF, ou mode maintenance.
+    - **Alternative CLI / open source** : pointez la racine documentaire du serveur web, ou votre cible DNS/répartiteur de charge, vers une page statique HTML préparée à l'avance.
 
 4. **Préservez les preuves avant toute remédiation.** Capturez une image disque et/ou mémoire si possible sans délai, et prenez une copie horodatée de tout contenu défacé.
-   - **Outil dédié** : capture forensique / imagerie disque complète de l'EDR.
-   - **Alternative CLI / open source** : `dd` ou FTK Imager pour une image disque, un outil gratuit de capture mémoire compatible Volatility, et `wget`/HTTrack pour une copie horodatée d'une page défacée.
+    - **Outil dédié** : capture forensique / imagerie disque complète de l'EDR.
+    - **Alternative CLI / open source** : `dd` ou FTK Imager pour une image disque, un outil gratuit de capture mémoire compatible Volatility, et `wget`/HTTrack pour une copie horodatée d'une page défacée.
 
 5. **Désactivez les comptes et identifiants potentiellement compromis** — en particulier tout compte local ou administrateur du serveur que vous ne reconnaissez pas.
-   - **Outil dédié** : console IAM/PAM.
-   - **Alternative CLI / open source** : `usermod -L <compte>` (Linux) ou `net user <compte> /active:no` (Windows) ; vérifiez `/etc/passwd` à la recherche d'entrées UID 0 inattendues.
+    - **Outil dédié** : console IAM/PAM.
+    - **Alternative CLI / open source** : désactivez le compte, et vérifiez `/etc/passwd` à la recherche d'entrées UID 0 inattendues.
+
+        === "Linux"
+
+            ```bash
+            usermod -L <compte>
+            ```
+
+        === "Windows"
+
+            ```powershell
+            net user <compte> /active:no
+            ```
 
 6. **Escaladez vers le L2 avec ce que vous avez** — hôte/service affecté, un échantillon du défacement ou du fichier suspect, une chronologie approximative, et si la vulnérabilité semble encore exploitable.
-   - **Outil dédié** : votre plateforme de gestion de cas/tickets.
-   - **Alternative CLI / open source** : TheHive, ou un document d'incident partagé.
+    - **Outil dédié** : votre plateforme de gestion de cas/tickets.
+    - **Alternative CLI / open source** : TheHive, ou un document d'incident partagé.
 
 ## 5. Actions L2
 
 1. **Identifiez le vecteur d'entrée.** Vérifiez les logs serveur et d'erreurs à la recherche d'une injection SQL, d'une inclusion de fichier distant, d'un plugin CMS vulnérable, d'un panneau d'administration exposé, ou de l'exploitation d'un CVE connu non corrigé.
-   - **Outil dédié** : recherche forensique de logs du WAF/IDS.
-   - **Alternative CLI / open source** : filtrez manuellement les logs d'accès/erreurs (ex. `grep -i "union select\|\.\./\.\." access.log`) et examinez les requêtes autour du moment de la compromission.
+    - **Outil dédié** : recherche forensique de logs du WAF/IDS.
+    - **Alternative CLI / open source** : filtrez manuellement les logs d'accès/erreurs (ex. `grep -i "union select\|\.\./\.\." access.log`) et examinez les requêtes autour du moment de la compromission.
 
 2. **Recherchez des webshells et fichiers non autorisés.** Cherchez les fichiers récemment modifiés ou créés dans les répertoires accessibles depuis le web, et les fichiers aux noms, permissions, ou motifs de contenu inhabituels.
-   - **Outil dédié** : module de détection de webshells de l'EDR ou dédié.
-   - **Alternative CLI / open source** : exécutez des règles YARA contre des signatures de webshells connues ; `find /var/www -mtime -7 -type f` combiné à une revue manuelle de tout fichier correspondant à des motifs de webshell courants (usage intensif de `base64`/`eval()` dans un script, par exemple).
+    - **Outil dédié** : module de détection de webshells de l'EDR ou dédié.
+    - **Alternative CLI / open source** : exécutez des règles YARA contre des signatures de webshells connues ; `find /var/www -mtime -7 -type f` combiné à une revue manuelle de tout fichier correspondant à des motifs de webshell courants (usage intensif de `base64`/`eval()` dans un script, par exemple).
 
 3. **Identifiez la persistance au-delà de la racine web** — tâches planifiées, cron jobs, nouveaux services, entrées de démarrage automatique, ou clés SSH/comptes ajoutés par l'attaquant.
-   - **Outil dédié** : module de recherche de persistance de l'EDR.
-   - **Alternative CLI / open source** : Sysinternals Autoruns (Windows) ; examinez manuellement `crontab -l`, `/etc/cron.*`, et `~/.ssh/authorized_keys` (Linux).
+    - **Outil dédié** : module de recherche de persistance de l'EDR.
+    - **Alternative CLI / open source** : Sysinternals Autoruns (Windows) ; examinez manuellement `crontab -l`, `/etc/cron.*`, et `~/.ssh/authorized_keys` (Linux).
 
 4. **Vérifiez les mouvements latéraux** — si l'hôte compromis s'est connecté à d'autres systèmes ou partages internes qu'il ne devrait pas atteindre.
-   - **Outil dédié** : analyse de flux réseau de l'EDR à l'échelle du parc.
-   - **Alternative CLI / open source** : examinez manuellement les logs pare-feu ou NetFlow, et corrélez l'historique de connexions sortantes de l'hôte avec votre inventaire d'actifs.
+    - **Outil dédié** : analyse de flux réseau de l'EDR à l'échelle du parc.
+    - **Alternative CLI / open source** : examinez manuellement les logs pare-feu ou NetFlow, et corrélez l'historique de connexions sortantes de l'hôte avec votre inventaire d'actifs.
 
 5. **Corrigez la cause racine avant de rétablir le service** — patchez la vulnérabilité exploitée, mettez à jour ou supprimez le plugin CMS vulnérable, fermez le dossier ouvert/inscriptible, ou corrigez le code injectable.
-   - **Outil dédié** : plateforme de gestion des vulnérabilités suivant le correctif jusqu'à sa clôture.
-   - **Alternative CLI / open source** : appliquez vous-même le correctif éditeur, ou ajoutez une règle WAF/reverse-proxy bloquant le motif d'exploitation spécifique si un correctif définitif n'est pas encore prêt.
+    - **Outil dédié** : plateforme de gestion des vulnérabilités suivant le correctif jusqu'à sa clôture.
+    - **Alternative CLI / open source** : appliquez vous-même le correctif éditeur, ou ajoutez une règle WAF/reverse-proxy bloquant le motif d'exploitation spécifique si un correctif définitif n'est pas encore prêt.
 
 6. **Reconstruisez plutôt que de nettoyer en cas de doute.** Réinstallez le serveur à partir d'une image connue saine ou d'une source de paquets officielle plutôt que de tenter de supprimer manuellement chaque artefact de l'attaquant.
-   - **Outil dédié** : votre pipeline standard d'imagerie serveur / image de référence.
-   - **Alternative CLI / open source** : réinstallez depuis l'ISO/les paquets officiels de la distribution et réappliquez la configuration depuis le gestionnaire de versions.
+    - **Outil dédié** : votre pipeline standard d'imagerie serveur / image de référence.
+    - **Alternative CLI / open source** : réinstallez depuis l'ISO/les paquets officiels de la distribution et réappliquez la configuration depuis le gestionnaire de versions.
 
 7. **Restaurez le contenu depuis une sauvegarde vérifiée saine, et réinitialisez les identifiants** de chaque compte ayant accès au serveur — panneau d'administration, déploiement, et base de données.
-   - **Outil dédié** : restauration avec vérification d'intégrité de la plateforme de sauvegarde.
-   - **Alternative CLI / open source** : restaurez depuis une sauvegarde antérieure à la compromission, vérifiée par hashs connus ; réinitialisez manuellement le mot de passe de chaque compte affecté.
+    - **Outil dédié** : restauration avec vérification d'intégrité de la plateforme de sauvegarde.
+    - **Alternative CLI / open source** : restaurez depuis une sauvegarde antérieure à la compromission, vérifiée par hashs connus ; réinitialisez manuellement le mot de passe de chaque compte affecté.
 
 8. **Surveillez étroitement après le rétablissement du service.** La même vulnérabilité, ou une porte dérobée oubliée, est la cause la plus fréquente de réinfection.
-   - **Outil dédié** : alertes WAF/IDS ajustées sur les indicateurs confirmés, plus surveillance d'intégrité/de disponibilité.
-   - **Alternative CLI / open source** : un script planifié comparant les hashs de fichiers actuels à la référence saine, et une revue manuelle des logs pendant plusieurs jours après la reprise.
+    - **Outil dédié** : alertes WAF/IDS ajustées sur les indicateurs confirmés, plus surveillance d'intégrité/de disponibilité.
+    - **Alternative CLI / open source** : un script planifié comparant les hashs de fichiers actuels à la référence saine, et une revue manuelle des logs pendant plusieurs jours après la reprise.
 
 ## 6. Notifications & escalade
 
-> Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir `finding-your-csirt.md` pour identifier qui contacter.
+> Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir `finding-your-csirt.md` si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.
 
 ## 7. Erreurs à éviter
 

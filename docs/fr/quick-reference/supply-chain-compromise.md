@@ -1,6 +1,7 @@
 # Compromission tierce-partie / supply chain — Aide-mémoire
 
 **Statut :** 0.1 (brouillon) — dérivé de [`runbooks/supply-chain-compromise.md`](../runbooks/supply-chain-compromise.md) ; ne pas modifier indépendamment.
+{: .irf-status }
 
 - [ ] 1. Confirmez le signal par rapport à votre inventaire fournisseurs/accès — que peut réellement atteindre ce tiers dans votre environnement ?
 - [ ] 2. Coupez ou suspendez immédiatement l'interconnexion si la compromission est confirmée, ou si elle n'est pas critique pour l'activité.
@@ -16,4 +17,4 @@
 - [ ] 12. Coordonnez un confinement conjoint avec l'équipe sécurité du fournisseur.
 - [ ] 13. Vérifiez de manière indépendante — pas seulement sur la parole du fournisseur — avant de rouvrir, et faites tourner chaque identifiant partagé.
 - [ ] 14. Réévaluez le profil de risque du fournisseur et le périmètre de son accès pour l'avenir.
-- [ ] 15. Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir `finding-your-csirt.md` pour identifier qui contacter.
+- [ ] 15. Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir `finding-your-csirt.md` si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.

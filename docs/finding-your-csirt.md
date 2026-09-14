@@ -1,10 +1,18 @@
 # Finding Your CSIRT
 
-Every runbook in this project tells you, at the notification step, to contact
-your competent authority — without naming one, because no single authority
-applies everywhere. This page is the pointer: a directory of directories, to
-help you find your national or regional CERT/CSIRT quickly, in the middle of
-an incident.
+Every runbook in this project tells you, at the notification step, to escalate
+internally first — your leadership and legal/DPO function then decide whether
+and how to contact an external authority. This page is the pointer for that
+step: a directory of directories, to help your organization find the right
+national or regional CERT/CSIRT quickly, without digging through search
+results in the middle of an incident.
+
+**One term, two meanings.** "CSIRT" and "CERT" can mean either your own
+organization's internal incident response team, or an external
+national/governmental body that coordinates response at a country level and
+may be the one to receive breach notifications. This page is about the
+second kind — external, national or regional bodies — not your own internal
+team.
 
 ## Global directory
 

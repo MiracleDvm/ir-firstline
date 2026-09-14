@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{% block content %}
+  <h1>404 — Page not found</h1>
+  <p>
+    The page you're looking for doesn't exist — it may have moved, or the
+    link was mistyped.
+  </p>
+  <p>
+    <a href="{{ config.site_url }}">Go to the homepage</a>
+    · <a href="{{ config.site_url }}runbooks/">Browse the runbooks</a>
+  </p>
+  <hr>
+  <h1>404 — Page introuvable</h1>
+  <p>
+    La page que vous cherchez n'existe pas — elle a peut-être été déplacée,
+    ou le lien était mal saisi.
+  </p>
+  <p>
+    <a href="{{ config.site_url }}fr/">Aller à l'accueil</a>
+    · <a href="{{ config.site_url }}fr/runbooks/">Parcourir les runbooks</a>
+  </p>
+{% endblock %}

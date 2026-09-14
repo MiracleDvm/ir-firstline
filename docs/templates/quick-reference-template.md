@@ -7,6 +7,7 @@
 > the runbook it condenses.
 
 **Status:** 0.1 (draft) — inherits the status of its parent runbook.
+{: .irf-status }
 
 ---
 
@@ -23,10 +24,7 @@ built to be printed or kept open during a live incident. One checklist,
 - [ ] 7. ...
 - [ ] 8. ...
 - [ ] 9. ...
-- [ ] 10. Notify your competent authority (national CERT, DPO, regulator)
-      according to the regulations applicable in your jurisdiction —
-      consult your legal counsel. See `finding-your-csirt.md` to identify
-      who to contact.
+- [ ] 10. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See `finding-your-csirt.md` if your organization needs help identifying which external body to reach.
 
 > This notification item is mandatory on every quick reference — it is
 > precisely in the middle of a live crisis, checklist in hand, that it

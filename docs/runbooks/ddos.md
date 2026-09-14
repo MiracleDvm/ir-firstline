@@ -1,6 +1,7 @@
 # DDoS (Distributed Denial of Service)
 
 **Status:** 0.1 (draft)
+{: .irf-status }
 
 ---
 
@@ -42,66 +43,66 @@ flowchart TD
 ## 4. L1 Actions
 
 1. **Confirm it's actually a DDoS** — not a legitimate traffic spike, a botched deployment, or an internal misconfiguration. Compare current load and connection counts against your normal baseline.
-   - **Dedicated tool**: anti-DDoS provider or WAF analytics dashboard.
-   - **CLI / open-source alternative**: run a capture with `tcpdump`/`tshark` and compare against historical traffic with a free tool such as `ntop`/`ntopng`, Cacti, or Nagios.
+    - **Dedicated tool**: anti-DDoS provider or WAF analytics dashboard.
+    - **CLI / open-source alternative**: run a capture with `tcpdump`/`tshark` and compare against historical traffic with a free tool such as `ntop`/`ntopng`, Cacti, or Nagios.
 
 2. **Classify which layer is being targeted** — network/volumetric (bandwidth or connection-table exhaustion) or application-layer (HTTP flood, slow/expensive requests) — since the mitigation differs.
-   - **Dedicated tool**: anti-DDoS provider's attack classification.
-   - **CLI / open-source alternative**: check connection counts with `netstat`/`ss`, and inspect web server access logs for a spike in requests to a specific expensive endpoint.
+    - **Dedicated tool**: anti-DDoS provider's attack classification.
+    - **CLI / open-source alternative**: check connection counts with `netstat`/`ss`, and inspect web server access logs for a spike in requests to a specific expensive endpoint.
 
 3. **Throttle or block the malicious traffic as close to the network edge as possible.**
-   - **Dedicated tool**: upstream anti-DDoS/scrubbing provider's mitigation activation.
-   - **CLI / open-source alternative**: `iptables`/`nftables` rate-limiting rules on your own edge device, or route traffic through a CDN/reverse proxy with a free tier in front of the affected service.
+    - **Dedicated tool**: upstream anti-DDoS/scrubbing provider's mitigation activation.
+    - **CLI / open-source alternative**: `iptables`/`nftables` rate-limiting rules on your own edge device, or route traffic through a CDN/reverse proxy with a free tier in front of the affected service.
 
 4. **If a specific application feature is the bottleneck, temporarily disable it** rather than taking the whole service down.
-   - **Dedicated tool**: application feature flag via the admin console.
-   - **CLI / open-source alternative**: comment out or redirect the specific route at the web server configuration (`nginx`/Apache) and reload.
+    - **Dedicated tool**: application feature flag via the admin console.
+    - **CLI / open-source alternative**: comment out or redirect the specific route at the web server configuration (`nginx`/Apache) and reload.
 
 5. **If available, fail over to an alternate site, CDN edge, or scrubbing route via DNS.**
-   - **Dedicated tool**: DNS failover / traffic-scrubbing service activation.
-   - **CLI / open-source alternative**: manually repoint the DNS record to a backup origin or a free-tier CDN — this only works quickly if your DNS TTL was already kept short before the attack.
+    - **Dedicated tool**: DNS failover / traffic-scrubbing service activation.
+    - **CLI / open-source alternative**: manually repoint the DNS record to a backup origin or a free-tier CDN — this only works quickly if your DNS TTL was already kept short before the attack.
 
 6. **Set up an alternate communication channel** to keep users and customers informed while the primary service is degraded.
-   - **Dedicated tool**: a status-page platform.
-   - **CLI / open-source alternative**: a static status update hosted elsewhere (a separate free host, or a social media post) that isn't affected by the attack on your main service.
+    - **Dedicated tool**: a status-page platform.
+    - **CLI / open-source alternative**: a static status update hosted elsewhere (a separate free host, or a social media post) that isn't affected by the attack on your main service.
 
 7. **Escalate to L2 and to your ISP or upstream provider with what you have** — attack start time, affected services, and observed traffic characteristics (source IPs, destination ports, protocols).
-   - **Dedicated tool**: your ISP or anti-DDoS provider's emergency support line.
-   - **CLI / open-source alternative**: a phone call to your ISP's NOC/abuse line — most providers offer basic traffic-control help on request even without a paid anti-DDoS contract — plus your usual incident doc or TheHive.
+    - **Dedicated tool**: your ISP or anti-DDoS provider's emergency support line.
+    - **CLI / open-source alternative**: a phone call to your ISP's NOC/abuse line — most providers offer basic traffic-control help on request even without a paid anti-DDoS contract — plus your usual incident doc or TheHive.
 
 ## 5. L2 Actions
 
 1. **Determine whether you're the intended target or a collateral victim** — e.g., a shared hosting or CDN neighbor being attacked can degrade your service too.
-   - **Dedicated tool**: anti-DDoS provider's traffic-flow analysis.
-   - **CLI / open-source alternative**: manually correlate destination IPs and ports across your logs to see whether the traffic is broadly distributed or narrowly aimed at you.
+    - **Dedicated tool**: anti-DDoS provider's traffic-flow analysis.
+    - **CLI / open-source alternative**: manually correlate destination IPs and ports across your logs to see whether the traffic is broadly distributed or narrowly aimed at you.
 
 2. **Capture and analyze the attack traffic** to build a mitigation signature — source IPs/ASNs, destination ports, URLs, and protocol flags.
-   - **Dedicated tool**: a NIDS/IPS with custom signature deployment.
-   - **CLI / open-source alternative**: `tcpdump`/Tshark for the capture, and free tools such as Snort or Suricata to write and deploy a detection/blocking signature.
+    - **Dedicated tool**: a NIDS/IPS with custom signature deployment.
+    - **CLI / open-source alternative**: `tcpdump`/Tshark for the capture, and free tools such as Snort or Suricata to write and deploy a detection/blocking signature.
 
 3. **Check for an extortion demand or an attribution claim** tied to the attack.
-   - **Dedicated tool**: email security gateway keyword search across the abuse/security mailbox.
-   - **CLI / open-source alternative**: manually search the security mailbox and the WHOIS-listed contact address for a ransom-DDoS message; check social media and known hacktivist channels for a claimed attack.
+    - **Dedicated tool**: email security gateway keyword search across the abuse/security mailbox.
+    - **CLI / open-source alternative**: manually search the security mailbox and the WHOIS-listed contact address for a ransom-DDoS message; check social media and known hacktivist channels for a claimed attack.
 
 4. **Work with your ISP or anti-DDoS provider on upstream filtering, traffic scrubbing, or blackhole routing** — these controls usually sit outside your own network and only they can apply them effectively.
-   - **Dedicated tool**: anti-DDoS provider's mitigation console.
-   - **CLI / open-source alternative**: if you operate your own IP space, request remote-triggered blackhole (RTBH) routing from your transit provider — a capability most ISPs offer on request, not a paid product.
+    - **Dedicated tool**: anti-DDoS provider's mitigation console.
+    - **CLI / open-source alternative**: if you operate your own IP space, request remote-triggered blackhole (RTBH) routing from your transit provider — a capability most ISPs offer on request, not a paid product.
 
 5. **Configure egress filtering** so your own systems don't add to the problem by responding to spoofed or reflected traffic.
-   - **Dedicated tool**: next-generation firewall egress policy push.
-   - **CLI / open-source alternative**: `iptables`/`nftables` egress rules blocking unexpected outbound response traffic.
+    - **Dedicated tool**: next-generation firewall egress policy push.
+    - **CLI / open-source alternative**: `iptables`/`nftables` egress rules blocking unexpected outbound response traffic.
 
 6. **Confirm recovery** — service reachability and performance back to your baseline — before rolling back anything.
-   - **Dedicated tool**: synthetic monitoring / uptime SaaS.
-   - **CLI / open-source alternative**: a free self-hosted checker such as Uptime Kuma, or manual repeated checks from multiple vantage points.
+    - **Dedicated tool**: synthetic monitoring / uptime SaaS.
+    - **CLI / open-source alternative**: a free self-hosted checker such as Uptime Kuma, or manual repeated checks from multiple vantage points.
 
 7. **Roll back mitigation measures** — DNS failover, blackhole routes, emergency rate limits — once traffic is confirmed normal, in coordination with the network team.
-   - **Dedicated tool**: DNS/traffic-management console rollback.
-   - **CLI / open-source alternative**: manually revert DNS records and firewall rules, verifying each change as you go.
+    - **Dedicated tool**: DNS/traffic-management console rollback.
+    - **CLI / open-source alternative**: manually revert DNS records and firewall rules, verifying each change as you go.
 
 ## 6. Notification & Escalation
 
-> Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See `finding-your-csirt.md` to identify who to contact.
+> Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See `finding-your-csirt.md` if your organization needs help identifying which external body to reach.
 
 ## 7. Pitfalls to Avoid
 

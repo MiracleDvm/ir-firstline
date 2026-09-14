@@ -1,6 +1,7 @@
 # Fuite / exposition de données — Aide-mémoire
 
 **Statut :** 0.1 (brouillon) — dérivé de [`runbooks/data-leak.md`](../runbooks/data-leak.md) ; ne pas modifier indépendamment.
+{: .irf-status }
 
 - [ ] 1. Confirmez que l'exposition est réelle, sensible, et réellement accessible.
 - [ ] 2. Stoppez immédiatement l'exposition en cours — révoquez l'accès, mettez la ressource hors ligne, ou bloquez le destinataire/l'URL.
@@ -16,4 +17,4 @@
 - [ ] 12. Demandez le retrait de toute copie publique, preuves à l'appui.
 - [ ] 13. Corrigez la cause racine largement — vérifiez tout l'environnement, pas seulement la ressource concernée.
 - [ ] 14. Surveillez la propagation continue et les signes d'utilisation frauduleuse des données.
-- [ ] 15. Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir `finding-your-csirt.md` pour identifier qui contacter.
+- [ ] 15. Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir `finding-your-csirt.md` si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.

@@ -1,6 +1,7 @@
 # Phishing / BEC — Aide-mémoire
 
 **Statut :** 0.1 (brouillon) — dérivé de [`runbooks/phishing-bec.md`](../runbooks/phishing-bec.md) ; ne pas modifier indépendamment.
+{: .irf-status }
 
 - [ ] 1. Confirmez le signalement : récupérez les en-têtes, le corps, les pièces jointes et les liens du message — n'ouvrez rien sur un appareil sensible.
 - [ ] 2. Si une demande financière est en jeu, vérifiez-la hors bande — appelez un numéro déjà enregistré, **jamais** celui du message.
@@ -16,4 +17,4 @@
 - [ ] 12. Si un contenu frauduleux est hébergé en ligne, déposez une demande d'abus/retrait avec les preuves jointes.
 - [ ] 13. Durcissez l'authentification email (SPF/DKIM/DMARC) et désactivez les protocoles d'authentification hérités.
 - [ ] 14. Si de l'argent a été transféré, documentez la perte avec la finance et ajoutez une friction temporaire au processus de paiement.
-- [ ] 15. Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir `finding-your-csirt.md` pour identifier qui contacter.
+- [ ] 15. Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir `finding-your-csirt.md` si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.
