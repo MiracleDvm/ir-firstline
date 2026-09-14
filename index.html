@@ -14,7 +14,7 @@
       
       
       
-        <link rel="next" href="runbooks/ransomware/">
+        <link rel="next" href="runbooks/">
       
       
         
@@ -24,7 +24,7 @@
         
       
       
-      <link rel="icon" href="assets/images/favicon.png">
+      <link rel="icon" href="assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
@@ -50,10 +50,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="assets/theme.css">
     
       <link rel="stylesheet" href="assets/print.css">
     
@@ -73,7 +75,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -82,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ir-firstline" class="md-skip">
+        <a href="#the-first-response-shouldnt-depend-on-your-budget" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +101,7 @@
     <a href="." title="IR Firstline" class="md-header__button md-logo" aria-label="IR Firstline" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -129,20 +131,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
   
@@ -278,9 +280,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="runbooks/ransomware/" class="md-tabs__link">
+        <a href="runbooks/" class="md-tabs__link">
           
   
+  
+    
   
   Runbooks
 
@@ -298,9 +302,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="quick-reference/ransomware/" class="md-tabs__link">
+        <a href="quick-reference/" class="md-tabs__link">
           
   
+  
+    
   
   Quick Reference
 
@@ -340,6 +346,8 @@
         <a href="templates/runbook-template/" class="md-tabs__link">
           
   
+  
+    
   
   Templates
 
@@ -393,7 +401,7 @@
     <a href="." title="IR Firstline" class="md-nav__button md-logo" aria-label="IR Firstline" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12z"/></svg>
 
     </a>
     IR Firstline
@@ -480,10 +488,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#the-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Status
+        The problem
       
     </span>
   </a>
@@ -491,10 +499,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#whats-different-here" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it works
+        What's different here
       
     </span>
   </a>
@@ -502,10 +510,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
+  <a href="#how-a-runbook-is-built" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contributing
+        How a runbook is built
       
     </span>
   </a>
@@ -513,10 +521,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
+  <a href="#contribute" class="md-nav__link">
     <span class="md-ellipsis">
       
-        License
+        Contribute
       
     </span>
   </a>
@@ -539,6 +547,32 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -554,8 +588,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="runbooks/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -569,8 +604,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
@@ -582,6 +623,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -878,6 +921,32 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -893,8 +962,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="quick-reference/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -908,8 +978,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
@@ -921,6 +997,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -1244,6 +1322,12 @@
   
     
     
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1405,10 +1489,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#status" class="md-nav__link">
+  <a href="#the-problem" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Status
+        The problem
       
     </span>
   </a>
@@ -1416,10 +1500,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-it-works" class="md-nav__link">
+  <a href="#whats-different-here" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How it works
+        What's different here
       
     </span>
   </a>
@@ -1427,10 +1511,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#contributing" class="md-nav__link">
+  <a href="#how-a-runbook-is-built" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contributing
+        How a runbook is built
       
     </span>
   </a>
@@ -1438,10 +1522,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#license" class="md-nav__link">
+  <a href="#contribute" class="md-nav__link">
     <span class="md-ellipsis">
       
-        License
+        Contribute
       
     </span>
   </a>
@@ -1473,43 +1557,54 @@
   
 
 
-<h1 id="ir-firstline">IR Firstline<a class="headerlink" href="#ir-firstline" title="Permanent link">&para;</a></h1>
-<p>Open-source, bilingual (EN/FR) incident response runbooks for L1/L2 SOC
-analysts — usable in any organization, under any jurisdiction, including
-low-resource teams with no commercial EDR or SIEM.</p>
-<p>Open the runbook that matches your incident, follow the checklist, contain
-the situation — whatever your tooling, whatever your country.</p>
-<h2 id="status">Status<a class="headerlink" href="#status" title="Permanent link">&para;</a></h2>
-<p>Ten runbooks are available — Ransomware, Account Compromise, Phishing/BEC,
-DDoS, Web Compromise, Critical Vulnerability, Supply Chain, Data Leak,
-Insider Threat, and Malware Infection — all as drafts (status 0.x). A
-runbook is promoted to v1.0 only once a real-world feedback report
-confirms it held up in an actual incident — see
-<a href="contributing/">Contributing</a>.</p>
-<h2 id="how-it-works">How it works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
+<div class="irf-hero">
+<p><span class="irf-kicker">OPEN SOURCE, BUILT IN THE OPEN</span></p>
+<h1 id="the-first-response-shouldnt-depend-on-your-budget">The first response shouldn't depend on your budget.<a class="headerlink" href="#the-first-response-shouldnt-depend-on-your-budget" title="Permanent link">&para;</a></h1>
+<p>Most incident response guidance is written for one country's laws, one
+vendor's console, or a team with the budget to buy both. This project
+isn't. Every action here works whether you're running a commercial EDR or
+a Windows box with nothing installed on it.</p>
+</div>
+<h2 id="the-problem">The problem<a class="headerlink" href="#the-problem" title="Permanent link">&para;</a></h2>
+<p>L1 and L2 analysts handle most incidents. What they're handed to work
+from is usually one of three things: locked inside a single
+organization's internal wiki, written around one country's regulators,
+or built around one vendor's console. None of that helps an analyst on
+a small team, in a country the original authors never considered,
+without the tooling the runbook quietly assumes.</p>
+<p>Real-world lessons — what actually worked, what a "30-minute" objective
+actually took — mostly stay in a team's private Slack, instead of
+feeding back into the documentation everyone else is using.</p>
+<h2 id="whats-different-here">What's different here<a class="headerlink" href="#whats-different-here" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Runbooks</strong> (<code>docs/runbooks/</code>) — full procedures: trigger criteria, time
-  objectives, a decision tree, L1/L2 actions, notification &amp; escalation,
-  pitfalls, resources, and sources.</li>
-<li><strong>Quick reference</strong> (<code>docs/quick-reference/</code>) — a condensed, printable
-  checklist derived from each runbook, for use during a live incident.</li>
-<li><strong>Every technical action</strong> gives you two options: a dedicated commercial
-  tool, and a free/open-source CLI alternative that accomplishes the same
-  result — see the templates in <code>docs/templates/</code> for the exact pattern.</li>
-<li><strong>No jurisdiction is assumed.</strong> Runbooks never name a specific government
-  agency or a numeric legal deadline. When you need to notify someone, see
-  <a href="finding-your-csirt/">Finding your CSIRT</a> — a directory of national and
-  regional CERTs to help you find who to contact.</li>
-<li><strong>Works offline.</strong> Any page — a runbook, a quick reference — can be
-  saved as a PDF from your browser's print dialog (the navigation and
-  sidebar are automatically left out), so you can keep a copy on hand
-  without a live connection during an incident.</li>
+<li><strong>The technical core is universal.</strong> No agency name, no vendor
+  requirement, and no legal deadline lives in the body of a runbook.
+  Ever.</li>
+<li><strong>Every action has a free path.</strong> Each step names a dedicated tool
+  and a CLI/open-source alternative that gets the same result — an
+  analyst with nothing but native OS tools can run the whole thing.</li>
+<li><strong>Bilingual by construction.</strong> English and French, same structure,
+  same depth — not a summary in one language and the real thing in the
+  other.</li>
+<li><strong>Quality is proven, not declared.</strong> A runbook stays a draft until
+  someone reports that it held up in a real incident. No one —
+  including the maintainers — marks their own work "validated."</li>
 </ul>
-<h2 id="contributing">Contributing<a class="headerlink" href="#contributing" title="Permanent link">&para;</a></h2>
-<p>See <a href="contributing/">Contributing</a> for how to submit real-world feedback,
-propose a new scenario, or fix a translation — Issue templates are set up
-for all three.</p>
-<h2 id="license">License<a class="headerlink" href="#license" title="Permanent link">&para;</a></h2>
+<h2 id="how-a-runbook-is-built">How a runbook is built<a class="headerlink" href="#how-a-runbook-is-built" title="Permanent link">&para;</a></h2>
+<p>Each one follows the same shape: the signals that tell you to open it,
+internal time targets for containment and eradication, a decision
+tree, numbered actions for first response and for deeper
+investigation, a generic pointer to your own jurisdiction's authority
+— never a specific one — and what destroys evidence if you get it
+wrong.</p>
+<p><a href="runbooks/">Browse the runbooks →</a></p>
+<h2 id="contribute">Contribute<a class="headerlink" href="#contribute" title="Permanent link">&para;</a></h2>
+<p>Used one of these during an actual incident? That's the single most
+valuable thing you can report — it's literally how a runbook earns its
+v1.0. Found a scenario missing, or a French section that reads like a
+translation instead of the real thing? Same door, different issue.</p>
+<p><a href="contributing/">How to contribute →</a></p>
+<hr />
 <p>Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
 
 
@@ -1528,6 +1623,8 @@ for all three.</p>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1540,6 +1637,30 @@ for all three.</p>
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+        
+          
+          <a href="runbooks/" class="md-footer__link md-footer__link--next" aria-label="Next: Runbooks">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Runbooks
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1566,7 +1687,7 @@ for all three.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "content.tabs.link", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="assets/javascripts/bundle.d7400e89.min.js"></script>

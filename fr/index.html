@@ -14,7 +14,7 @@
       
       
       
-        <link rel="next" href="runbooks/ransomware/">
+        <link rel="next" href="runbooks/">
       
       
         
@@ -24,7 +24,7 @@
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
@@ -50,10 +50,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../assets/theme.css">
     
       <link rel="stylesheet" href="../assets/print.css">
     
@@ -73,7 +75,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -82,7 +84,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ir-firstline" class="md-skip">
+        <a href="#la-premiere-reponse-ne-devrait-pas-dependre-de-votre-budget" class="md-skip">
           Aller au contenu
         </a>
       
@@ -99,7 +101,7 @@
     <a href="./" title="IR Firstline" class="md-header__button md-logo" aria-label="IR Firstline" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -129,20 +131,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
   
@@ -278,9 +280,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="runbooks/ransomware/" class="md-tabs__link">
+        <a href="runbooks/" class="md-tabs__link">
           
   
+  
+    
   
   Runbooks
 
@@ -298,9 +302,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="quick-reference/ransomware/" class="md-tabs__link">
+        <a href="quick-reference/" class="md-tabs__link">
           
   
+  
+    
   
   Aide-mémoire
 
@@ -340,6 +346,8 @@
         <a href="templates/runbook-template/" class="md-tabs__link">
           
   
+  
+    
   
   Modèles
 
@@ -393,7 +401,7 @@
     <a href="./" title="IR Firstline" class="md-nav__button md-logo" aria-label="IR Firstline" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12z"/></svg>
 
     </a>
     IR Firstline
@@ -480,10 +488,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#etat-du-projet" class="md-nav__link">
+  <a href="#le-probleme" class="md-nav__link">
     <span class="md-ellipsis">
       
-        État du projet
+        Le problème
       
     </span>
   </a>
@@ -491,10 +499,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fonctionnement" class="md-nav__link">
+  <a href="#ce-qui-change-ici" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fonctionnement
+        Ce qui change ici
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comment-un-runbook-est-construit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comment un runbook est construit
       
     </span>
   </a>
@@ -506,17 +525,6 @@
     <span class="md-ellipsis">
       
         Contribuer
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#licence" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Licence
       
     </span>
   </a>
@@ -539,6 +547,32 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -554,8 +588,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="runbooks/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -569,8 +604,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
@@ -582,6 +623,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -878,6 +921,32 @@
   
     
     
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -893,8 +962,9 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
+          <div class="md-nav__link md-nav__container">
+            <a href="quick-reference/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -908,8 +978,14 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
@@ -921,6 +997,8 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -1244,6 +1322,12 @@
   
     
     
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1405,10 +1489,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#etat-du-projet" class="md-nav__link">
+  <a href="#le-probleme" class="md-nav__link">
     <span class="md-ellipsis">
       
-        État du projet
+        Le problème
       
     </span>
   </a>
@@ -1416,10 +1500,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fonctionnement" class="md-nav__link">
+  <a href="#ce-qui-change-ici" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Fonctionnement
+        Ce qui change ici
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#comment-un-runbook-est-construit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comment un runbook est construit
       
     </span>
   </a>
@@ -1431,17 +1526,6 @@
     <span class="md-ellipsis">
       
         Contribuer
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#licence" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Licence
       
     </span>
   </a>
@@ -1473,47 +1557,60 @@
   
 
 
-<h1 id="ir-firstline">IR Firstline<a class="headerlink" href="#ir-firstline" title="Permanent link">&para;</a></h1>
-<p>Collection open source de runbooks d'incident response bilingues (EN/FR)
-pour analystes SOC L1/L2 — utilisable dans n'importe quelle organisation,
-sous n'importe quelle juridiction, y compris les structures à faibles
-ressources sans EDR ni SIEM commercial.</p>
-<p>Ouvrez le runbook correspondant à votre incident, suivez la checklist,
-contenez la situation — quel que soit votre outillage, quel que soit votre
-pays.</p>
-<h2 id="etat-du-projet">État du projet<a class="headerlink" href="#etat-du-projet" title="Permanent link">&para;</a></h2>
-<p>Dix runbooks sont disponibles — Ransomware, Compromission de compte,
-Phishing/BEC, DDoS, Compromission web, Vulnérabilité critique, Chaîne
-d'approvisionnement, Fuite de données, Menace interne, et Infection
-malware — tous au statut brouillon (0.x). Un runbook ne passe en v1.0
-qu'une fois qu'un retour d'expérience réel confirme qu'il a fait ses
-preuves lors d'un incident — voir <a href="contributing/">Contribuer</a>.</p>
-<h2 id="fonctionnement">Fonctionnement<a class="headerlink" href="#fonctionnement" title="Permanent link">&para;</a></h2>
+<div class="irf-hero">
+<p><span class="irf-kicker">OPEN SOURCE, CONSTRUIT AU GRAND JOUR</span></p>
+<h1 id="la-premiere-reponse-ne-devrait-pas-dependre-de-votre-budget">La première réponse ne devrait pas dépendre de votre budget.<a class="headerlink" href="#la-premiere-reponse-ne-devrait-pas-dependre-de-votre-budget" title="Permanent link">&para;</a></h1>
+<p>La plupart des guides de réponse à incident sont écrits pour la
+législation d'un seul pays, la console d'un seul éditeur, ou une équipe
+ayant les moyens d'acheter les deux. Ce projet non. Chaque action ici
+fonctionne que vous ayez un EDR commercial ou un poste Windows sans rien
+d'installé dessus.</p>
+</div>
+<h2 id="le-probleme">Le problème<a class="headerlink" href="#le-probleme" title="Permanent link">&para;</a></h2>
+<p>Les analystes L1 et L2 gèrent la majorité des incidents. Ce qu'on leur
+donne pour travailler tient généralement en trois catégories : enfermé
+dans le wiki interne d'une seule organisation, écrit autour de la
+réglementation d'un seul pays, ou construit autour de la console d'un
+seul éditeur. Rien de tout ça n'aide un analyste dans une petite équipe,
+dans un pays que les auteurs d'origine n'ont jamais envisagé, sans
+l'outillage que le runbook suppose silencieusement.</p>
+<p>Les leçons du terrain — ce qui a vraiment fonctionné, ce qu'un objectif
+« 30 minutes » a réellement pris — restent le plus souvent dans le Slack
+privé d'une équipe, au lieu de nourrir la documentation que tout le
+monde utilise.</p>
+<h2 id="ce-qui-change-ici">Ce qui change ici<a class="headerlink" href="#ce-qui-change-ici" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Runbooks</strong> (<code>docs/runbooks/</code>) — procédures complètes : critères de
-  déclenchement, objectifs de temps, arbre de décision, actions L1/L2,
-  notifications &amp; escalade, erreurs à éviter, ressources et sources.</li>
-<li><strong>Aide-mémoire</strong> (<code>docs/quick-reference/</code>) — une checklist condensée et
-  imprimable, dérivée de chaque runbook, pour un usage en pleine crise.</li>
-<li><strong>Chaque action technique</strong> propose deux options : un outil commercial
-  dédié, et une alternative CLI/open source gratuite obtenant le même
-  résultat — voir les modèles dans <code>docs/templates/</code> pour le motif exact.</li>
-<li><strong>Aucune juridiction n'est présumée.</strong> Les runbooks ne nomment jamais une
-  agence gouvernementale précise ni un délai légal chiffré. Quand une
-  notification est nécessaire, voir
-  <a href="finding-your-csirt/">Trouver son CSIRT</a> — un annuaire de CERT nationaux
-  et régionaux pour identifier qui contacter.</li>
-<li><strong>Fonctionne hors ligne.</strong> N'importe quelle page — un runbook, un
-  aide-mémoire — peut être enregistrée en PDF depuis la boîte de dialogue
-  d'impression de votre navigateur (la navigation et la barre latérale sont
-  automatiquement exclues), pour garder une copie sous la main sans
-  connexion pendant un incident.</li>
+<li><strong>Le cœur technique est universel.</strong> Aucun nom d'agence, aucune
+  exigence d'éditeur, aucun délai légal ne vit dans le corps d'un
+  runbook. Jamais.</li>
+<li><strong>Chaque action a un chemin gratuit.</strong> Chaque étape propose un outil
+  dédié et une alternative CLI/open source obtenant le même résultat —
+  un analyste avec seulement les outils natifs de l'OS peut exécuter le
+  runbook en entier.</li>
+<li><strong>Bilingue par construction.</strong> Anglais et français, même structure,
+  même profondeur — pas un résumé dans une langue et le vrai contenu
+  dans l'autre.</li>
+<li><strong>La qualité se prouve, elle ne se déclare pas.</strong> Un runbook reste un
+  brouillon jusqu'à ce que quelqu'un rapporte qu'il a tenu lors d'un
+  incident réel. Personne — pas même les mainteneurs — ne marque son
+  propre travail « validé ».</li>
 </ul>
+<h2 id="comment-un-runbook-est-construit">Comment un runbook est construit<a class="headerlink" href="#comment-un-runbook-est-construit" title="Permanent link">&para;</a></h2>
+<p>Chacun suit la même forme : les signaux qui indiquent de l'ouvrir, des
+objectifs de temps internes pour le confinement et l'éradication, un
+arbre de décision, des actions numérotées pour la première réponse et
+pour l'investigation approfondie, un renvoi générique vers l'autorité de
+votre propre juridiction — jamais une autorité précise — et ce qui
+détruit les preuves si on s'y prend mal.</p>
+<p><a href="runbooks/">Parcourir les runbooks →</a></p>
 <h2 id="contribuer">Contribuer<a class="headerlink" href="#contribuer" title="Permanent link">&para;</a></h2>
-<p>Voir <a href="contributing/">Contribuer</a> pour savoir comment soumettre un retour
-d'expérience réel, proposer un nouveau scénario, ou corriger une traduction
-— les templates d'Issues sont en place pour les trois.</p>
-<h2 id="licence">Licence<a class="headerlink" href="#licence" title="Permanent link">&para;</a></h2>
+<p>Vous avez utilisé l'un d'eux lors d'un incident réel ? C'est la chose la
+plus précieuse que vous puissiez rapporter — c'est littéralement ce qui
+fait passer un runbook en v1.0. Un scénario manquant, ou une section
+française qui sonne comme une traduction plutôt que comme le vrai
+contenu ? Même porte, autre sujet.</p>
+<p><a href="contributing/">Comment contribuer →</a></p>
+<hr />
 <p>Le contenu est publié sous licence
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
 
@@ -1533,6 +1630,8 @@ d'expérience réel, proposer un nouveau scénario, ou corriger une traduction
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1545,6 +1644,30 @@ d'expérience réel, proposer un nouveau scénario, ou corriger une traduction
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+        
+          
+          <a href="runbooks/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Runbooks">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Runbooks
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1571,7 +1694,7 @@ d'expérience réel, proposer un nouveau scénario, ou corriger une traduction
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "content.tabs.link", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
