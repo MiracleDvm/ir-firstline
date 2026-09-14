@@ -1,0 +1,1812 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+      
+      
+      
+        <link rel="canonical" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/data-leak/">
+      
+      
+        <link rel="prev" href="../supply-chain-compromise/">
+      
+      
+        <link rel="next" href="../insider-threat/">
+      
+      
+        
+          <link rel="alternate" href="../../../runbooks/data-leak/" hreflang="en">
+        
+          <link rel="alternate" href="./" hreflang="fr">
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Fuite de données - IR Firstline</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/print.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fuite-exposition-de-donnees" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../../" title="IR Firstline" class="md-header__button md-logo" aria-label="IR Firstline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            IR Firstline
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fuite de données
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Sélectionner la langue">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../../runbooks/data-leak/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="fr" class="md-select__link">
+              Français
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MiracleDvm/ir-firstline" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ir-firstline
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Onglets" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Accueil
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../ransomware/" class="md-tabs__link">
+          
+  
+  
+  Runbooks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../quick-reference/ransomware/" class="md-tabs__link">
+          
+  
+  
+  Aide-mémoire
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../finding-your-csirt/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Trouver son CSIRT
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../templates/runbook-template/" class="md-tabs__link">
+          
+  
+  
+  Modèles
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contributing/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Contribuer
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="IR Firstline" class="md-nav__button md-logo" aria-label="IR Firstline" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    IR Firstline
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MiracleDvm/ir-firstline" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ir-firstline
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accueil
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ransomware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rançongiciel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../account-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission de compte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phishing-bec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hameçonnage / BEC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ddos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDoS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../critical-vulnerability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnérabilité critique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../supply-chain-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chaîne d'approvisionnement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fuite de données
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fuite de données
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-criteres-de-declenchement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Critères de déclenchement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objectifs-de-temps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objectifs de temps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arbre de décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-actions-l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Actions L1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-actions-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Actions L2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications-escalade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Notifications &amp; escalade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-erreurs-a-eviter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Erreurs à éviter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ressources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ressources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-sources-dinspiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Sources d'inspiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../insider-threat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menace interne
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../malware-infection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infection malware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aide-mémoire
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Aide-mémoire
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/ransomware/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rançongiciel
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/account-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission de compte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/phishing-bec/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hameçonnage / BEC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/ddos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDoS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/web-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compromission web
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/critical-vulnerability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnérabilité critique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/supply-chain-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chaîne d'approvisionnement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/data-leak/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fuite de données
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/insider-threat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menace interne
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quick-reference/malware-infection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infection malware
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../finding-your-csirt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trouver son CSIRT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèles
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Modèles
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/runbook-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèle de runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../templates/quick-reference-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Modèle d'aide-mémoire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contribuer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-criteres-de-declenchement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Critères de déclenchement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-objectifs-de-temps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Objectifs de temps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-arbre-de-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Arbre de décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-actions-l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Actions L1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-actions-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Actions L2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-notifications-escalade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Notifications &amp; escalade
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-erreurs-a-eviter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Erreurs à éviter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-ressources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Ressources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-sources-dinspiration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Sources d'inspiration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/MiracleDvm/ir-firstline/edit/master/docs/fr/runbooks/data-leak.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="fuite-exposition-de-donnees">Fuite / exposition de données<a class="headerlink" href="#fuite-exposition-de-donnees" title="Permanent link">&para;</a></h1>
+<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<hr />
+<h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
+<p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
+<ul>
+<li>Un outil DLP, CASB, ou un scanner de sécurité cloud alerte sur des données sensibles quittant le réseau ou se trouvant dans un emplacement accessible publiquement.</li>
+<li>Un bucket de stockage cloud, une base de données, un dépôt de code ou un partage de fichiers est trouvé configuré avec un accès public ou trop large.</li>
+<li>Un employé ou un partenaire signale avoir envoyé des fichiers sensibles au mauvais destinataire.</li>
+<li>Un client, un chercheur, ou un journaliste signale avoir trouvé des données de votre organisation exposées en ligne.</li>
+<li>Des documents ou dossiers sensibles apparaissent sur un moteur de recherche, un site de paste, un dépôt de code public, ou un forum.</li>
+<li>Le site de fuite d'un opérateur de ransomware mentionne votre organisation (voir <code>ransomware.md</code> si c'est le déclencheur).</li>
+<li>Un export ou téléchargement inhabituellement volumineux de données sensibles est enregistré peu avant l'apparition des symptômes.</li>
+<li>Un fournisseur ou une dépendance est trouvé avoir divulgué des données incluant celles de votre organisation (voir <code>supply-chain-compromise.md</code> si c'est le déclencheur).</li>
+</ul>
+<h2 id="2-objectifs-de-temps">2. Objectifs de temps<a class="headerlink" href="#2-objectifs-de-temps" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>L1 :</strong> stopper l'exposition en cours en &lt; 30 min après déclenchement.</li>
+<li><strong>L2 :</strong> achever le cadrage et le confinement de la cause racine en &lt; 4 h.</li>
+</ul>
+<p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires.</p>
+<h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TD
+    A[Exposed / leaked data reported] --&gt; B{Exposure still active?}
+    B --&gt;|Yes| C[Stop the exposure now]
+    B --&gt;|No| D[Preserve evidence]
+    C --&gt; D
+    D --&gt; E{Likely cause?}
+    E --&gt;|Misconfiguration| F[Escalate to L2 - fix access controls]
+    E --&gt;|External attacker| G[Escalate to L2 - link to compromise]
+    E --&gt;|Suspected insider| H[Escalate to L2 - involve HR/legal]
+    F --&gt; I[Determine what, how much, who could access]
+    G --&gt; I
+    H --&gt; I
+    I --&gt; J[Request takedown + monitor spread]
+    J --&gt; K[Notify + lessons learned]</code></pre>
+<h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Confirmez l'exposition.</strong> Vérifiez que les données sont réelles, sensibles, et réellement accessibles — pas un faux positif ou des données de test.</li>
+<li><strong>Outil dédié</strong> : console d'alertes DLP/CASB.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : accédez vous-même à l'emplacement signalé (<code>curl -I &lt;url&gt;</code>, ou vérification en navigation privée) ; pour le stockage cloud, vérifiez les permissions directement via la CLI gratuite du fournisseur (<code>aws s3api get-bucket-acl</code>, <code>az storage container show-permission</code>, <code>gsutil iam get gs://&lt;bucket&gt;</code>).</p>
+</li>
+<li>
+<p><strong>Stoppez immédiatement l'exposition en cours</strong> — révoquez l'accès public, mettez la ressource hors ligne, ou bloquez le destinataire/l'URL, selon le cas.</p>
+</li>
+<li><strong>Outil dédié</strong> : remédiation en un clic d'une plateforme CSPM (cloud security posture management).</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : basculez la ressource en privé directement via la CLI gratuite du fournisseur (<code>aws s3api put-bucket-acl --acl private</code>, <code>az storage container set-permission --public-access off</code>, <code>gsutil iam ch -d allUsers</code>) ; pour un email, rappelez le message si c'est pris en charge, ou demandez immédiatement au destinataire de le supprimer.</p>
+</li>
+<li>
+<p><strong>Préservez les preuves avant toute autre action destructrice.</strong> Enregistrez les données exposées telles que trouvées — métadonnées, horodatages, URL ou chemin exact — sans télécharger plus que nécessaire pour confirmer le périmètre.</p>
+</li>
+<li><strong>Outil dédié</strong> : capture de preuves d'incident du DLP.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : captures d'écran plus un <code>curl</code>/<code>wget</code> ciblé du listing ou de l'en-tête de la ressource (pas l'intégralité du jeu de données) vers un dossier de preuves sécurisé, avec horodatages enregistrés.</p>
+</li>
+<li>
+<p><strong>Faites-vous une première idée de la cause probable</strong> — mauvaise configuration, compromission externe (recherchez des comptes ou IP inconnus ayant accédé à la ressource avant la fuite), ou action d'un utilisateur légitime.</p>
+</li>
+<li><strong>Outil dédié</strong> : corrélation de journal d'audit cloud / SIEM sur la fenêtre d'exposition.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : examinez manuellement les journaux d'accès de la ressource pour la période précédant la découverte (<code>aws s3api get-bucket-logging</code> plus revue des journaux, ou l'export gratuit du journal d'audit de votre plateforme).</p>
+</li>
+<li>
+<p><strong>Vérifiez la même mauvaise configuration ailleurs.</strong> Si un bucket, un partage ou un dépôt a été exposé, les ressources similaires construites depuis le même modèle le sont souvent aussi.</p>
+</li>
+<li><strong>Outil dédié</strong> : scanner de sécurité cloud / CSPM balayant toutes les ressources.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : un court script bouclant sur la CLI gratuite de votre fournisseur à travers tous les buckets/conteneurs/dépôts, vérifiant les indicateurs d'accès public.</p>
+</li>
+<li>
+<p><strong>Escaladez vers le L2 avec ce que vous avez</strong> — ce qui a été exposé, depuis quand (si connu), comment cela a été trouvé, et la cause probable.</p>
+</li>
+<li><strong>Outil dédié</strong> : votre plateforme de gestion de cas/tickets.</li>
+<li><strong>Alternative CLI / open source</strong> : TheHive, ou un document d'incident partagé.</li>
+</ol>
+<h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Déterminez exactement quelles données ont été exposées et leur sensibilité.</strong> Données personnelles, identifiants, dossiers financiers, propriété intellectuelle — classifiez-les.</li>
+<li><strong>Outil dédié</strong> : outil de classification de données / inspection de contenu DLP.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : échantillonnez et filtrez le jeu de données exposé à la recherche de motifs (formats d'adresses email, séquences ressemblant à des numéros de carte) pour caractériser son contenu sans l'exfiltrer davantage vous-même.</p>
+</li>
+<li>
+<p><strong>Déterminez depuis combien de temps les données étaient exposées et qui aurait pu y accéder.</strong></p>
+</li>
+<li><strong>Outil dédié</strong> : analytique de journal d'audit cloud / historique d'accès CASB.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : exportez et filtrez les journaux d'accès bruts de la ressource pour la fenêtre d'exposition ; pour une ressource publique, vérifiez les caches des moteurs de recherche pour voir si elle a été indexée.</p>
+</li>
+<li>
+<p><strong>Vérifiez si les données divulguées se sont déjà propagées</strong> — moteurs de recherche, sites de paste, dépôts de code publics, ou un tracker de site de fuite si un groupe de ransomware est impliqué.</p>
+</li>
+<li><strong>Outil dédié</strong> : service de surveillance threat intelligence / dark web et sites de fuite.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : requêtes manuelles sur moteurs de recherche pour des chaînes distinctives du jeu de données, recherche sur des sites de paste publics, et trackers gratuits de sites de fuite de ransomware le cas échéant.</p>
+</li>
+<li>
+<p><strong>Si un individu précis semble être la source, impliquez les RH et le juridique avant toute action supplémentaire</strong> — ne fouillez pas unilatéralement les fichiers ou communications privés d'un employé nommé.</p>
+</li>
+<li><strong>Outil dédié</strong> : le processus d'escalade RH/juridique établi de votre organisation.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : aucune — cette étape n'a pas de substitut technique. Si une investigation plus poussée de l'activité d'un utilisateur précis est justifiée, suivez <code>insider-threat.md</code> une fois que les RH/le juridique l'ont autorisée.</p>
+</li>
+<li>
+<p><strong>Si une compromission externe est la cause probable, reliez cet incident au runbook concerné et poursuivez l'éradication là-bas</strong> plutôt que de dupliquer ce travail ici.</p>
+</li>
+<li><strong>Outil dédié</strong> : liaison de dossiers SIEM/EDR.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : recoupez les mêmes IOC et la même chronologie dans votre document d'incident partagé ; suivez <code>account-compromise.md</code> ou <code>ransomware.md</code> selon le cas.</p>
+</li>
+<li>
+<p><strong>Demandez le retrait de toute copie publiée publiquement.</strong> Contactez l'hébergeur, le bureau d'enregistrement, ou le contact abus de la plateforme avec les preuves jointes.</p>
+</li>
+<li><strong>Outil dédié</strong> : un service de protection de marque / de retrait de contenu.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : faites un <code>whois</code> du domaine ou de l'hébergeur vous-même et écrivez directement à leur contact abus avec l'URL, les captures d'écran, et les horodatages.</p>
+</li>
+<li>
+<p><strong>Corrigez la cause racine largement, pas seulement la ressource exposée.</strong> Corrigez le modèle de permission, la politique IAM, ou le processus sous-jacent qui a permis l'exposition, puis relancez le balayage de l'action L1 #5 sur tout l'environnement.</p>
+</li>
+<li><strong>Outil dédié</strong> : scanner de politique infrastructure-as-code / remédiation automatique CSPM.</li>
+<li>
+<p><strong>Alternative CLI / open source</strong> : mettez à jour le modèle de provisionnement partagé (Terraform, CloudFormation, ou votre checklist manuelle) et revérifiez manuellement chaque ressource similaire.</p>
+</li>
+<li>
+<p><strong>Surveillez la propagation continue et les signes d'utilisation des données</strong> — phishing ciblé référençant les données divulguées, ou tentatives de fraude contre les personnes exposées.</p>
+</li>
+<li><strong>Outil dédié</strong> : flux de threat intelligence ajusté sur les indicateurs de cet incident.</li>
+<li><strong>Alternative CLI / open source</strong> : une requête planifiée sur moteurs de recherche/sites de paste pour des chaînes distinctives du jeu de données, poursuivie pendant plusieurs semaines.</li>
+</ol>
+<h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+</blockquote>
+<h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Télécharger ou copier plus de données exposées que nécessaire pour confirmer le périmètre</strong> — chaque copie supplémentaire est un endroit de plus d'où elles pourraient à nouveau fuiter.</li>
+<li><strong>Corriger la seule ressource exposée sans vérifier la même mauvaise configuration ailleurs</strong> — les ressources similaires construites depuis le même modèle partagent souvent la même erreur.</li>
+<li><strong>Supposer qu'une demande de retrait élimine le risque</strong> — une fois des données publiques, considérez qu'elles ont déjà été copiées ; le retrait réduit la propagation future, il n'annule pas ce qui s'est déjà passé.</li>
+<li><strong>Fouiller les fichiers ou communications privés d'un employé suspecté sans l'accord préalable des RH/du juridique</strong> — cela peut être illégal selon la juridiction et peut entacher toute action ultérieure.</li>
+<li><strong>Considérer « on ne trouve pas où les données sont allées » comme une preuve qu'elles n'ont pas été consultées</strong> — l'absence de journaux d'accès ne signifie pas l'absence d'accès, surtout pour une ressource publique sans journalisation activée.</li>
+<li><strong>Attendre une vision complète de la cause avant de stopper l'exposition</strong> — restreindre l'accès d'abord, investiguer la cause ensuite, presque toujours dans cet ordre.</li>
+</ul>
+<h2 id="8-ressources">8. Ressources<a class="headerlink" href="#8-ressources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1530/">T1530</a> — Data from Cloud Storage.</li>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1567/">T1567</a> — Exfiltration Over Web Service.</li>
+<li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1213/">T1213</a> — Data from Information Repositories.</li>
+<li>Outils cités en exemple : AWS CLI, Azure CLI, et <code>gcloud</code>/<code>gsutil</code> (tous gratuits), Aleph (outil open source pour investiguer des jeux de documents divulgués), TheHive, MISP.</li>
+</ul>
+<h2 id="9-sources-dinspiration">9. Sources d'inspiration<a class="headerlink" href="#9-sources-dinspiration" title="Permanent link">&para;</a></h2>
+<ul>
+<li>CERT Société Générale — IRM #11 « Information Leakage » (v2.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
+<li>CERT aDvens — IRM-11 « Fuite de données » (2025-10-27) — <code>github.com/cert-advens/IRM</code> — CC BY 3.0 Unported.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -2,154 +2,350 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/contributing/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/contributing/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/contributing/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/finding-your-csirt/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/finding-your-csirt/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/finding-your-csirt/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/account-compromise/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/account-compromise/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/account-compromise/"/>
     </url>
     <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/critical-vulnerability/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/critical-vulnerability/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/critical-vulnerability/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/data-leak/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/data-leak/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/data-leak/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/ddos/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/ddos/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/ddos/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/insider-threat/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/insider-threat/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/insider-threat/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/malware-infection/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/malware-infection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/malware-infection/"/>
+    </url>
+    <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/phishing-bec/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/phishing-bec/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/phishing-bec/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/ransomware/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/ransomware/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/ransomware/"/>
     </url>
     <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/supply-chain-compromise/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/supply-chain-compromise/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/supply-chain-compromise/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/quick-reference/web-compromise/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/web-compromise/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/web-compromise/"/>
+    </url>
+    <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/account-compromise/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/account-compromise/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/account-compromise/"/>
     </url>
     <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/critical-vulnerability/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/critical-vulnerability/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/critical-vulnerability/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/data-leak/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/data-leak/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/data-leak/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/ddos/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/ddos/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/ddos/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/insider-threat/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/insider-threat/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/insider-threat/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/malware-infection/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/malware-infection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/malware-infection/"/>
+    </url>
+    <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/phishing-bec/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/phishing-bec/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/phishing-bec/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/ransomware/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/ransomware/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/ransomware/"/>
     </url>
     <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/supply-chain-compromise/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/supply-chain-compromise/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/supply-chain-compromise/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/runbooks/web-compromise/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/web-compromise/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/web-compromise/"/>
+    </url>
+    <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/templates/quick-reference-template/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/templates/quick-reference-template/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/templates/quick-reference-template/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/templates/runbook-template/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/templates/runbook-template/"/>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/templates/runbook-template/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/contributing/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/contributing/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/contributing/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/finding-your-csirt/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/finding-your-csirt/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/finding-your-csirt/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/account-compromise/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/account-compromise/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/account-compromise/"/>
     </url>
     <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/critical-vulnerability/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/critical-vulnerability/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/critical-vulnerability/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/data-leak/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/data-leak/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/data-leak/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/ddos/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/ddos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/ddos/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/insider-threat/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/insider-threat/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/insider-threat/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/malware-infection/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/malware-infection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/malware-infection/"/>
+    </url>
+    <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/phishing-bec/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/phishing-bec/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/phishing-bec/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/ransomware/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/ransomware/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/ransomware/"/>
     </url>
     <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/supply-chain-compromise/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/supply-chain-compromise/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/supply-chain-compromise/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/web-compromise/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/quick-reference/web-compromise/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/quick-reference/web-compromise/"/>
+    </url>
+    <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/account-compromise/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/account-compromise/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/account-compromise/"/>
     </url>
     <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/critical-vulnerability/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/critical-vulnerability/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/critical-vulnerability/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/data-leak/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/data-leak/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/data-leak/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/ddos/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/ddos/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/ddos/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/insider-threat/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/insider-threat/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/insider-threat/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/malware-infection/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/malware-infection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/malware-infection/"/>
+    </url>
+    <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/phishing-bec/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/phishing-bec/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/phishing-bec/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/ransomware/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/ransomware/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/ransomware/"/>
     </url>
     <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/supply-chain-compromise/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/supply-chain-compromise/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/supply-chain-compromise/"/>
+    </url>
+    <url>
+        <loc>https://MiracleDvm.github.io/ir-firstline/fr/runbooks/web-compromise/</loc>
+        <lastmod>2026-09-14</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/web-compromise/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/runbooks/web-compromise/"/>
+    </url>
+    <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/templates/quick-reference-template/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/templates/quick-reference-template/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/templates/quick-reference-template/"/>
     </url>
     <url>
         <loc>https://MiracleDvm.github.io/ir-firstline/fr/templates/runbook-template/</loc>
-        <lastmod>2026-09-13</lastmod>
+        <lastmod>2026-09-14</lastmod>
         <changefreq>daily</changefreq>
         <xhtml:link rel="alternate" hreflang="fr" href="https://MiracleDvm.github.io/ir-firstline/fr/templates/runbook-template/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://MiracleDvm.github.io/ir-firstline/templates/runbook-template/"/>
