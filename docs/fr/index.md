@@ -11,11 +11,12 @@ pays.
 
 ## État du projet
 
-Les trois runbooks prévus pour la v1 sont disponibles : **Ransomware**,
-**Compromission de compte**, et **Phishing/BEC** — tous au statut brouillon
-(0.x). Un runbook ne passe en v1.0 qu'une fois qu'un retour d'expérience
-réel confirme qu'il a fait ses preuves lors d'un incident — voir
-[Contribuer](contributing.md).
+Dix runbooks sont disponibles — Ransomware, Compromission de compte,
+Phishing/BEC, DDoS, Compromission web, Vulnérabilité critique, Chaîne
+d'approvisionnement, Fuite de données, Menace interne, et Infection
+malware — tous au statut brouillon (0.x). Un runbook ne passe en v1.0
+qu'une fois qu'un retour d'expérience réel confirme qu'il a fait ses
+preuves lors d'un incident — voir [Contribuer](contributing.md).
 
 ## Fonctionnement
 

@@ -9,10 +9,12 @@ the situation — whatever your tooling, whatever your country.
 
 ## Status
 
-All three v1-scope runbooks are available: **Ransomware**, **Account
-Compromise**, and **Phishing/BEC** — all as drafts (status 0.x). A runbook
-is promoted to v1.0 only once a real-world feedback report confirms it
-held up in an actual incident — see [Contributing](contributing.md).
+Ten runbooks are available — Ransomware, Account Compromise, Phishing/BEC,
+DDoS, Web Compromise, Critical Vulnerability, Supply Chain, Data Leak,
+Insider Threat, and Malware Infection — all as drafts (status 0.x). A
+runbook is promoted to v1.0 only once a real-world feedback report
+confirms it held up in an actual incident — see
+[Contributing](contributing.md).
 
 ## How it works
 

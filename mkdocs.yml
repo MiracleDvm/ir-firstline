@@ -58,6 +58,13 @@ plugins:
             Ransomware: Rançongiciel
             Phishing / BEC: Hameçonnage / BEC
             Account Compromise: Compromission de compte
+            DDoS: DDoS
+            Web Compromise: Compromission web
+            Critical Vulnerability: Vulnérabilité critique
+            Supply Chain: Chaîne d'approvisionnement
+            Data Leak: Fuite de données
+            Insider Threat: Menace interne
+            Malware Infection: Infection malware
             Runbook Template: Modèle de runbook
             Quick Reference Template: Modèle d'aide-mémoire
 
@@ -86,10 +93,24 @@ nav:
       - Ransomware: runbooks/ransomware.md
       - Account Compromise: runbooks/account-compromise.md
       - Phishing / BEC: runbooks/phishing-bec.md
+      - DDoS: runbooks/ddos.md
+      - Web Compromise: runbooks/web-compromise.md
+      - Critical Vulnerability: runbooks/critical-vulnerability.md
+      - Supply Chain: runbooks/supply-chain-compromise.md
+      - Data Leak: runbooks/data-leak.md
+      - Insider Threat: runbooks/insider-threat.md
+      - Malware Infection: runbooks/malware-infection.md
   - Quick Reference:
       - Ransomware: quick-reference/ransomware.md
       - Account Compromise: quick-reference/account-compromise.md
       - Phishing / BEC: quick-reference/phishing-bec.md
+      - DDoS: quick-reference/ddos.md
+      - Web Compromise: quick-reference/web-compromise.md
+      - Critical Vulnerability: quick-reference/critical-vulnerability.md
+      - Supply Chain: quick-reference/supply-chain-compromise.md
+      - Data Leak: quick-reference/data-leak.md
+      - Insider Threat: quick-reference/insider-threat.md
+      - Malware Infection: quick-reference/malware-infection.md
   - Finding your CSIRT: finding-your-csirt.md
   - Templates:
       - Runbook Template: templates/runbook-template.md
