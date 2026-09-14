@@ -7,7 +7,7 @@ prose, pas d'arbre de décision, juste les actions dans l'ordre.
 
 - [Compromission de compte](account-compromise/)
 - [Phishing / BEC](phishing-bec/)
-- [Ransomware](ransomware/)
+- [Rançongiciel](ransomware/)
 - [Infection malware](malware-infection/)
 - [Compromission web](web-compromise/)
 - [DDoS](ddos/)

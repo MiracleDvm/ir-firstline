@@ -16,16 +16,16 @@ low-resource teams with no commercial EDR or SIEM.
 
 These runbooks are technical guidance, not legal advice. They deliberately
 contain no jurisdiction-specific legal deadlines and name no government
-agency as a mandatory step — see `finding-your-csirt.md` (coming in a later
-phase) to identify who to contact, and consult your own legal counsel for
-notification obligations.
+agency as a mandatory step — see `finding-your-csirt.md` to identify who
+to contact, and consult your own legal counsel for notification
+obligations.
 
 > **FR** — Ces runbooks sont un guide technique, pas un conseil juridique.
 > Ils ne contiennent volontairement aucun délai légal spécifique à une
 > juridiction et ne nomment aucune agence gouvernementale comme étape
-> obligatoire — voir `finding-your-csirt.md` (à venir) pour identifier qui
-> contacter, et consultez votre propre conseil juridique pour vos
-> obligations de notification.
+> obligatoire — voir `finding-your-csirt.md` pour identifier qui contacter,
+> et consultez votre propre conseil juridique pour vos obligations de
+> notification.
 
 ## Status
 

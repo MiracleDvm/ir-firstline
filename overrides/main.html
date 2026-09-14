@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% if page %}
+  {% set page_url = page.url or '' %}
+  {% set is_fr = page_url.startswith('fr/') %}
+  {% set og_image = (config.site_url ~ ('fr/assets/og-image.png' if is_fr else 'assets/og-image.png')) %}
+  {% set is_home = (page_url == '' or page_url == 'fr/') %}
+  {% set home_title = ("IR Firstline — La première réponse ne devrait pas dépendre de votre budget" if is_fr else "IR Firstline — The first response shouldn't depend on your budget") %}
+  {% set page_title = home_title if is_home else ((page.title ~ ' — ' ~ config.site_name) if page.title and page.title != config.site_name else config.site_name) %}
+  {% set page_desc = (page.meta.description if page.meta and page.meta.description else config.site_description) %}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_desc }}">
+  <meta property="og:url" content="{{ config.site_url }}{{ page_url }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="{{ 'fr_FR' if is_fr else 'en_US' }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ page_desc }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+  {% endif %}
+{% endblock %}

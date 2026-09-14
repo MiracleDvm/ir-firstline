@@ -43,7 +43,7 @@ flowchart TD
 
 1. **Confirm it's actually a DDoS** — not a legitimate traffic spike, a botched deployment, or an internal misconfiguration. Compare current load and connection counts against your normal baseline.
    - **Dedicated tool**: anti-DDoS provider or WAF analytics dashboard.
-   - **CLI / open-source alternative**: `tcpdump`/`tshark` a capture and compare against historical traffic with a free tool such as `ntop`/`ntopng`, Cacti, or Nagios.
+   - **CLI / open-source alternative**: run a capture with `tcpdump`/`tshark` and compare against historical traffic with a free tool such as `ntop`/`ntopng`, Cacti, or Nagios.
 
 2. **Classify which layer is being targeted** — network/volumetric (bandwidth or connection-table exhaustion) or application-layer (HTTP flood, slow/expensive requests) — since the mitigation differs.
    - **Dedicated tool**: anti-DDoS provider's attack classification.

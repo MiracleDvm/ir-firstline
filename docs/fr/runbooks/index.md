@@ -15,7 +15,7 @@ pour quand vous n'avez pas le temps de lire de la prose.
 <p class="irf-group-title">MALWARE &amp; RANSOMWARE</p>
 <div class="irf-grid">
 
-<a class="irf-card" data-cat="infra" href="ransomware/"><span class="irf-card-title">Ransomware</span><span class="irf-card-desc">Fichiers chiffrés, note de rançon à l'écran.</span><span class="irf-card-tag">T1486</span></a>
+<a class="irf-card" data-cat="infra" href="ransomware/"><span class="irf-card-title">Rançongiciel</span><span class="irf-card-desc">Fichiers chiffrés, note de rançon à l'écran.</span><span class="irf-card-tag">T1486</span></a>
 <a class="irf-card" data-cat="infra" href="malware-infection/"><span class="irf-card-title">Infection malware</span><span class="irf-card-desc">Quelque chose tourne qui ne devrait pas — pas du ransomware.</span><span class="irf-card-tag">T1204</span></a>
 
 </div>

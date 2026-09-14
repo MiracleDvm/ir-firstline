@@ -1,4 +1,4 @@
-# Ransomware
+# Rançongiciel
 
 **Statut :** 0.1 (brouillon)
 
@@ -28,19 +28,16 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Note de rançon / modifications massives de fichiers] --> B{Chiffrement encore actif ?}
-    B -->|Oui| C[Isoler le poste immédiatement]
-    B -->|Non| D[Isoler le poste]
-    C --> E[Préserver les preuves]
-    D --> E
-    E --> F{Partages ou plusieurs postes affectés ?}
-    F -->|Oui| G[Escalade L2 - périmètre réseau]
-    F -->|Non| H[Escalade L2 - poste unique]
-    G --> I[Identifier la variante + le vecteur d'entrée]
-    H --> I
-    I --> J[Éradiquer + reconstruire]
-    J --> K[Restaurer depuis une sauvegarde saine]
-    K --> L[Notifier + tirer les leçons]
+    A[Note de rançon / modifications massives de fichiers] --> B[Isoler le poste]
+    B --> C[Préserver les preuves]
+    C --> D{Partages ou plusieurs postes affectés ?}
+    D -->|Oui| E[Escalade L2 - périmètre réseau]
+    D -->|Non| F[Escalade L2 - poste unique]
+    E --> G[Identifier la variante + le vecteur d'entrée]
+    F --> G
+    G --> H[Éradiquer + reconstruire]
+    H --> I[Restaurer depuis une sauvegarde saine]
+    I --> J[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1

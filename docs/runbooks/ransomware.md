@@ -28,19 +28,16 @@ These are internal operational targets to challenge with real incident data — 
 
 ```mermaid
 flowchart TD
-    A[Ransom note / mass file changes] --> B{Encryption still active?}
-    B -->|Yes| C[Isolate host now]
-    B -->|No| D[Isolate host]
-    C --> E[Preserve evidence]
-    D --> E
-    E --> F{Shares or multiple hosts affected?}
-    F -->|Yes| G[Escalate to L2 - network scope]
-    F -->|No| H[Escalate to L2 - single host]
-    G --> I[Identify variant + entry vector]
-    H --> I
-    I --> J[Eradicate + rebuild]
-    J --> K[Restore from clean backup]
-    K --> L[Notify + lessons learned]
+    A[Ransom note / mass file changes] --> B[Isolate host]
+    B --> C[Preserve evidence]
+    C --> D{Shares or multiple hosts affected?}
+    D -->|Yes| E[Escalate to L2 - network scope]
+    D -->|No| F[Escalate to L2 - single host]
+    E --> G[Identify variant + entry vector]
+    F --> G
+    G --> H[Eradicate + rebuild]
+    H --> I[Restore from clean backup]
+    I --> J[Notify + lessons learned]
 ```
 
 ## 4. L1 Actions

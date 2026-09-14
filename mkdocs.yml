@@ -14,6 +14,7 @@ exclude_docs: |
 
 theme:
   name: material
+  custom_dir: overrides
   favicon: assets/favicon.svg
   icon:
     logo: material/shield-half-full

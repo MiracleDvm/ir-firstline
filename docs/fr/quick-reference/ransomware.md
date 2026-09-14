@@ -1,4 +1,4 @@
-# Ransomware — Aide-mémoire
+# Rançongiciel — Aide-mémoire
 
 **Statut :** 0.1 (brouillon) — dérivé de [`runbooks/ransomware.md`](../runbooks/ransomware.md) ; ne pas modifier indépendamment.
 
