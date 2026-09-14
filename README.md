@@ -29,10 +29,11 @@ notification obligations.
 
 ## Status
 
-Ransomware, Account Compromise, and Phishing/BEC runbooks are available, in
-English and French, both as drafts. See
-`VISION_PROJET_incident-response-runbooks.md` for the project vision and
-rationale.
+Ten runbooks are available, in English and French, all as drafts: Ransomware,
+Account Compromise, Phishing/BEC, DDoS, Web Compromise, Critical
+Vulnerability, Supply Chain, Data Leak, Insider Threat, and Malware
+Infection. See `VISION_PROJET_incident-response-runbooks.md` for the
+project vision and rationale.
 
 ## Structure
 
