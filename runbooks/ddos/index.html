@@ -67,6 +67,29 @@
 
     
     
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DDoS — IR Firstline">
+  <meta property="og:description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+  <meta property="og:url" content="https://MiracleDvm.github.io/ir-firstline/runbooks/ddos/">
+  <meta property="og:image" content="https://MiracleDvm.github.io/ir-firstline/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DDoS — IR Firstline">
+  <meta name="twitter:description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+  <meta name="twitter:image" content="https://MiracleDvm.github.io/ir-firstline/assets/og-image.png">
+  
+
   </head>
   
   
@@ -1711,7 +1734,7 @@
 <li><strong>Confirm it's actually a DDoS</strong> — not a legitimate traffic spike, a botched deployment, or an internal misconfiguration. Compare current load and connection counts against your normal baseline.</li>
 <li><strong>Dedicated tool</strong>: anti-DDoS provider or WAF analytics dashboard.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: <code>tcpdump</code>/<code>tshark</code> a capture and compare against historical traffic with a free tool such as <code>ntop</code>/<code>ntopng</code>, Cacti, or Nagios.</p>
+<p><strong>CLI / open-source alternative</strong>: run a capture with <code>tcpdump</code>/<code>tshark</code> and compare against historical traffic with a free tool such as <code>ntop</code>/<code>ntopng</code>, Cacti, or Nagios.</p>
 </li>
 <li>
 <p><strong>Classify which layer is being targeted</strong> — network/volumetric (bandwidth or connection-table exhaustion) or application-layer (HTTP flood, slow/expensive requests) — since the mitigation differs.</p>

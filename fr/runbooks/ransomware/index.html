@@ -67,6 +67,29 @@
 
     
     
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rançongiciel — IR Firstline">
+  <meta property="og:description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+  <meta property="og:url" content="https://MiracleDvm.github.io/ir-firstline/fr/runbooks/ransomware/">
+  <meta property="og:image" content="https://MiracleDvm.github.io/ir-firstline/fr/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rançongiciel — IR Firstline">
+  <meta name="twitter:description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+  <meta name="twitter:image" content="https://MiracleDvm.github.io/ir-firstline/fr/assets/og-image.png">
+  
+
   </head>
   
   
@@ -86,7 +109,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ransomware" class="md-skip">
+        <a href="#rancongiciel" class="md-skip">
           Aller au contenu
         </a>
       
@@ -1674,7 +1697,7 @@
   
 
 
-<h1 id="ransomware">Ransomware<a class="headerlink" href="#ransomware" title="Permanent link">&para;</a></h1>
+<h1 id="rancongiciel">Rançongiciel<a class="headerlink" href="#rancongiciel" title="Permanent link">&para;</a></h1>
 <p><strong>Statut :</strong> 0.1 (brouillon)</p>
 <hr />
 <h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
@@ -1697,19 +1720,16 @@
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Note de rançon / modifications massives de fichiers] --&gt; B{Chiffrement encore actif ?}
-    B --&gt;|Oui| C[Isoler le poste immédiatement]
-    B --&gt;|Non| D[Isoler le poste]
-    C --&gt; E[Préserver les preuves]
-    D --&gt; E
-    E --&gt; F{Partages ou plusieurs postes affectés ?}
-    F --&gt;|Oui| G[Escalade L2 - périmètre réseau]
-    F --&gt;|Non| H[Escalade L2 - poste unique]
-    G --&gt; I[Identifier la variante + le vecteur d'entrée]
-    H --&gt; I
-    I --&gt; J[Éradiquer + reconstruire]
-    J --&gt; K[Restaurer depuis une sauvegarde saine]
-    K --&gt; L[Notifier + tirer les leçons]</code></pre>
+    A[Note de rançon / modifications massives de fichiers] --&gt; B[Isoler le poste]
+    B --&gt; C[Préserver les preuves]
+    C --&gt; D{Partages ou plusieurs postes affectés ?}
+    D --&gt;|Oui| E[Escalade L2 - périmètre réseau]
+    D --&gt;|Non| F[Escalade L2 - poste unique]
+    E --&gt; G[Identifier la variante + le vecteur d'entrée]
+    F --&gt; G
+    G --&gt; H[Éradiquer + reconstruire]
+    H --&gt; I[Restaurer depuis une sauvegarde saine]
+    I --&gt; J[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Confirmez les signes.</strong> Vérifiez la présence d'une note de rançon, d'extensions de fichiers inhabituelles, de modifications massives de fichiers en peu de temps, ou d'une alerte EDR/SIEM liée à un comportement de chiffrement.</li>

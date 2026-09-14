@@ -67,6 +67,29 @@
 
     
     
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ransomware — IR Firstline">
+  <meta property="og:description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+  <meta property="og:url" content="https://MiracleDvm.github.io/ir-firstline/runbooks/ransomware/">
+  <meta property="og:image" content="https://MiracleDvm.github.io/ir-firstline/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ransomware — IR Firstline">
+  <meta name="twitter:description" content="Open-source, bilingual L1/L2 incident response runbooks for any SOC analyst, in any organization, under any jurisdiction.">
+  <meta name="twitter:image" content="https://MiracleDvm.github.io/ir-firstline/assets/og-image.png">
+  
+
   </head>
   
   
@@ -1697,19 +1720,16 @@
 <p>These are internal operational targets to challenge with real incident data — not regulatory deadlines.</p>
 <h2 id="3-decision-tree">3. Decision Tree<a class="headerlink" href="#3-decision-tree" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Ransom note / mass file changes] --&gt; B{Encryption still active?}
-    B --&gt;|Yes| C[Isolate host now]
-    B --&gt;|No| D[Isolate host]
-    C --&gt; E[Preserve evidence]
-    D --&gt; E
-    E --&gt; F{Shares or multiple hosts affected?}
-    F --&gt;|Yes| G[Escalate to L2 - network scope]
-    F --&gt;|No| H[Escalate to L2 - single host]
-    G --&gt; I[Identify variant + entry vector]
-    H --&gt; I
-    I --&gt; J[Eradicate + rebuild]
-    J --&gt; K[Restore from clean backup]
-    K --&gt; L[Notify + lessons learned]</code></pre>
+    A[Ransom note / mass file changes] --&gt; B[Isolate host]
+    B --&gt; C[Preserve evidence]
+    C --&gt; D{Shares or multiple hosts affected?}
+    D --&gt;|Yes| E[Escalate to L2 - network scope]
+    D --&gt;|No| F[Escalate to L2 - single host]
+    E --&gt; G[Identify variant + entry vector]
+    F --&gt; G
+    G --&gt; H[Eradicate + rebuild]
+    H --&gt; I[Restore from clean backup]
+    I --&gt; J[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Confirm the signs.</strong> Check for a ransom note, unusual file extensions, mass file changes in a short window, or an EDR/SIEM alert tied to encryption behavior.</li>
