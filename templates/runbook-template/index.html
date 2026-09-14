@@ -1616,8 +1616,11 @@ self-diagnose which runbook applies without guessing.</p>
 regulatory deadlines. Never phrase this section as a legal or contractual
 obligation.</p>
 <h2 id="3-decision-tree">3. Decision Tree<a class="headerlink" href="#3-decision-tree" title="Permanent link">&para;</a></h2>
-<p>Use short, neutral Mermaid labels, identical in the English and French
-versions of this runbook — never maintain two different diagrams.</p>
+<p>Use short, clear Mermaid labels. Translate them into the target language —
+readers see this diagram on an otherwise fully-translated page, so an
+English-only diagram on the French version reads as broken. Keep the same
+node IDs, arrows, and branching logic in both versions so the two diagrams
+never structurally drift apart, even though their visible text differs.</p>
 <pre class="mermaid"><code>flowchart TD
     A[Alert] --&gt; B{Isolate?}
     B --&gt;|Yes| C[Preserve evidence]

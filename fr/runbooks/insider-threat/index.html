@@ -1612,16 +1612,16 @@
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires. Contrairement à la plupart des runbooks de ce projet, la vitesse passe ici après l'autorisation : agir avant que les bonnes personnes aient donné leur accord est le risque principal, pas le délai.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Suspicious insider activity] --&gt; B{Malicious/fraudulent confirmed?}
-    B --&gt;|Unclear| C[Escalate to L2 - quiet investigation]
-    B --&gt;|Yes| D[Escalate to L2 - stop technical action]
-    C --&gt; E[Obtain written authorization]
-    E --&gt; F[Freeze access + preserve evidence]
-    F --&gt; G{Malicious confirmed?}
-    G --&gt;|Yes| D
-    G --&gt;|No| H[Restore access, close case]
-    D --&gt; I[Hand off to legal/HR]
-    I --&gt; J[Notify + lessons learned]</code></pre>
+    A[Activité interne suspecte] --&gt; B{Caractère malveillant/frauduleux confirmé ?}
+    B --&gt;|Incertain| C[Escalade L2 - investigation discrète]
+    B --&gt;|Oui| D[Escalade L2 - arrêter l'action technique]
+    C --&gt; E[Obtenir une autorisation écrite]
+    E --&gt; F[Geler l'accès + préserver les preuves]
+    F --&gt; G{Caractère malveillant confirmé ?}
+    G --&gt;|Oui| D
+    G --&gt;|Non| H[Restaurer l'accès, clôturer le dossier]
+    D --&gt; I[Transmettre au juridique/RH]
+    I --&gt; J[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Confirmez que le signalement est crédible.</strong> Recoupez l'alerte avec les journaux du compte concerné — pas de l'ensemble de l'environnement.</li>

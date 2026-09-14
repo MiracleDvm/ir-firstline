@@ -1618,14 +1618,17 @@ deviner quel runbook s'applique.</p>
 réelles — pas des délais réglementaires. Ne formule jamais cette section
 comme une obligation légale ou contractuelle.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
-<p>Utilise des labels Mermaid courts et neutres, identiques dans les versions
-anglaise et française de ce runbook — ne maintiens jamais deux diagrammes
-différents.</p>
+<p>Utilise des labels Mermaid courts et clairs. Traduis-les dans la langue
+cible — le lecteur voit ce diagramme sur une page par ailleurs entièrement
+traduite, donc un diagramme resté en anglais sur la version française
+sonne cassé. Garde les mêmes identifiants de nœuds, flèches et logique de
+branchement dans les deux versions, pour que les deux diagrammes ne
+divergent jamais structurellement, même si leur texte visible diffère.</p>
 <pre class="mermaid"><code>flowchart TD
-    A[Alert] --&gt; B{Isolate?}
-    B --&gt;|Yes| C[Preserve evidence]
-    B --&gt;|No| D[Continue monitoring]
-    C --&gt; E[Escalate to L2]
+    A[Alerte] --&gt; B{Isoler ?}
+    B --&gt;|Oui| C[Préserver les preuves]
+    B --&gt;|Non| D[Poursuivre la surveillance]
+    C --&gt; E[Escalade L2]
     D --&gt; A</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <p>Numérotées, classées par priorité. <strong>Chaque</strong> action technique doit proposer

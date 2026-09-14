@@ -1612,16 +1612,16 @@
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Defacement / webshell / intrusion alert] --&gt; B{Public-facing content affected?}
-    B --&gt;|Yes| C[Take offline or serve maintenance page]
-    B --&gt;|No| D[Isolate the host]
-    C --&gt; E[Preserve evidence]
+    A[Alerte défacement / webshell / intrusion] --&gt; B{Contenu public affecté ?}
+    B --&gt;|Oui| C[Mettre hors ligne ou afficher une page de maintenance]
+    B --&gt;|Non| D[Isoler le poste]
+    C --&gt; E[Préserver les preuves]
     D --&gt; E
-    E --&gt; F[Escalate to L2]
-    F --&gt; G[Find entry vector + persistence]
-    G --&gt; H[Eradicate + patch vulnerability]
-    H --&gt; I[Restore from clean backup]
-    I --&gt; J[Notify + lessons learned]</code></pre>
+    E --&gt; F[Escalade L2]
+    F --&gt; G[Trouver le vecteur d'entrée + la persistance]
+    G --&gt; H[Éradiquer + corriger la vulnérabilité]
+    H --&gt; I[Restaurer depuis une sauvegarde saine]
+    I --&gt; J[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Confirmez la compromission.</strong> Vérifiez la présence d'un contenu défacé, d'un fichier inattendu dans la racine web, de processus ou connexions non reconnus, ou l'alerte à l'origine du déclenchement (règle WAF/IDS, contrôle d'intégrité de fichiers).</li>

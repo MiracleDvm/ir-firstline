@@ -1613,19 +1613,19 @@
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Exposed / leaked data reported] --&gt; B{Exposure still active?}
-    B --&gt;|Yes| C[Stop the exposure now]
-    B --&gt;|No| D[Preserve evidence]
+    A[Signalement de données exposées / divulguées] --&gt; B{Exposition encore active ?}
+    B --&gt;|Oui| C[Stopper l'exposition immédiatement]
+    B --&gt;|Non| D[Préserver les preuves]
     C --&gt; D
-    D --&gt; E{Likely cause?}
-    E --&gt;|Misconfiguration| F[Escalate to L2 - fix access controls]
-    E --&gt;|External attacker| G[Escalate to L2 - link to compromise]
-    E --&gt;|Suspected insider| H[Escalate to L2 - involve HR/legal]
-    F --&gt; I[Determine what, how much, who could access]
+    D --&gt; E{Cause probable ?}
+    E --&gt;|Mauvaise configuration| F[Escalade L2 - corriger les contrôles d'accès]
+    E --&gt;|Attaquant externe| G[Escalade L2 - relier à une compromission]
+    E --&gt;|Insider suspecté| H[Escalade L2 - impliquer RH/juridique]
+    F --&gt; I[Déterminer quoi, combien, qui pouvait accéder]
     G --&gt; I
     H --&gt; I
-    I --&gt; J[Request takedown + monitor spread]
-    J --&gt; K[Notify + lessons learned]</code></pre>
+    I --&gt; J[Demander le retrait + surveiller la propagation]
+    J --&gt; K[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Confirmez l'exposition.</strong> Vérifiez que les données sont réelles, sensibles, et réellement accessibles — pas un faux positif ou des données de test.</li>

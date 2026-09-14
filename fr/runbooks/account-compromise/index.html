@@ -1612,18 +1612,18 @@
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Suspicious sign-in / account alert] --&gt; B{Compromise confirmed?}
-    B --&gt;|No| C[Monitor, close alert]
-    B --&gt;|Yes| D[Disable account + revoke sessions]
-    D --&gt; E[Reset credentials]
-    E --&gt; F[Check for persistence]
-    F --&gt; G{Other accounts affected?}
-    G --&gt;|Yes| H[Escalate to L2 - multi-account]
-    G --&gt;|No| I[Escalate to L2 - single account]
-    H --&gt; J[Find root cause]
+    A[Connexion suspecte / alerte de compte] --&gt; B{Compromission confirmée ?}
+    B --&gt;|Non| C[Surveiller, clôturer l'alerte]
+    B --&gt;|Oui| D[Désactiver le compte + révoquer les sessions]
+    D --&gt; E[Réinitialiser les identifiants]
+    E --&gt; F[Rechercher une persistance]
+    F --&gt; G{Autres comptes affectés ?}
+    G --&gt;|Oui| H[Escalade L2 - multi-comptes]
+    G --&gt;|Non| I[Escalade L2 - compte unique]
+    H --&gt; J[Trouver la cause racine]
     I --&gt; J
-    J --&gt; K[Remove persistence + harden]
-    K --&gt; L[Notify + lessons learned]</code></pre>
+    J --&gt; K[Supprimer la persistance + durcir]
+    K --&gt; L[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Confirmez la compromission.</strong> Recoupez l'alerte avec les journaux de connexion/audit à la recherche d'anomalies : nouveau pays, nouvel appareil ou navigateur, déplacement impossible entre deux connexions, ou échecs MFA suivis d'un succès.</li>

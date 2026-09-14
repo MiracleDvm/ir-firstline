@@ -1611,17 +1611,17 @@
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires. Remarque : pour une attaque volumétrique importante, le délai réel de résolution dépend souvent de la rapidité d'action de votre FAI ou fournisseur anti-DDoS en amont, pas seulement de votre propre vitesse de réponse — escaladez tôt vers eux plutôt que d'attendre de voir si les mesures internes suffisent.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Service degraded / DDoS alert] --&gt; B{Confirmed DDoS?}
-    B --&gt;|No| C[Investigate as capacity/config issue]
-    B --&gt;|Yes| D{Network layer or application layer?}
-    D --&gt;|Network| E[Throttle / blackhole near the edge]
-    D --&gt;|Application| F[Disable feature / scrub app traffic]
-    E --&gt; G[Escalate to L2 + ISP/provider]
+    A[Service dégradé / alerte DDoS] --&gt; B{DDoS confirmé ?}
+    B --&gt;|Non| C[Investiguer comme un problème de capacité/config]
+    B --&gt;|Oui| D{Couche réseau ou couche application ?}
+    D --&gt;|Réseau| E[Limiter / blackholer près de la bordure]
+    D --&gt;|Application| F[Désactiver la fonctionnalité / nettoyer le trafic applicatif]
+    E --&gt; G[Escalade L2 + FAI/fournisseur]
     F --&gt; G
-    G --&gt; H[Capture traffic, check extortion/claim]
-    H --&gt; I[Confirm recovery to baseline]
-    I --&gt; J[Roll back mitigations]
-    J --&gt; K[Notify + lessons learned]</code></pre>
+    G --&gt; H[Capturer le trafic, vérifier extorsion/revendication]
+    H --&gt; I[Confirmer le retour à la normale]
+    I --&gt; J[Retirer les mesures de mitigation]
+    J --&gt; K[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Confirmez qu'il s'agit bien d'un DDoS</strong> — pas d'un pic de trafic légitime, d'un déploiement raté, ou d'une erreur de configuration interne. Comparez la charge et le nombre de connexions actuels à votre référence habituelle.</li>

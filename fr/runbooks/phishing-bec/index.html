@@ -1612,17 +1612,17 @@
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires. Remarque : si un virement frauduleux est en jeu, la fenêtre pour demander un rappel bancaire se compte en heures, pas en jours — traitez cette étape spécifique comme plus urgente que les objectifs généraux ci-dessus.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
 <pre class="mermaid"><code>flowchart TD
-    A[Suspicious email / fraud report] --&gt; B{Financial request involved?}
-    B --&gt;|Yes| C[Verify out-of-band before acting]
-    C --&gt; D{Confirmed fraudulent?}
-    D --&gt;|Yes| E[Contain account + attempt payment recall]
-    B --&gt;|No| F[Analyze message + block indicators]
-    D --&gt;|No| F
-    E --&gt; G[Escalate to L2]
+    A[Email suspect / signalement de fraude] --&gt; B{Demande financière impliquée ?}
+    B --&gt;|Oui| C[Vérifier hors bande avant d'agir]
+    C --&gt; D{Fraude confirmée ?}
+    D --&gt;|Oui| E[Confiner le compte + tenter le rappel du paiement]
+    B --&gt;|Non| F[Analyser le message + bloquer les indicateurs]
+    D --&gt;|Non| F
+    E --&gt; G[Escalade L2]
     F --&gt; G
-    G --&gt; H[Scope the campaign]
-    H --&gt; I[Eradicate + harden]
-    I --&gt; J[Notify + lessons learned]</code></pre>
+    G --&gt; H[Cadrer la campagne]
+    H --&gt; I[Éradiquer + durcir]
+    I --&gt; J[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Confirmez le signalement.</strong> Récupérez le message suspect lui-même — en-têtes, corps, pièces jointes, liens — sans ouvrir de pièce jointe ni suivre de lien depuis un appareil ayant accès à des données sensibles ou des identifiants.</li>
