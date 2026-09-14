@@ -28,19 +28,19 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Ransom note / mass file changes] --> B{Encryption still active?}
-    B -->|Yes| C[Isolate host now]
-    B -->|No| D[Isolate host]
-    C --> E[Preserve evidence]
+    A[Note de rançon / modifications massives de fichiers] --> B{Chiffrement encore actif ?}
+    B -->|Oui| C[Isoler le poste immédiatement]
+    B -->|Non| D[Isoler le poste]
+    C --> E[Préserver les preuves]
     D --> E
-    E --> F{Shares or multiple hosts affected?}
-    F -->|Yes| G[Escalate to L2 - network scope]
-    F -->|No| H[Escalate to L2 - single host]
-    G --> I[Identify variant + entry vector]
+    E --> F{Partages ou plusieurs postes affectés ?}
+    F -->|Oui| G[Escalade L2 - périmètre réseau]
+    F -->|Non| H[Escalade L2 - poste unique]
+    G --> I[Identifier la variante + le vecteur d'entrée]
     H --> I
-    I --> J[Eradicate + rebuild]
-    J --> K[Restore from clean backup]
-    K --> L[Notify + lessons learned]
+    I --> J[Éradiquer + reconstruire]
+    J --> K[Restaurer depuis une sauvegarde saine]
+    K --> L[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1

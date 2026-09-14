@@ -26,17 +26,17 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Service degraded / DDoS alert] --> B{Confirmed DDoS?}
-    B -->|No| C[Investigate as capacity/config issue]
-    B -->|Yes| D{Network layer or application layer?}
-    D -->|Network| E[Throttle / blackhole near the edge]
-    D -->|Application| F[Disable feature / scrub app traffic]
-    E --> G[Escalate to L2 + ISP/provider]
+    A[Service dégradé / alerte DDoS] --> B{DDoS confirmé ?}
+    B -->|Non| C[Investiguer comme un problème de capacité/config]
+    B -->|Oui| D{Couche réseau ou couche application ?}
+    D -->|Réseau| E[Limiter / blackholer près de la bordure]
+    D -->|Application| F[Désactiver la fonctionnalité / nettoyer le trafic applicatif]
+    E --> G[Escalade L2 + FAI/fournisseur]
     F --> G
-    G --> H[Capture traffic, check extortion/claim]
-    H --> I[Confirm recovery to baseline]
-    I --> J[Roll back mitigations]
-    J --> K[Notify + lessons learned]
+    G --> H[Capturer le trafic, vérifier extorsion/revendication]
+    H --> I[Confirmer le retour à la normale]
+    I --> J[Retirer les mesures de mitigation]
+    J --> K[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1

@@ -34,16 +34,19 @@ comme une obligation légale ou contractuelle.
 
 ## 3. Arbre de décision
 
-Utilise des labels Mermaid courts et neutres, identiques dans les versions
-anglaise et française de ce runbook — ne maintiens jamais deux diagrammes
-différents.
+Utilise des labels Mermaid courts et clairs. Traduis-les dans la langue
+cible — le lecteur voit ce diagramme sur une page par ailleurs entièrement
+traduite, donc un diagramme resté en anglais sur la version française
+sonne cassé. Garde les mêmes identifiants de nœuds, flèches et logique de
+branchement dans les deux versions, pour que les deux diagrammes ne
+divergent jamais structurellement, même si leur texte visible diffère.
 
 ```mermaid
 flowchart TD
-    A[Alert] --> B{Isolate?}
-    B -->|Yes| C[Preserve evidence]
-    B -->|No| D[Continue monitoring]
-    C --> E[Escalate to L2]
+    A[Alerte] --> B{Isoler ?}
+    B -->|Oui| C[Préserver les preuves]
+    B -->|Non| D[Poursuivre la surveillance]
+    C --> E[Escalade L2]
     D --> A
 ```
 

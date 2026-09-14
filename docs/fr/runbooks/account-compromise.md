@@ -27,18 +27,18 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Suspicious sign-in / account alert] --> B{Compromise confirmed?}
-    B -->|No| C[Monitor, close alert]
-    B -->|Yes| D[Disable account + revoke sessions]
-    D --> E[Reset credentials]
-    E --> F[Check for persistence]
-    F --> G{Other accounts affected?}
-    G -->|Yes| H[Escalate to L2 - multi-account]
-    G -->|No| I[Escalate to L2 - single account]
-    H --> J[Find root cause]
+    A[Connexion suspecte / alerte de compte] --> B{Compromission confirmée ?}
+    B -->|Non| C[Surveiller, clôturer l'alerte]
+    B -->|Oui| D[Désactiver le compte + révoquer les sessions]
+    D --> E[Réinitialiser les identifiants]
+    E --> F[Rechercher une persistance]
+    F --> G{Autres comptes affectés ?}
+    G -->|Oui| H[Escalade L2 - multi-comptes]
+    G -->|Non| I[Escalade L2 - compte unique]
+    H --> J[Trouver la cause racine]
     I --> J
-    J --> K[Remove persistence + harden]
-    K --> L[Notify + lessons learned]
+    J --> K[Supprimer la persistance + durcir]
+    K --> L[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1

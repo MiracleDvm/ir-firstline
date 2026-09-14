@@ -26,19 +26,19 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Vendor breach signal] --> B{Confirmed access to your environment?}
-    B -->|Yes| C[Cut interconnection now]
-    B -->|Unclear| D[Restrict access, keep monitoring]
-    C --> E[Preserve interconnection logs]
+    A[Signal de compromission fournisseur] --> B{Accès confirmé à votre environnement ?}
+    B -->|Oui| C[Couper l'interconnexion immédiatement]
+    B -->|Incertain| D[Restreindre l'accès, poursuivre la surveillance]
+    C --> E[Préserver les logs d'interconnexion]
     D --> E
-    E --> F{Business-critical traffic involved?}
-    F -->|Yes| G[Escalate to L2 - controlled reconnection]
-    F -->|No| H[Escalate to L2 - full cutoff]
-    G --> I[Scope: what was reachable, what moved]
+    E --> F{Trafic critique pour l'activité impliqué ?}
+    F -->|Oui| G[Escalade L2 - reconnexion contrôlée]
+    F -->|Non| H[Escalade L2 - coupure totale]
+    G --> I[Cadrer : ce qui était accessible, ce qui a circulé]
     H --> I
-    I --> J[Coordinate with vendor + eradicate on your side]
-    J --> K[Reassess before reopening access]
-    K --> L[Notify + lessons learned]
+    I --> J[Coordonner avec le fournisseur + éradiquer de votre côté]
+    J --> K[Réévaluer avant de rouvrir l'accès]
+    K --> L[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1

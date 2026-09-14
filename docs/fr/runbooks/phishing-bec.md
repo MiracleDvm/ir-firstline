@@ -27,17 +27,17 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Suspicious email / fraud report] --> B{Financial request involved?}
-    B -->|Yes| C[Verify out-of-band before acting]
-    C --> D{Confirmed fraudulent?}
-    D -->|Yes| E[Contain account + attempt payment recall]
-    B -->|No| F[Analyze message + block indicators]
-    D -->|No| F
-    E --> G[Escalate to L2]
+    A[Email suspect / signalement de fraude] --> B{Demande financière impliquée ?}
+    B -->|Oui| C[Vérifier hors bande avant d'agir]
+    C --> D{Fraude confirmée ?}
+    D -->|Oui| E[Confiner le compte + tenter le rappel du paiement]
+    B -->|Non| F[Analyser le message + bloquer les indicateurs]
+    D -->|Non| F
+    E --> G[Escalade L2]
     F --> G
-    G --> H[Scope the campaign]
-    H --> I[Eradicate + harden]
-    I --> J[Notify + lessons learned]
+    G --> H[Cadrer la campagne]
+    H --> I[Éradiquer + durcir]
+    I --> J[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1

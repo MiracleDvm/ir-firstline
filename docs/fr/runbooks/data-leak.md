@@ -28,19 +28,19 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Exposed / leaked data reported] --> B{Exposure still active?}
-    B -->|Yes| C[Stop the exposure now]
-    B -->|No| D[Preserve evidence]
+    A[Signalement de données exposées / divulguées] --> B{Exposition encore active ?}
+    B -->|Oui| C[Stopper l'exposition immédiatement]
+    B -->|Non| D[Préserver les preuves]
     C --> D
-    D --> E{Likely cause?}
-    E -->|Misconfiguration| F[Escalate to L2 - fix access controls]
-    E -->|External attacker| G[Escalate to L2 - link to compromise]
-    E -->|Suspected insider| H[Escalate to L2 - involve HR/legal]
-    F --> I[Determine what, how much, who could access]
+    D --> E{Cause probable ?}
+    E -->|Mauvaise configuration| F[Escalade L2 - corriger les contrôles d'accès]
+    E -->|Attaquant externe| G[Escalade L2 - relier à une compromission]
+    E -->|Insider suspecté| H[Escalade L2 - impliquer RH/juridique]
+    F --> I[Déterminer quoi, combien, qui pouvait accéder]
     G --> I
     H --> I
-    I --> J[Request takedown + monitor spread]
-    J --> K[Notify + lessons learned]
+    I --> J[Demander le retrait + surveiller la propagation]
+    J --> K[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1

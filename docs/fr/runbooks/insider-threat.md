@@ -27,16 +27,16 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Suspicious insider activity] --> B{Malicious/fraudulent confirmed?}
-    B -->|Unclear| C[Escalate to L2 - quiet investigation]
-    B -->|Yes| D[Escalate to L2 - stop technical action]
-    C --> E[Obtain written authorization]
-    E --> F[Freeze access + preserve evidence]
-    F --> G{Malicious confirmed?}
-    G -->|Yes| D
-    G -->|No| H[Restore access, close case]
-    D --> I[Hand off to legal/HR]
-    I --> J[Notify + lessons learned]
+    A[Activité interne suspecte] --> B{Caractère malveillant/frauduleux confirmé ?}
+    B -->|Incertain| C[Escalade L2 - investigation discrète]
+    B -->|Oui| D[Escalade L2 - arrêter l'action technique]
+    C --> E[Obtenir une autorisation écrite]
+    E --> F[Geler l'accès + préserver les preuves]
+    F --> G{Caractère malveillant confirmé ?}
+    G -->|Oui| D
+    G -->|Non| H[Restaurer l'accès, clôturer le dossier]
+    D --> I[Transmettre au juridique/RH]
+    I --> J[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1

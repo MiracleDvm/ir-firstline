@@ -32,8 +32,11 @@ obligation.
 
 ## 3. Decision Tree
 
-Use short, neutral Mermaid labels, identical in the English and French
-versions of this runbook — never maintain two different diagrams.
+Use short, clear Mermaid labels. Translate them into the target language —
+readers see this diagram on an otherwise fully-translated page, so an
+English-only diagram on the French version reads as broken. Keep the same
+node IDs, arrows, and branching logic in both versions so the two diagrams
+never structurally drift apart, even though their visible text differs.
 
 ```mermaid
 flowchart TD

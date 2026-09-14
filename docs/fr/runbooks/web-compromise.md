@@ -27,16 +27,16 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ```mermaid
 flowchart TD
-    A[Defacement / webshell / intrusion alert] --> B{Public-facing content affected?}
-    B -->|Yes| C[Take offline or serve maintenance page]
-    B -->|No| D[Isolate the host]
-    C --> E[Preserve evidence]
+    A[Alerte défacement / webshell / intrusion] --> B{Contenu public affecté ?}
+    B -->|Oui| C[Mettre hors ligne ou afficher une page de maintenance]
+    B -->|Non| D[Isoler le poste]
+    C --> E[Préserver les preuves]
     D --> E
-    E --> F[Escalate to L2]
-    F --> G[Find entry vector + persistence]
-    G --> H[Eradicate + patch vulnerability]
-    H --> I[Restore from clean backup]
-    I --> J[Notify + lessons learned]
+    E --> F[Escalade L2]
+    F --> G[Trouver le vecteur d'entrée + la persistance]
+    G --> H[Éradiquer + corriger la vulnérabilité]
+    H --> I[Restaurer depuis une sauvegarde saine]
+    I --> J[Notifier + tirer les leçons]
 ```
 
 ## 4. Actions L1
