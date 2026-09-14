@@ -1698,7 +1698,7 @@
 
 
 <h1 id="fuite-exposition-de-donnees">Fuite / exposition de données<a class="headerlink" href="#fuite-exposition-de-donnees" title="Permanent link">&para;</a></h1>
-<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<p class="irf-status"><strong>Statut :</strong> 0.1 (brouillon)</p>
 <hr />
 <h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
 <p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
@@ -1735,103 +1735,111 @@
     J --&gt; K[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirmez l'exposition.</strong> Vérifiez que les données sont réelles, sensibles, et réellement accessibles — pas un faux positif ou des données de test.</li>
-<li><strong>Outil dédié</strong> : console d'alertes DLP/CASB.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : accédez vous-même à l'emplacement signalé (<code>curl -I &lt;url&gt;</code>, ou vérification en navigation privée) ; pour le stockage cloud, vérifiez les permissions directement via la CLI gratuite du fournisseur (<code>aws s3api get-bucket-acl</code>, <code>az storage container show-permission</code>, <code>gsutil iam get gs://&lt;bucket&gt;</code>).</p>
+<p><strong>Confirmez l'exposition.</strong> Vérifiez que les données sont réelles, sensibles, et réellement accessibles — pas un faux positif ou des données de test.</p>
+<ul>
+<li><strong>Outil dédié</strong> : console d'alertes DLP/CASB.</li>
+<li><strong>Alternative CLI / open source</strong> : accédez vous-même à l'emplacement signalé (<code>curl -I &lt;url&gt;</code>, ou vérification en navigation privée) ; pour le stockage cloud, vérifiez les permissions directement via la CLI gratuite du fournisseur (<code>aws s3api get-bucket-acl</code>, <code>az storage container show-permission</code>, <code>gsutil iam get gs://&lt;bucket&gt;</code>).</li>
+</ul>
 </li>
 <li>
 <p><strong>Stoppez immédiatement l'exposition en cours</strong> — révoquez l'accès public, mettez la ressource hors ligne, ou bloquez le destinataire/l'URL, selon le cas.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : remédiation en un clic d'une plateforme CSPM (cloud security posture management).</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : basculez la ressource en privé directement via la CLI gratuite du fournisseur (<code>aws s3api put-bucket-acl --acl private</code>, <code>az storage container set-permission --public-access off</code>, <code>gsutil iam ch -d allUsers</code>) ; pour un email, rappelez le message si c'est pris en charge, ou demandez immédiatement au destinataire de le supprimer.</p>
+<li><strong>Alternative CLI / open source</strong> : basculez la ressource en privé directement via la CLI gratuite du fournisseur (<code>aws s3api put-bucket-acl --acl private</code>, <code>az storage container set-permission --public-access off</code>, <code>gsutil iam ch -d allUsers</code>) ; pour un email, rappelez le message si c'est pris en charge, ou demandez immédiatement au destinataire de le supprimer.</li>
+</ul>
 </li>
 <li>
 <p><strong>Préservez les preuves avant toute autre action destructrice.</strong> Enregistrez les données exposées telles que trouvées — métadonnées, horodatages, URL ou chemin exact — sans télécharger plus que nécessaire pour confirmer le périmètre.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : capture de preuves d'incident du DLP.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : captures d'écran plus un <code>curl</code>/<code>wget</code> ciblé du listing ou de l'en-tête de la ressource (pas l'intégralité du jeu de données) vers un dossier de preuves sécurisé, avec horodatages enregistrés.</p>
+<li><strong>Alternative CLI / open source</strong> : captures d'écran plus un <code>curl</code>/<code>wget</code> ciblé du listing ou de l'en-tête de la ressource (pas l'intégralité du jeu de données) vers un dossier de preuves sécurisé, avec horodatages enregistrés.</li>
+</ul>
 </li>
 <li>
 <p><strong>Faites-vous une première idée de la cause probable</strong> — mauvaise configuration, compromission externe (recherchez des comptes ou IP inconnus ayant accédé à la ressource avant la fuite), ou action d'un utilisateur légitime.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : corrélation de journal d'audit cloud / SIEM sur la fenêtre d'exposition.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : examinez manuellement les journaux d'accès de la ressource pour la période précédant la découverte (<code>aws s3api get-bucket-logging</code> plus revue des journaux, ou l'export gratuit du journal d'audit de votre plateforme).</p>
+<li><strong>Alternative CLI / open source</strong> : examinez manuellement les journaux d'accès de la ressource pour la période précédant la découverte (<code>aws s3api get-bucket-logging</code> plus revue des journaux, ou l'export gratuit du journal d'audit de votre plateforme).</li>
+</ul>
 </li>
 <li>
 <p><strong>Vérifiez la même mauvaise configuration ailleurs.</strong> Si un bucket, un partage ou un dépôt a été exposé, les ressources similaires construites depuis le même modèle le sont souvent aussi.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : scanner de sécurité cloud / CSPM balayant toutes les ressources.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : un court script bouclant sur la CLI gratuite de votre fournisseur à travers tous les buckets/conteneurs/dépôts, vérifiant les indicateurs d'accès public.</p>
+<li><strong>Alternative CLI / open source</strong> : un court script bouclant sur la CLI gratuite de votre fournisseur à travers tous les buckets/conteneurs/dépôts, vérifiant les indicateurs d'accès public.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escaladez vers le L2 avec ce que vous avez</strong> — ce qui a été exposé, depuis quand (si connu), comment cela a été trouvé, et la cause probable.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : votre plateforme de gestion de cas/tickets.</li>
 <li><strong>Alternative CLI / open source</strong> : TheHive, ou un document d'incident partagé.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Déterminez exactement quelles données ont été exposées et leur sensibilité.</strong> Données personnelles, identifiants, dossiers financiers, propriété intellectuelle — classifiez-les.</li>
-<li><strong>Outil dédié</strong> : outil de classification de données / inspection de contenu DLP.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : échantillonnez et filtrez le jeu de données exposé à la recherche de motifs (formats d'adresses email, séquences ressemblant à des numéros de carte) pour caractériser son contenu sans l'exfiltrer davantage vous-même.</p>
+<p><strong>Déterminez exactement quelles données ont été exposées et leur sensibilité.</strong> Données personnelles, identifiants, dossiers financiers, propriété intellectuelle — classifiez-les.</p>
+<ul>
+<li><strong>Outil dédié</strong> : outil de classification de données / inspection de contenu DLP.</li>
+<li><strong>Alternative CLI / open source</strong> : échantillonnez et filtrez le jeu de données exposé à la recherche de motifs (formats d'adresses email, séquences ressemblant à des numéros de carte) pour caractériser son contenu sans l'exfiltrer davantage vous-même.</li>
+</ul>
 </li>
 <li>
 <p><strong>Déterminez depuis combien de temps les données étaient exposées et qui aurait pu y accéder.</strong></p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : analytique de journal d'audit cloud / historique d'accès CASB.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : exportez et filtrez les journaux d'accès bruts de la ressource pour la fenêtre d'exposition ; pour une ressource publique, vérifiez les caches des moteurs de recherche pour voir si elle a été indexée.</p>
+<li><strong>Alternative CLI / open source</strong> : exportez et filtrez les journaux d'accès bruts de la ressource pour la fenêtre d'exposition ; pour une ressource publique, vérifiez les caches des moteurs de recherche pour voir si elle a été indexée.</li>
+</ul>
 </li>
 <li>
 <p><strong>Vérifiez si les données divulguées se sont déjà propagées</strong> — moteurs de recherche, sites de paste, dépôts de code publics, ou un tracker de site de fuite si un groupe de ransomware est impliqué.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : service de surveillance threat intelligence / dark web et sites de fuite.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : requêtes manuelles sur moteurs de recherche pour des chaînes distinctives du jeu de données, recherche sur des sites de paste publics, et trackers gratuits de sites de fuite de ransomware le cas échéant.</p>
+<li><strong>Alternative CLI / open source</strong> : requêtes manuelles sur moteurs de recherche pour des chaînes distinctives du jeu de données, recherche sur des sites de paste publics, et trackers gratuits de sites de fuite de ransomware le cas échéant.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si un individu précis semble être la source, impliquez les RH et le juridique avant toute action supplémentaire</strong> — ne fouillez pas unilatéralement les fichiers ou communications privés d'un employé nommé.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : le processus d'escalade RH/juridique établi de votre organisation.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : aucune — cette étape n'a pas de substitut technique. Si une investigation plus poussée de l'activité d'un utilisateur précis est justifiée, suivez <code>insider-threat.md</code> une fois que les RH/le juridique l'ont autorisée.</p>
+<li><strong>Alternative CLI / open source</strong> : aucune — cette étape n'a pas de substitut technique. Si une investigation plus poussée de l'activité d'un utilisateur précis est justifiée, suivez <code>insider-threat.md</code> une fois que les RH/le juridique l'ont autorisée.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si une compromission externe est la cause probable, reliez cet incident au runbook concerné et poursuivez l'éradication là-bas</strong> plutôt que de dupliquer ce travail ici.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : liaison de dossiers SIEM/EDR.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : recoupez les mêmes IOC et la même chronologie dans votre document d'incident partagé ; suivez <code>account-compromise.md</code> ou <code>ransomware.md</code> selon le cas.</p>
+<li><strong>Alternative CLI / open source</strong> : recoupez les mêmes IOC et la même chronologie dans votre document d'incident partagé ; suivez <code>account-compromise.md</code> ou <code>ransomware.md</code> selon le cas.</li>
+</ul>
 </li>
 <li>
 <p><strong>Demandez le retrait de toute copie publiée publiquement.</strong> Contactez l'hébergeur, le bureau d'enregistrement, ou le contact abus de la plateforme avec les preuves jointes.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : un service de protection de marque / de retrait de contenu.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : faites un <code>whois</code> du domaine ou de l'hébergeur vous-même et écrivez directement à leur contact abus avec l'URL, les captures d'écran, et les horodatages.</p>
+<li><strong>Alternative CLI / open source</strong> : faites un <code>whois</code> du domaine ou de l'hébergeur vous-même et écrivez directement à leur contact abus avec l'URL, les captures d'écran, et les horodatages.</li>
+</ul>
 </li>
 <li>
 <p><strong>Corrigez la cause racine largement, pas seulement la ressource exposée.</strong> Corrigez le modèle de permission, la politique IAM, ou le processus sous-jacent qui a permis l'exposition, puis relancez le balayage de l'action L1 #5 sur tout l'environnement.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : scanner de politique infrastructure-as-code / remédiation automatique CSPM.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : mettez à jour le modèle de provisionnement partagé (Terraform, CloudFormation, ou votre checklist manuelle) et revérifiez manuellement chaque ressource similaire.</p>
+<li><strong>Alternative CLI / open source</strong> : mettez à jour le modèle de provisionnement partagé (Terraform, CloudFormation, ou votre checklist manuelle) et revérifiez manuellement chaque ressource similaire.</li>
+</ul>
 </li>
 <li>
 <p><strong>Surveillez la propagation continue et les signes d'utilisation des données</strong> — phishing ciblé référençant les données divulguées, ou tentatives de fraude contre les personnes exposées.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : flux de threat intelligence ajusté sur les indicateurs de cet incident.</li>
 <li><strong>Alternative CLI / open source</strong> : une requête planifiée sur moteurs de recherche/sites de paste pour des chaînes distinctives du jeu de données, poursuivie pendant plusieurs semaines.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+<p>Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir <code>finding-your-csirt.md</code> si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.</p>
 </blockquote>
 <h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1955,6 +1963,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/search-lang.js"></script>
       
     
   </body>

@@ -1698,7 +1698,7 @@
 
 
 <h1 id="rancongiciel">Rançongiciel<a class="headerlink" href="#rancongiciel" title="Permanent link">&para;</a></h1>
-<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<p class="irf-status"><strong>Statut :</strong> 0.1 (brouillon)</p>
 <hr />
 <h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
 <p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
@@ -1732,103 +1732,139 @@
     I --&gt; J[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirmez les signes.</strong> Vérifiez la présence d'une note de rançon, d'extensions de fichiers inhabituelles, de modifications massives de fichiers en peu de temps, ou d'une alerte EDR/SIEM liée à un comportement de chiffrement.</li>
+<li>
+<p><strong>Confirmez les signes.</strong> Vérifiez la présence d'une note de rançon, d'extensions de fichiers inhabituelles, de modifications massives de fichiers en peu de temps, ou d'une alerte EDR/SIEM liée à un comportement de chiffrement.</p>
+<ul>
 <li><strong>Outil dédié</strong> : console d'alertes EDR/SIEM — partez de la détection déclenchante.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : inspectez directement le bureau et les dossiers affectés ; sous Windows, <code>Get-ChildItem -Recurse -Path &lt;partage&gt; | Sort-Object LastWriteTime -Descending | Select-Object -First 50</code> pour repérer les modifications massives récentes ; sous Linux, <code>find /chemin -mmin -15 -type f</code>.</p>
+<p><strong>Alternative CLI / open source</strong> : inspectez directement le bureau et les dossiers affectés, à la recherche de modifications massives récentes.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ChildItem</span> <span class="n">-Recurse</span> <span class="n">-Path</span> <span class="p">&lt;</span><span class="n">partage</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">LastWriteTime</span> <span class="n">-Descending</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">50</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/chemin<span class="w"> </span>-mmin<span class="w"> </span>-15<span class="w"> </span>-type<span class="w"> </span>f
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ul>
 </li>
 <li>
 <p><strong>Isolez immédiatement le(s) poste(s) affecté(s) du réseau — ne les éteignez pas.</strong> Éteindre détruit les preuves volatiles en mémoire et peut déclencher des routines destructrices chez certaines familles de ransomware.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : action d'isolation réseau / mise en quarantaine de l'EDR.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : désactivez la carte réseau (<code>netsh interface set interface "&lt;nom&gt;" admin=disable</code> sous Windows, <code>ip link set &lt;iface&gt; down</code> sous Linux) ou débranchez physiquement le câble réseau ; laissez la machine allumée.</p>
+<p><strong>Alternative CLI / open source</strong> : désactivez la carte réseau, ou débranchez physiquement le câble réseau ; laissez la machine allumée.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">netsh</span> <span class="n">interface</span> <span class="nb">set </span><span class="n">interface</span> <span class="s2">&quot;&lt;nom&gt;&quot;</span> <span class="n">admin</span><span class="p">=</span><span class="n">disable</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>&lt;iface&gt;<span class="w"> </span>down
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ul>
 </li>
 <li>
 <p><strong>Protégez les partages réseau et les sauvegardes avant qu'ils ne soient chiffrés à leur tour.</strong> Déconnectez ou verrouillez les partages accessibles depuis le poste affecté, même ceux ne montrant pas encore de symptômes.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : fonction de verrouillage des partages de la plateforme de stockage, ou protection des partages intégrée à l'EDR.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : <code>net use x: \\unc\chemin\ /DELETE</code> pour supprimer les lecteurs mappés depuis le poste affecté, ou désactivez le partage directement depuis la console du serveur de fichiers.</p>
+<li><strong>Alternative CLI / open source</strong> : <code>net use x: \\unc\chemin\ /DELETE</code> pour supprimer les lecteurs mappés depuis le poste affecté, ou désactivez le partage directement depuis la console du serveur de fichiers.</li>
+</ul>
 </li>
 <li>
 <p><strong>Préservez les preuves avant toute autre action destructrice.</strong> Photographiez la note de rançon et tout message à l'écran, notez l'extension et le motif de nommage des fichiers chiffrés, et enregistrez les horodatages exacts.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : capture forensique / collecte de triage de l'EDR.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : une photo du smartphone de l'écran, plus une capture mémoire avec un outil d'imagerie gratuit (ex. compatible Volatility) si cela ne retarde pas l'isolation.</p>
+<li><strong>Alternative CLI / open source</strong> : une photo du smartphone de l'écran, plus une capture mémoire avec un outil d'imagerie gratuit (ex. compatible Volatility) si cela ne retarde pas l'isolation.</li>
+</ul>
 </li>
 <li>
 <p><strong>Désactivez les comptes montrant des signes de compromission</strong> — en particulier les comptes à privilèges utilisés à des heures inhabituelles, ou créés au moment de l'incident.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : désactivation en masse de comptes depuis la console IAM/PAM.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : <code>Disable-ADAccount -Identity &lt;utilisateur&gt;</code> (module PowerShell Active Directory), ou verrouillez le compte directement dans la console de votre annuaire.</p>
+<li><strong>Alternative CLI / open source</strong> : <code>Disable-ADAccount -Identity &lt;utilisateur&gt;</code> (module PowerShell Active Directory), ou verrouillez le compte directement dans la console de votre annuaire.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escaladez vers le L2 avec ce que vous avez</strong> — postes/utilisateurs affectés, contenu de la note de rançon, motif d'extension de fichiers, et chronologie approximative. Ne négociez pas, ne payez pas, et ne restaurez pas depuis une sauvegarde à ce stade.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : votre plateforme de gestion de cas/tickets.</li>
 <li><strong>Alternative CLI / open source</strong> : TheHive, ou un document d'incident partagé — ce que votre équipe utilise déjà pour la passation de dossiers.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Identifiez la famille/variante de ransomware.</strong> Utilisez le contenu de la note de rançon, l'extension des fichiers chiffrés, et le moyen de contact comme empreintes.</li>
-<li><strong>Outil dédié</strong> : service d'analyse d'échantillons de votre fournisseur EDR/antivirus.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : soumettez un fichier chiffré et la note de rançon à un service d'identification gratuit comme ID Ransomware ou le Crypto Sheriff du projet No More Ransom.</p>
+<p><strong>Identifiez la famille/variante de ransomware.</strong> Utilisez le contenu de la note de rançon, l'extension des fichiers chiffrés, et le moyen de contact comme empreintes.</p>
+<ul>
+<li><strong>Outil dédié</strong> : service d'analyse d'échantillons de votre fournisseur EDR/antivirus.</li>
+<li><strong>Alternative CLI / open source</strong> : soumettez un fichier chiffré et la note de rançon à un service d'identification gratuit comme ID Ransomware ou le Crypto Sheriff du projet No More Ransom.</li>
+</ul>
 </li>
 <li>
 <p><strong>Déterminez le périmètre complet.</strong> Recherchez les mêmes indicateurs dans tout l'environnement — postes, comptes, partages.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : recherche d'IOC à l'échelle du parc via l'EDR.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : écrivez et exécutez des règles YARA sur les postes suspects, ou utilisez les logs Sysmon et les outils Sysinternals (Autoruns, Process Explorer) pour vérifier manuellement des systèmes similaires.</p>
+<li><strong>Alternative CLI / open source</strong> : écrivez et exécutez des règles YARA sur les postes suspects, ou utilisez les logs Sysmon et les outils Sysinternals (Autoruns, Process Explorer) pour vérifier manuellement des systèmes similaires.</li>
+</ul>
 </li>
 <li>
 <p><strong>Trouvez le vecteur d'infection</strong> — pièce jointe de phishing, RDP exposé, autopropagation, ou dépôt par un autre logiciel malveillant déjà présent sur le réseau.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : recherche forensique de la passerelle de sécurité email, ou timeline de l'arbre de processus de l'EDR.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : examinez manuellement les logs du serveur de messagerie et les logs pare-feu/VPN ; vérifiez l'exposition RDP avec un scan basique de votre propre périmètre (ex. <code>nmap</code>).</p>
+<li><strong>Alternative CLI / open source</strong> : examinez manuellement les logs du serveur de messagerie et les logs pare-feu/VPN ; vérifiez l'exposition RDP avec un scan basique de votre propre périmètre (ex. <code>nmap</code>).</li>
+</ul>
 </li>
 <li>
 <p><strong>Confinez au niveau réseau.</strong> Bloquez les domaines/IP de command-and-control, isolez le VLAN ou segment affecté, et appliquez un filtrage géographique si l'infrastructure de l'attaquant est concentrée dans des régions spécifiques.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : déploiement de politique sur pare-feu nouvelle génération.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : modifications manuelles de règles pare-feu (<code>iptables</code>, ACL pfSense/OPNsense), ou un DNS sinkhole (ex. Pi-hole, <code>unbound</code>) pour les domaines de C2 identifiés.</p>
+<li><strong>Alternative CLI / open source</strong> : modifications manuelles de règles pare-feu (<code>iptables</code>, ACL pfSense/OPNsense), ou un DNS sinkhole (ex. Pi-hole, <code>unbound</code>) pour les domaines de C2 identifiés.</li>
+</ul>
 </li>
 <li>
 <p><strong>Éradiquez.</strong> Supprimez les binaires et mécanismes de persistance de l'attaquant, annulez les changements de configuration malveillants, et reconstruisez à partir de supports connus sains partout où vous n'êtes pas pleinement certain qu'un poste est propre.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : actions de remédiation de l'EDR (tuer un processus, mettre en quarantaine, supprimer la persistance).</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : Sysinternals Autoruns pour trouver et supprimer les entrées de persistance ; réimagez à partir d'une image système connue saine en cas de doute.</p>
+<li><strong>Alternative CLI / open source</strong> : Sysinternals Autoruns pour trouver et supprimer les entrées de persistance ; réimagez à partir d'une image système connue saine en cas de doute.</li>
+</ul>
 </li>
 <li>
 <p><strong>Récupérez.</strong> Restaurez depuis des sauvegardes dont vous avez vérifié qu'elles sont saines, sur des systèmes durcis et patchés, et réinitialisez les identifiants — en particulier les comptes administrateurs et autres comptes à privilèges — avant de reconnecter quoi que ce soit.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : restauration avec vérification d'intégrité de la plateforme de sauvegarde, combinée à une confirmation de l'EDR que la cible est propre avant reconnexion.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : restauration manuelle suivie d'un scan antivirus hors ligne (ex. ClamAV) avant reconnexion ; réinitialisation d'identifiants en masse via <code>Reset-ADAccountPassword</code> ou l'équivalent de votre annuaire.</p>
+<li><strong>Alternative CLI / open source</strong> : restauration manuelle suivie d'un scan antivirus hors ligne (ex. ClamAV) avant reconnexion ; réinitialisation d'identifiants en masse via <code>Reset-ADAccountPassword</code> ou l'équivalent de votre annuaire.</li>
+</ul>
 </li>
 <li>
 <p><strong>Vérifiez l'existence d'un déchiffreur connu</strong> avant d'envisager toute autre option pour des données que vous jugez irrécupérables.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : un déchiffreur publié par votre fournisseur EDR/antivirus pour la famille identifiée, s'il existe.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : l'annuaire des outils de déchiffrement du projet No More Ransom — gratuit, maintenu par la communauté, sans compte fournisseur nécessaire.</p>
+<li><strong>Alternative CLI / open source</strong> : l'annuaire des outils de déchiffrement du projet No More Ransom — gratuit, maintenu par la communauté, sans compte fournisseur nécessaire.</li>
+</ul>
 </li>
 <li>
 <p><strong>Surveillez une éventuelle réinfection et la publication d'une fuite de données</strong> liée à cet incident.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : abonnement de threat intelligence / surveillance du dark web.</li>
 <li><strong>Alternative CLI / open source</strong> : vérifiez manuellement les trackers publics de sites de fuite de ransomware, et augmentez temporairement la priorité d'alerte sur les IOC de cet incident dans votre supervision existante.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+<p>Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir <code>finding-your-csirt.md</code> si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.</p>
 </blockquote>
 <h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1954,6 +1990,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/search-lang.js"></script>
       
     
   </body>

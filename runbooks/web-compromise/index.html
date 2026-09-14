@@ -1698,7 +1698,7 @@
 
 
 <h1 id="web-application-server-compromise">Web Application / Server Compromise<a class="headerlink" href="#web-application-server-compromise" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>Open this runbook when any of the following appear, alone or together:</p>
@@ -1731,103 +1731,139 @@
     I --&gt; J[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirm the compromise.</strong> Check for defaced content, an unexpected file in the web root, unrecognized processes or connections, or the alert that triggered this (WAF/IDS rule, file-integrity check).</li>
+<li>
+<p><strong>Confirm the compromise.</strong> Check for defaced content, an unexpected file in the web root, unrecognized processes or connections, or the alert that triggered this (WAF/IDS rule, file-integrity check).</p>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR/WAF alert console, or a website-integrity monitoring service.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: compare the current page/files against a known-good baseline by hand; list recently modified files with <code>find /var/www -mtime -1 -type f</code> (Linux) or <code>Get-ChildItem -Recurse | Sort-Object LastWriteTime -Descending</code> (Windows).</p>
+<p><strong>CLI / open-source alternative</strong>: compare the current page/files against a known-good baseline by hand, and list recently modified files.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux</label><label for="__tabbed_1_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/var/www<span class="w"> </span>-mtime<span class="w"> </span>-1<span class="w"> </span>-type<span class="w"> </span>f
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ChildItem</span> <span class="n">-Recurse</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">LastWriteTime</span> <span class="n">-Descending</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ul>
 </li>
 <li>
 <p><strong>Contain the host.</strong> For a critical service, isolate it from the network while keeping it powered on (preserves evidence); for a non-critical host you may power it off directly — this scenario doesn't carry ransomware's destructive-shutdown risk.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR network isolation, or a firewall/load-balancer rule pulling the host out of rotation.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: disable the network adapter (<code>ip link set &lt;iface&gt; down</code> / <code>netsh interface set interface "&lt;name&gt;" admin=disable</code>), or physically disconnect the host.</p>
+<li><strong>CLI / open-source alternative</strong>: disable the network adapter (<code>ip link set &lt;iface&gt; down</code> / <code>netsh interface set interface "&lt;name&gt;" admin=disable</code>), or physically disconnect the host.</li>
+</ul>
 </li>
 <li>
 <p><strong>If public-facing content is affected, take it offline or redirect to a static maintenance page</strong> — static HTML only, no dynamic code, so the same vulnerability can't be re-exploited while you investigate.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: CDN/WAF failover rule, or a maintenance-mode toggle.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: point the web server's document root, or your DNS/load-balancer target, at a pre-prepared static HTML holding page.</p>
+<li><strong>CLI / open-source alternative</strong>: point the web server's document root, or your DNS/load-balancer target, at a pre-prepared static HTML holding page.</li>
+</ul>
 </li>
 <li>
 <p><strong>Preserve evidence before remediating.</strong> Capture a disk and/or memory image if you can do so without delay, and take a timestamped copy of any defaced content.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR forensic triage / full-disk imaging.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>dd</code> or FTK Imager for a disk image, a free memory-capture tool compatible with Volatility, and <code>wget</code>/HTTrack for a timestamped copy of a defaced page.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>dd</code> or FTK Imager for a disk image, a free memory-capture tool compatible with Volatility, and <code>wget</code>/HTTrack for a timestamped copy of a defaced page.</li>
+</ul>
 </li>
 <li>
 <p><strong>Disable accounts and credentials that may be compromised</strong> — especially any local or admin account on the server that you don't recognize.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: IAM/PAM console.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: <code>usermod -L &lt;account&gt;</code> (Linux) or <code>net user &lt;account&gt; /active:no</code> (Windows); review <code>/etc/passwd</code> for unexpected UID 0 entries.</p>
+<p><strong>CLI / open-source alternative</strong>: disable the account, and review <code>/etc/passwd</code> for unexpected UID 0 entries.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Linux</label><label for="__tabbed_2_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>usermod<span class="w"> </span>-L<span class="w"> </span>&lt;account&gt;
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">net</span> <span class="n">user</span> <span class="p">&lt;</span><span class="n">account</span><span class="p">&gt;</span> <span class="p">/</span><span class="n">active</span><span class="p">:</span><span class="n">no</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ul>
 </li>
 <li>
 <p><strong>Escalate to L2 with what you have</strong> — the affected host/service, a sample of the defacement or suspicious file, a rough timeline, and whether the vulnerability still looks exploitable.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your case-management/ticketing platform.</li>
 <li><strong>CLI / open-source alternative</strong>: TheHive, or a shared incident document.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-l2-actions">5. L2 Actions<a class="headerlink" href="#5-l2-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Identify the entry vector.</strong> Check server logs and error logs for SQL injection, remote file inclusion, a vulnerable CMS plugin, an exposed admin panel, or exploitation of a known unpatched CVE.</li>
-<li><strong>Dedicated tool</strong>: WAF/IDS forensic log search.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: grep the access/error logs by hand (e.g. <code>grep -i "union select\|\.\./\.\." access.log</code>) and review requests around the time of compromise.</p>
+<p><strong>Identify the entry vector.</strong> Check server logs and error logs for SQL injection, remote file inclusion, a vulnerable CMS plugin, an exposed admin panel, or exploitation of a known unpatched CVE.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: WAF/IDS forensic log search.</li>
+<li><strong>CLI / open-source alternative</strong>: grep the access/error logs by hand (e.g. <code>grep -i "union select\|\.\./\.\." access.log</code>) and review requests around the time of compromise.</li>
+</ul>
 </li>
 <li>
 <p><strong>Search for webshells and unauthorized files.</strong> Look for recently modified or newly created files in web-accessible directories, and files with unusual names, permissions, or content patterns.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR or dedicated webshell-detection module.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: run YARA rules against known webshell signatures; <code>find /var/www -mtime -7 -type f</code> combined with manual review of anything matching common webshell patterns (heavy <code>base64</code>/<code>eval()</code> use in a script file, for example).</p>
+<li><strong>CLI / open-source alternative</strong>: run YARA rules against known webshell signatures; <code>find /var/www -mtime -7 -type f</code> combined with manual review of anything matching common webshell patterns (heavy <code>base64</code>/<code>eval()</code> use in a script file, for example).</li>
+</ul>
 </li>
 <li>
 <p><strong>Identify persistence beyond the web root</strong> — scheduled tasks, cron jobs, new services, autostart entries, or SSH keys/accounts the attacker added.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR persistence-hunting module.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: Sysinternals Autoruns (Windows); review <code>crontab -l</code>, <code>/etc/cron.*</code>, and <code>~/.ssh/authorized_keys</code> by hand (Linux).</p>
+<li><strong>CLI / open-source alternative</strong>: Sysinternals Autoruns (Windows); review <code>crontab -l</code>, <code>/etc/cron.*</code>, and <code>~/.ssh/authorized_keys</code> by hand (Linux).</li>
+</ul>
 </li>
 <li>
 <p><strong>Check for lateral movement</strong> — whether the compromised host connected to other internal systems or shares it shouldn't have.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR/network-flow analysis across the fleet.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: review firewall or NetFlow logs manually, and correlate the host's outbound connection history against your asset inventory.</p>
+<li><strong>CLI / open-source alternative</strong>: review firewall or NetFlow logs manually, and correlate the host's outbound connection history against your asset inventory.</li>
+</ul>
 </li>
 <li>
 <p><strong>Fix the root cause before restoring service</strong> — patch the exploited vulnerability, update or remove the vulnerable CMS plugin, close the open/writable folder, or fix the injectable code.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: vulnerability-management platform tracking the fix to closure.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: apply the vendor patch yourself, or add a WAF/reverse-proxy rule blocking the specific exploitation pattern if a permanent fix isn't ready yet.</p>
+<li><strong>CLI / open-source alternative</strong>: apply the vendor patch yourself, or add a WAF/reverse-proxy rule blocking the specific exploitation pattern if a permanent fix isn't ready yet.</li>
+</ul>
 </li>
 <li>
 <p><strong>Rebuild rather than clean where you're not fully confident.</strong> Reinstall the server from a known-good image or official package source rather than trying to manually remove every attacker artifact.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your standard server-imaging / golden-image pipeline.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: reinstall from the distribution's official ISO/packages and reapply configuration from version control.</p>
+<li><strong>CLI / open-source alternative</strong>: reinstall from the distribution's official ISO/packages and reapply configuration from version control.</li>
+</ul>
 </li>
 <li>
 <p><strong>Restore content from a verified-clean backup, and reset credentials</strong> for every account with access to the server — admin panel, deployment, and database.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: backup platform's integrity-verified restore.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: restore from a backup predating the compromise, checked against known-good hashes; reset each affected account's password by hand.</p>
+<li><strong>CLI / open-source alternative</strong>: restore from a backup predating the compromise, checked against known-good hashes; reset each affected account's password by hand.</li>
+</ul>
 </li>
 <li>
 <p><strong>Monitor closely after restoring service.</strong> The same vulnerability, or a leftover backdoor, is the most common cause of reinfection.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: WAF/IDS alerting tuned to the confirmed indicators, plus uptime/integrity monitoring.</li>
 <li><strong>CLI / open-source alternative</strong>: a scheduled script comparing current file hashes to the clean baseline, and manual log review for several days after recovery.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notification-escalation">6. Notification &amp; Escalation<a class="headerlink" href="#6-notification-escalation" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1954,6 +1990,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

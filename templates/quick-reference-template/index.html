@@ -1462,7 +1462,7 @@ to <code>docs/fr/quick-reference/&lt;scenario&gt;.md</code>. A quick reference i
 the two drifting apart. It ships in both languages, in the same task as
 the runbook it condenses.</p>
 </blockquote>
-<p><strong>Status:</strong> 0.1 (draft) — inherits the status of its parent runbook.</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft) — inherits the status of its parent runbook.</p>
 <hr />
 <p>No prose, no Mermaid diagram, no "Resources" section here — this page is
 built to be printed or kept open during a live incident. One checklist,
@@ -1477,10 +1477,7 @@ built to be printed or kept open during a live incident. One checklist,
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 7. ...</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 8. ...</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 9. ...</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 10. Notify your competent authority (national CERT, DPO, regulator)
-      according to the regulations applicable in your jurisdiction —
-      consult your legal counsel. See <code>finding-your-csirt.md</code> to identify
-      who to contact.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 10. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</li>
 </ul>
 <blockquote>
 <p>This notification item is mandatory on every quick reference — it is
@@ -1588,6 +1585,8 @@ gets skipped otherwise. Never add a number or deadline to it.</p>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

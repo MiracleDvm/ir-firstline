@@ -1698,7 +1698,7 @@
 
 
 <h1 id="account-compromise">Account Compromise<a class="headerlink" href="#account-compromise" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>Open this runbook when any of the following appear, alone or together:</p>
@@ -1733,103 +1733,111 @@
     K --&gt; L[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirm the compromise.</strong> Cross-check the alert against sign-in/audit logs for anomalies: new country, new device or browser, impossible travel between two sign-ins, or MFA failures followed by a success.</li>
-<li><strong>Dedicated tool</strong>: your identity provider's risk detection / sign-in log (e.g. Microsoft Entra ID Protection, Okta System Log).</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: export and grep the sign-in log through your IdP's free API/CLI tooling (e.g. <code>Get-MgAuditLogSignIn</code> via the free Microsoft Graph PowerShell module); for self-hosted systems, grep <code>auth.log</code>/<code>journalctl</code> for repeated or geographically inconsistent logons.</p>
+<p><strong>Confirm the compromise.</strong> Cross-check the alert against sign-in/audit logs for anomalies: new country, new device or browser, impossible travel between two sign-ins, or MFA failures followed by a success.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: your identity provider's risk detection / sign-in log (e.g. Microsoft Entra ID Protection, Okta System Log).</li>
+<li><strong>CLI / open-source alternative</strong>: export and grep the sign-in log through your IdP's free API/CLI tooling (e.g. <code>Get-MgAuditLogSignIn</code> via the free Microsoft Graph PowerShell module); for self-hosted systems, grep <code>auth.log</code>/<code>journalctl</code> for repeated or geographically inconsistent logons.</li>
+</ul>
 </li>
 <li>
 <p><strong>Disable the account and revoke all active sessions and tokens immediately.</strong> A password reset alone does not end a session the attacker already opened.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: identity provider admin console "revoke sessions" / "block sign-in" action.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>Revoke-MgUserSignInSession</code> (free Microsoft Graph PowerShell module) or your IdP's session-revocation API; for local/LDAP accounts, disable the account and kill active sessions/tickets at the directory server.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>Revoke-MgUserSignInSession</code> (free Microsoft Graph PowerShell module) or your IdP's session-revocation API; for local/LDAP accounts, disable the account and kill active sessions/tickets at the directory server.</li>
+</ul>
 </li>
 <li>
 <p><strong>Reset the account's credentials, and remove any authentication factor (MFA method) you don't recognize.</strong></p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: identity provider console credential reset.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: directory service password-reset command (e.g. <code>Set-ADAccountPassword</code> for on-prem AD); manually remove unrecognized MFA methods from the user's registration in the same console.</p>
+<li><strong>CLI / open-source alternative</strong>: directory service password-reset command (e.g. <code>Set-ADAccountPassword</code> for on-prem AD); manually remove unrecognized MFA methods from the user's registration in the same console.</li>
+</ul>
 </li>
 <li>
 <p><strong>Check for attacker persistence set up through the account</strong>: mailbox forwarding or inbox rules, mail-flow/transport rules, delegated mailbox access, or newly consented third-party (OAuth) applications.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: mailbox admin console rule inspector / app-consent inventory.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: export inbox/transport rules through your mail platform's free admin CLI, or inspect them manually via the webmail settings UI; for OAuth apps, a short script against your IdP's free API listing the user's granted consents.</p>
+<li><strong>CLI / open-source alternative</strong>: export inbox/transport rules through your mail platform's free admin CLI, or inspect them manually via the webmail settings UI; for OAuth apps, a short script against your IdP's free API listing the user's granted consents.</li>
+</ul>
 </li>
 <li>
 <p><strong>Preserve evidence.</strong> Keep the original phishing email if one exists, the exact sign-in log entries, the list of consented apps and their permissions, and precise timestamps.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: SIEM case export / identity provider audit log export.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually export the relevant log lines to a timestamped text file; save the phishing email with full headers intact.</p>
+<li><strong>CLI / open-source alternative</strong>: manually export the relevant log lines to a timestamped text file; save the phishing email with full headers intact.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escalate to L2 with what you have</strong> — account(s) affected, suspected entry point (phishing, password spray, consent grant), and whether other accounts show the same pattern.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your case-management/ticketing platform.</li>
 <li><strong>CLI / open-source alternative</strong>: TheHive, or a shared incident document — whatever your team already uses to hand off cases.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-l2-actions">5. L2 Actions<a class="headerlink" href="#5-l2-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Determine the entry point.</strong> Was it a phishing email (check headers, sender, links/attachments), a password-spray/brute-force pattern (many failed logons across many accounts from a small set of IPs), a reused/leaked credential, or a consent-grant phishing attack?</li>
-<li><strong>Dedicated tool</strong>: email security gateway forensic search, combined with your identity provider's risk-detection detail.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: manually review mail headers (SPF/DKIM/DMARC results) and correlate failed-logon timestamps and source IPs across accounts in your exported logs.</p>
+<p><strong>Determine the entry point.</strong> Was it a phishing email (check headers, sender, links/attachments), a password-spray/brute-force pattern (many failed logons across many accounts from a small set of IPs), a reused/leaked credential, or a consent-grant phishing attack?</p>
+<ul>
+<li><strong>Dedicated tool</strong>: email security gateway forensic search, combined with your identity provider's risk-detection detail.</li>
+<li><strong>CLI / open-source alternative</strong>: manually review mail headers (SPF/DKIM/DMARC results) and correlate failed-logon timestamps and source IPs across accounts in your exported logs.</li>
+</ul>
 </li>
 <li>
 <p><strong>Inventory every third-party (OAuth) application</strong> with access to the account or the organization, and the permissions each one was granted.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: cloud app security / CASB console.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a script against your identity provider's free API (community scripts such as <code>Get-AzureADPSPermissions</code> exist for this) or manual review through the app-consent admin page.</p>
+<li><strong>CLI / open-source alternative</strong>: a script against your identity provider's free API (community scripts such as <code>Get-AzureADPSPermissions</code> exist for this) or manual review through the app-consent admin page.</li>
+</ul>
 </li>
 <li>
 <p><strong>Disable — do not delete — any application found with illegitimate or excessive permissions.</strong> Deleting it can let it silently return if any user later re-consents; disabling blocks it permanently while you finish scoping.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: identity provider's "disable application" action.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: an API call disabling the application's service principal / OAuth client registration.</p>
+<li><strong>CLI / open-source alternative</strong>: an API call disabling the application's service principal / OAuth client registration.</li>
+</ul>
 </li>
 <li>
 <p><strong>Determine the full scope.</strong> Which other accounts received the same phishing email, share the same password-spray source IPs, or granted consent to the same malicious application?</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: SIEM correlation search across the organization.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: grep or script across your exported logs for the same sender address, source IPs, or application ID.</p>
+<li><strong>CLI / open-source alternative</strong>: grep or script across your exported logs for the same sender address, source IPs, or application ID.</li>
+</ul>
 </li>
 <li>
 <p><strong>Block the attacker's source IP(s) and any confirmed-malicious sending domains</strong>, while treating this as a temporary measure — attackers behind VPN or cloud infrastructure rotate IPs quickly.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: firewall / conditional-access policy push.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a manual firewall ACL entry or mail-gateway blocklist entry.</p>
+<li><strong>CLI / open-source alternative</strong>: a manual firewall ACL entry or mail-gateway blocklist entry.</li>
+</ul>
 </li>
 <li>
 <p><strong>Remove all persistence found in L1, across every affected account</strong>: delete malicious inbox/transport rules, revoke malicious app consents organization-wide, and remove unrecognized MFA methods and delegated access.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: bulk remediation via the admin console or an automation runbook.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a short script looping the same manual removal steps across the list of affected accounts.</p>
+<li><strong>CLI / open-source alternative</strong>: a short script looping the same manual removal steps across the list of affected accounts.</li>
+</ul>
 </li>
 <li>
 <p><strong>Harden to prevent a repeat.</strong> Enforce MFA for all accounts if it isn't already universal, disable legacy/basic authentication protocols that bypass MFA, and turn on risk-based sign-in policies if your identity provider supports them.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: identity provider's conditional-access / risk-policy configuration.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: for self-hosted identity providers, enforce MFA at the application or reverse-proxy layer with a free auth gateway (e.g. Authelia, Keycloak), and disable legacy protocol endpoints in configuration.</p>
+<li><strong>CLI / open-source alternative</strong>: for self-hosted identity providers, enforce MFA at the application or reverse-proxy layer with a free auth gateway (e.g. Authelia, Keycloak), and disable legacy protocol endpoints in configuration.</li>
+</ul>
 </li>
 <li>
 <p><strong>Watch for a second wave.</strong> An attacker who successfully reused a phished credential or consent grant once often targets other users in the same organization shortly after.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a SIEM alert rule tuned to the confirmed indicators (sender, source IP, application ID).</li>
 <li><strong>CLI / open-source alternative</strong>: a scheduled log-grep job watching for the same indicators going forward.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notification-escalation">6. Notification &amp; Escalation<a class="headerlink" href="#6-notification-escalation" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1956,6 +1964,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

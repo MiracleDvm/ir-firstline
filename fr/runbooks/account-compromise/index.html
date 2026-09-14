@@ -1698,7 +1698,7 @@
 
 
 <h1 id="compromission-de-compte">Compromission de compte<a class="headerlink" href="#compromission-de-compte" title="Permanent link">&para;</a></h1>
-<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<p class="irf-status"><strong>Statut :</strong> 0.1 (brouillon)</p>
 <hr />
 <h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
 <p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
@@ -1733,103 +1733,111 @@
     K --&gt; L[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirmez la compromission.</strong> Recoupez l'alerte avec les journaux de connexion/audit à la recherche d'anomalies : nouveau pays, nouvel appareil ou navigateur, déplacement impossible entre deux connexions, ou échecs MFA suivis d'un succès.</li>
-<li><strong>Outil dédié</strong> : détection de risque / journal de connexion de votre fournisseur d'identité (ex. Microsoft Entra ID Protection, Okta System Log).</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : exportez et filtrez le journal de connexion via l'API/CLI gratuite de votre fournisseur d'identité (ex. <code>Get-MgAuditLogSignIn</code> via le module gratuit Microsoft Graph PowerShell) ; pour les systèmes auto-hébergés, filtrez <code>auth.log</code>/<code>journalctl</code> à la recherche de connexions répétées ou géographiquement incohérentes.</p>
+<p><strong>Confirmez la compromission.</strong> Recoupez l'alerte avec les journaux de connexion/audit à la recherche d'anomalies : nouveau pays, nouvel appareil ou navigateur, déplacement impossible entre deux connexions, ou échecs MFA suivis d'un succès.</p>
+<ul>
+<li><strong>Outil dédié</strong> : détection de risque / journal de connexion de votre fournisseur d'identité (ex. Microsoft Entra ID Protection, Okta System Log).</li>
+<li><strong>Alternative CLI / open source</strong> : exportez et filtrez le journal de connexion via l'API/CLI gratuite de votre fournisseur d'identité (ex. <code>Get-MgAuditLogSignIn</code> via le module gratuit Microsoft Graph PowerShell) ; pour les systèmes auto-hébergés, filtrez <code>auth.log</code>/<code>journalctl</code> à la recherche de connexions répétées ou géographiquement incohérentes.</li>
+</ul>
 </li>
 <li>
 <p><strong>Désactivez le compte et révoquez immédiatement toutes les sessions et jetons actifs.</strong> Une simple réinitialisation de mot de passe ne met pas fin à une session déjà ouverte par l'attaquant.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : action « révoquer les sessions » / « bloquer la connexion » de la console d'administration du fournisseur d'identité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : <code>Revoke-MgUserSignInSession</code> (module gratuit Microsoft Graph PowerShell) ou l'API de révocation de session de votre fournisseur d'identité ; pour les comptes locaux/LDAP, désactivez le compte et tuez les sessions/tickets actifs au niveau du serveur d'annuaire.</p>
+<li><strong>Alternative CLI / open source</strong> : <code>Revoke-MgUserSignInSession</code> (module gratuit Microsoft Graph PowerShell) ou l'API de révocation de session de votre fournisseur d'identité ; pour les comptes locaux/LDAP, désactivez le compte et tuez les sessions/tickets actifs au niveau du serveur d'annuaire.</li>
+</ul>
 </li>
 <li>
 <p><strong>Réinitialisez les identifiants du compte, et supprimez tout facteur d'authentification (méthode MFA) que vous ne reconnaissez pas.</strong></p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : réinitialisation des identifiants depuis la console du fournisseur d'identité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : commande de réinitialisation de mot de passe de l'annuaire (ex. <code>Set-ADAccountPassword</code> pour un AD sur site) ; supprimez manuellement les méthodes MFA non reconnues dans l'enregistrement de l'utilisateur, depuis la même console.</p>
+<li><strong>Alternative CLI / open source</strong> : commande de réinitialisation de mot de passe de l'annuaire (ex. <code>Set-ADAccountPassword</code> pour un AD sur site) ; supprimez manuellement les méthodes MFA non reconnues dans l'enregistrement de l'utilisateur, depuis la même console.</li>
+</ul>
 </li>
 <li>
 <p><strong>Recherchez une persistance mise en place par l'attaquant via le compte</strong> : règles de transfert ou de boîte de réception, règles de flux de messagerie/transport, accès délégué à la boîte aux lettres, ou applications tierces (OAuth) nouvellement consenties.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : inspecteur de règles de la console d'administration de messagerie / inventaire des consentements d'applications.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : exportez les règles de boîte de réception/transport via la CLI d'administration gratuite de votre plateforme de messagerie, ou inspectez-les manuellement via l'interface web de messagerie ; pour les applications OAuth, un court script contre l'API gratuite de votre fournisseur d'identité listant les consentements accordés par l'utilisateur.</p>
+<li><strong>Alternative CLI / open source</strong> : exportez les règles de boîte de réception/transport via la CLI d'administration gratuite de votre plateforme de messagerie, ou inspectez-les manuellement via l'interface web de messagerie ; pour les applications OAuth, un court script contre l'API gratuite de votre fournisseur d'identité listant les consentements accordés par l'utilisateur.</li>
+</ul>
 </li>
 <li>
 <p><strong>Préservez les preuves.</strong> Conservez l'email de phishing original s'il existe, les entrées exactes du journal de connexion, la liste des applications consenties et leurs permissions, et des horodatages précis.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : export de dossier SIEM / export du journal d'audit du fournisseur d'identité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : exportez manuellement les lignes de journal pertinentes vers un fichier texte horodaté ; conservez l'email de phishing avec ses en-têtes complets intacts.</p>
+<li><strong>Alternative CLI / open source</strong> : exportez manuellement les lignes de journal pertinentes vers un fichier texte horodaté ; conservez l'email de phishing avec ses en-têtes complets intacts.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escaladez vers le L2 avec ce que vous avez</strong> — compte(s) affecté(s), point d'entrée suspecté (phishing, password spray, octroi de consentement), et si d'autres comptes montrent le même motif.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : votre plateforme de gestion de cas/tickets.</li>
 <li><strong>Alternative CLI / open source</strong> : TheHive, ou un document d'incident partagé — ce que votre équipe utilise déjà pour la passation de dossiers.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Déterminez le point d'entrée.</strong> S'agit-il d'un email de phishing (vérifiez les en-têtes, l'expéditeur, les liens/pièces jointes), d'un motif de password spray/force brute (nombreuses connexions échouées sur de nombreux comptes depuis un petit nombre d'IP), d'un identifiant réutilisé/divulgué, ou d'une attaque de phishing par consentement ?</li>
-<li><strong>Outil dédié</strong> : recherche forensique de la passerelle de sécurité email, combinée aux détails de détection de risque de votre fournisseur d'identité.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : examinez manuellement les en-têtes des emails (résultats SPF/DKIM/DMARC) et corrélez les horodatages de connexions échouées et les IP sources entre comptes dans vos journaux exportés.</p>
+<p><strong>Déterminez le point d'entrée.</strong> S'agit-il d'un email de phishing (vérifiez les en-têtes, l'expéditeur, les liens/pièces jointes), d'un motif de password spray/force brute (nombreuses connexions échouées sur de nombreux comptes depuis un petit nombre d'IP), d'un identifiant réutilisé/divulgué, ou d'une attaque de phishing par consentement ?</p>
+<ul>
+<li><strong>Outil dédié</strong> : recherche forensique de la passerelle de sécurité email, combinée aux détails de détection de risque de votre fournisseur d'identité.</li>
+<li><strong>Alternative CLI / open source</strong> : examinez manuellement les en-têtes des emails (résultats SPF/DKIM/DMARC) et corrélez les horodatages de connexions échouées et les IP sources entre comptes dans vos journaux exportés.</li>
+</ul>
 </li>
 <li>
 <p><strong>Inventoriez chaque application tierce (OAuth)</strong> ayant accès au compte ou à l'organisation, et les permissions accordées à chacune.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : console de sécurité des applications cloud / CASB.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : un script contre l'API gratuite de votre fournisseur d'identité (des scripts communautaires comme <code>Get-AzureADPSPermissions</code> existent pour cela) ou une revue manuelle via la page d'administration des consentements d'applications.</p>
+<li><strong>Alternative CLI / open source</strong> : un script contre l'API gratuite de votre fournisseur d'identité (des scripts communautaires comme <code>Get-AzureADPSPermissions</code> existent pour cela) ou une revue manuelle via la page d'administration des consentements d'applications.</li>
+</ul>
 </li>
 <li>
 <p><strong>Désactivez — ne supprimez pas — toute application présentant des permissions illégitimes ou excessives.</strong> La supprimer peut lui permettre de revenir silencieusement si un utilisateur y consent à nouveau plus tard ; la désactiver la bloque définitivement pendant que vous terminez le cadrage.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : action « désactiver l'application » du fournisseur d'identité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : un appel API désactivant le principal de service / l'enregistrement client OAuth de l'application.</p>
+<li><strong>Alternative CLI / open source</strong> : un appel API désactivant le principal de service / l'enregistrement client OAuth de l'application.</li>
+</ul>
 </li>
 <li>
 <p><strong>Déterminez le périmètre complet.</strong> Quels autres comptes ont reçu le même email de phishing, partagent les mêmes IP sources de password spray, ou ont consenti à la même application malveillante ?</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : recherche de corrélation SIEM à l'échelle de l'organisation.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : filtrez ou scriptez sur vos journaux exportés à la recherche du même expéditeur, des mêmes IP sources, ou du même identifiant d'application.</p>
+<li><strong>Alternative CLI / open source</strong> : filtrez ou scriptez sur vos journaux exportés à la recherche du même expéditeur, des mêmes IP sources, ou du même identifiant d'application.</li>
+</ul>
 </li>
 <li>
 <p><strong>Bloquez la ou les IP sources de l'attaquant et tout domaine d'envoi confirmé malveillant</strong>, en traitant cela comme une mesure temporaire — les attaquants derrière un VPN ou une infrastructure cloud changent d'IP rapidement.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : déploiement de politique sur pare-feu / accès conditionnel.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : une entrée manuelle dans les ACL du pare-feu ou dans la liste de blocage de la passerelle de messagerie.</p>
+<li><strong>Alternative CLI / open source</strong> : une entrée manuelle dans les ACL du pare-feu ou dans la liste de blocage de la passerelle de messagerie.</li>
+</ul>
 </li>
 <li>
 <p><strong>Supprimez toute la persistance trouvée en L1, sur chaque compte affecté</strong> : supprimez les règles de boîte de réception/transport malveillantes, révoquez les consentements d'applications malveillantes à l'échelle de l'organisation, et supprimez les méthodes MFA non reconnues et les accès délégués.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : remédiation en masse via la console d'administration ou un runbook d'automatisation.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : un court script répétant les mêmes étapes de suppression manuelle sur la liste des comptes affectés.</p>
+<li><strong>Alternative CLI / open source</strong> : un court script répétant les mêmes étapes de suppression manuelle sur la liste des comptes affectés.</li>
+</ul>
 </li>
 <li>
 <p><strong>Durcissez pour éviter une répétition.</strong> Imposez le MFA sur tous les comptes s'il n'est pas déjà universel, désactivez les protocoles d'authentification hérités/basiques qui contournent le MFA, et activez des politiques de connexion basées sur le risque si votre fournisseur d'identité le permet.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : configuration d'accès conditionnel / politique de risque du fournisseur d'identité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : pour les fournisseurs d'identité auto-hébergés, imposez le MFA au niveau de l'application ou du reverse-proxy avec une passerelle d'authentification gratuite (ex. Authelia, Keycloak), et désactivez les points d'accès aux protocoles hérités dans la configuration.</p>
+<li><strong>Alternative CLI / open source</strong> : pour les fournisseurs d'identité auto-hébergés, imposez le MFA au niveau de l'application ou du reverse-proxy avec une passerelle d'authentification gratuite (ex. Authelia, Keycloak), et désactivez les points d'accès aux protocoles hérités dans la configuration.</li>
+</ul>
 </li>
 <li>
 <p><strong>Surveillez une seconde vague.</strong> Un attaquant ayant réussi à réutiliser un identifiant phishé ou un octroi de consentement cible souvent d'autres utilisateurs de la même organisation peu après.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : une règle d'alerte SIEM ajustée sur les indicateurs confirmés (expéditeur, IP source, identifiant d'application).</li>
 <li><strong>Alternative CLI / open source</strong> : une tâche planifiée de filtrage de journaux surveillant ces mêmes indicateurs.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+<p>Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir <code>finding-your-csirt.md</code> si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.</p>
 </blockquote>
 <h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1956,6 +1964,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/search-lang.js"></script>
       
     
   </body>

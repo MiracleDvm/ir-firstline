@@ -1698,7 +1698,7 @@
 
 
 <h1 id="ddos-distributed-denial-of-service">DDoS (Distributed Denial of Service)<a class="headerlink" href="#ddos-distributed-denial-of-service" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>Open this runbook when any of the following appear, alone or together:</p>
@@ -1731,103 +1731,111 @@
     J --&gt; K[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirm it's actually a DDoS</strong> — not a legitimate traffic spike, a botched deployment, or an internal misconfiguration. Compare current load and connection counts against your normal baseline.</li>
-<li><strong>Dedicated tool</strong>: anti-DDoS provider or WAF analytics dashboard.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: run a capture with <code>tcpdump</code>/<code>tshark</code> and compare against historical traffic with a free tool such as <code>ntop</code>/<code>ntopng</code>, Cacti, or Nagios.</p>
+<p><strong>Confirm it's actually a DDoS</strong> — not a legitimate traffic spike, a botched deployment, or an internal misconfiguration. Compare current load and connection counts against your normal baseline.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: anti-DDoS provider or WAF analytics dashboard.</li>
+<li><strong>CLI / open-source alternative</strong>: run a capture with <code>tcpdump</code>/<code>tshark</code> and compare against historical traffic with a free tool such as <code>ntop</code>/<code>ntopng</code>, Cacti, or Nagios.</li>
+</ul>
 </li>
 <li>
 <p><strong>Classify which layer is being targeted</strong> — network/volumetric (bandwidth or connection-table exhaustion) or application-layer (HTTP flood, slow/expensive requests) — since the mitigation differs.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: anti-DDoS provider's attack classification.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: check connection counts with <code>netstat</code>/<code>ss</code>, and inspect web server access logs for a spike in requests to a specific expensive endpoint.</p>
+<li><strong>CLI / open-source alternative</strong>: check connection counts with <code>netstat</code>/<code>ss</code>, and inspect web server access logs for a spike in requests to a specific expensive endpoint.</li>
+</ul>
 </li>
 <li>
 <p><strong>Throttle or block the malicious traffic as close to the network edge as possible.</strong></p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: upstream anti-DDoS/scrubbing provider's mitigation activation.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>iptables</code>/<code>nftables</code> rate-limiting rules on your own edge device, or route traffic through a CDN/reverse proxy with a free tier in front of the affected service.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>iptables</code>/<code>nftables</code> rate-limiting rules on your own edge device, or route traffic through a CDN/reverse proxy with a free tier in front of the affected service.</li>
+</ul>
 </li>
 <li>
 <p><strong>If a specific application feature is the bottleneck, temporarily disable it</strong> rather than taking the whole service down.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: application feature flag via the admin console.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: comment out or redirect the specific route at the web server configuration (<code>nginx</code>/Apache) and reload.</p>
+<li><strong>CLI / open-source alternative</strong>: comment out or redirect the specific route at the web server configuration (<code>nginx</code>/Apache) and reload.</li>
+</ul>
 </li>
 <li>
 <p><strong>If available, fail over to an alternate site, CDN edge, or scrubbing route via DNS.</strong></p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: DNS failover / traffic-scrubbing service activation.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually repoint the DNS record to a backup origin or a free-tier CDN — this only works quickly if your DNS TTL was already kept short before the attack.</p>
+<li><strong>CLI / open-source alternative</strong>: manually repoint the DNS record to a backup origin or a free-tier CDN — this only works quickly if your DNS TTL was already kept short before the attack.</li>
+</ul>
 </li>
 <li>
 <p><strong>Set up an alternate communication channel</strong> to keep users and customers informed while the primary service is degraded.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a status-page platform.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a static status update hosted elsewhere (a separate free host, or a social media post) that isn't affected by the attack on your main service.</p>
+<li><strong>CLI / open-source alternative</strong>: a static status update hosted elsewhere (a separate free host, or a social media post) that isn't affected by the attack on your main service.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escalate to L2 and to your ISP or upstream provider with what you have</strong> — attack start time, affected services, and observed traffic characteristics (source IPs, destination ports, protocols).</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your ISP or anti-DDoS provider's emergency support line.</li>
 <li><strong>CLI / open-source alternative</strong>: a phone call to your ISP's NOC/abuse line — most providers offer basic traffic-control help on request even without a paid anti-DDoS contract — plus your usual incident doc or TheHive.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-l2-actions">5. L2 Actions<a class="headerlink" href="#5-l2-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Determine whether you're the intended target or a collateral victim</strong> — e.g., a shared hosting or CDN neighbor being attacked can degrade your service too.</li>
-<li><strong>Dedicated tool</strong>: anti-DDoS provider's traffic-flow analysis.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: manually correlate destination IPs and ports across your logs to see whether the traffic is broadly distributed or narrowly aimed at you.</p>
+<p><strong>Determine whether you're the intended target or a collateral victim</strong> — e.g., a shared hosting or CDN neighbor being attacked can degrade your service too.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: anti-DDoS provider's traffic-flow analysis.</li>
+<li><strong>CLI / open-source alternative</strong>: manually correlate destination IPs and ports across your logs to see whether the traffic is broadly distributed or narrowly aimed at you.</li>
+</ul>
 </li>
 <li>
 <p><strong>Capture and analyze the attack traffic</strong> to build a mitigation signature — source IPs/ASNs, destination ports, URLs, and protocol flags.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a NIDS/IPS with custom signature deployment.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>tcpdump</code>/Tshark for the capture, and free tools such as Snort or Suricata to write and deploy a detection/blocking signature.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>tcpdump</code>/Tshark for the capture, and free tools such as Snort or Suricata to write and deploy a detection/blocking signature.</li>
+</ul>
 </li>
 <li>
 <p><strong>Check for an extortion demand or an attribution claim</strong> tied to the attack.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: email security gateway keyword search across the abuse/security mailbox.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually search the security mailbox and the WHOIS-listed contact address for a ransom-DDoS message; check social media and known hacktivist channels for a claimed attack.</p>
+<li><strong>CLI / open-source alternative</strong>: manually search the security mailbox and the WHOIS-listed contact address for a ransom-DDoS message; check social media and known hacktivist channels for a claimed attack.</li>
+</ul>
 </li>
 <li>
 <p><strong>Work with your ISP or anti-DDoS provider on upstream filtering, traffic scrubbing, or blackhole routing</strong> — these controls usually sit outside your own network and only they can apply them effectively.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: anti-DDoS provider's mitigation console.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: if you operate your own IP space, request remote-triggered blackhole (RTBH) routing from your transit provider — a capability most ISPs offer on request, not a paid product.</p>
+<li><strong>CLI / open-source alternative</strong>: if you operate your own IP space, request remote-triggered blackhole (RTBH) routing from your transit provider — a capability most ISPs offer on request, not a paid product.</li>
+</ul>
 </li>
 <li>
 <p><strong>Configure egress filtering</strong> so your own systems don't add to the problem by responding to spoofed or reflected traffic.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: next-generation firewall egress policy push.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>iptables</code>/<code>nftables</code> egress rules blocking unexpected outbound response traffic.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>iptables</code>/<code>nftables</code> egress rules blocking unexpected outbound response traffic.</li>
+</ul>
 </li>
 <li>
 <p><strong>Confirm recovery</strong> — service reachability and performance back to your baseline — before rolling back anything.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: synthetic monitoring / uptime SaaS.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a free self-hosted checker such as Uptime Kuma, or manual repeated checks from multiple vantage points.</p>
+<li><strong>CLI / open-source alternative</strong>: a free self-hosted checker such as Uptime Kuma, or manual repeated checks from multiple vantage points.</li>
+</ul>
 </li>
 <li>
 <p><strong>Roll back mitigation measures</strong> — DNS failover, blackhole routes, emergency rate limits — once traffic is confirmed normal, in coordination with the network team.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: DNS/traffic-management console rollback.</li>
 <li><strong>CLI / open-source alternative</strong>: manually revert DNS records and firewall rules, verifying each change as you go.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notification-escalation">6. Notification &amp; Escalation<a class="headerlink" href="#6-notification-escalation" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1950,6 +1958,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

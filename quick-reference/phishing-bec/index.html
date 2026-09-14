@@ -1455,7 +1455,7 @@
 
 
 <h1 id="phishing-bec-quick-reference">Phishing / BEC — Quick Reference<a class="headerlink" href="#phishing-bec-quick-reference" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft) — derived from <a href="../../runbooks/phishing-bec/"><code>runbooks/phishing-bec.md</code></a>; do not edit independently.</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft) — derived from <a href="../../runbooks/phishing-bec/"><code>runbooks/phishing-bec.md</code></a>; do not edit independently.</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 1. Confirm the report: get the message's headers, body, attachments, and links — don't open attachments or follow links on a sensitive device.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2. If a financial request is involved, verify it out-of-band — call a number you already had on file, <strong>never</strong> one from the message.</li>
@@ -1471,7 +1471,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 12. If fraudulent content is hosted online, file an abuse/takedown request with evidence attached.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 13. Harden email authentication (SPF/DKIM/DMARC) and disable legacy authentication protocols.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 14. If money moved, document the loss with finance and add temporary friction to the payment process.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</li>
 </ul>
 
 
@@ -1574,6 +1574,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

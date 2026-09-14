@@ -1455,7 +1455,7 @@
 
 
 <h1 id="account-compromise-quick-reference">Account Compromise — Quick Reference<a class="headerlink" href="#account-compromise-quick-reference" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft) — derived from <a href="../../runbooks/account-compromise/"><code>runbooks/account-compromise.md</code></a>; do not edit independently.</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft) — derived from <a href="../../runbooks/account-compromise/"><code>runbooks/account-compromise.md</code></a>; do not edit independently.</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 1. Confirm the compromise: check sign-in/audit logs for new country, new device, impossible travel, or MFA failures followed by a success.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2. Disable the account and revoke all active sessions and tokens immediately — a password reset alone does not end an open session.</li>
@@ -1471,7 +1471,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 12. Remove all persistence found, across every affected account.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 13. Harden: enforce MFA, disable legacy/basic authentication, enable risk-based sign-in policies.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 14. Watch for a second wave targeting other users in the same organization.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</li>
 </ul>
 
 
@@ -1574,6 +1574,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

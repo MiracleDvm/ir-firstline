@@ -1698,7 +1698,7 @@
 
 
 <h1 id="ddos-deni-de-service-distribue">DDoS (Déni de Service Distribué)<a class="headerlink" href="#ddos-deni-de-service-distribue" title="Permanent link">&para;</a></h1>
-<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<p class="irf-status"><strong>Statut :</strong> 0.1 (brouillon)</p>
 <hr />
 <h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
 <p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
@@ -1731,103 +1731,111 @@
     J --&gt; K[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirmez qu'il s'agit bien d'un DDoS</strong> — pas d'un pic de trafic légitime, d'un déploiement raté, ou d'une erreur de configuration interne. Comparez la charge et le nombre de connexions actuels à votre référence habituelle.</li>
-<li><strong>Outil dédié</strong> : tableau de bord d'analyse du fournisseur anti-DDoS ou du WAF.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : une capture <code>tcpdump</code>/<code>tshark</code> comparée à l'historique du trafic avec un outil gratuit comme <code>ntop</code>/<code>ntopng</code>, Cacti, ou Nagios.</p>
+<p><strong>Confirmez qu'il s'agit bien d'un DDoS</strong> — pas d'un pic de trafic légitime, d'un déploiement raté, ou d'une erreur de configuration interne. Comparez la charge et le nombre de connexions actuels à votre référence habituelle.</p>
+<ul>
+<li><strong>Outil dédié</strong> : tableau de bord d'analyse du fournisseur anti-DDoS ou du WAF.</li>
+<li><strong>Alternative CLI / open source</strong> : une capture <code>tcpdump</code>/<code>tshark</code> comparée à l'historique du trafic avec un outil gratuit comme <code>ntop</code>/<code>ntopng</code>, Cacti, ou Nagios.</li>
+</ul>
 </li>
 <li>
 <p><strong>Classez la couche ciblée</strong> — réseau/volumétrique (saturation de bande passante ou de la table de connexions) ou applicative (inondation HTTP, requêtes lentes/coûteuses) — car la mitigation diffère.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : classification de l'attaque par le fournisseur anti-DDoS.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : vérifiez le nombre de connexions avec <code>netstat</code>/<code>ss</code>, et examinez les logs du serveur web à la recherche d'un pic de requêtes vers un endpoint coûteux spécifique.</p>
+<li><strong>Alternative CLI / open source</strong> : vérifiez le nombre de connexions avec <code>netstat</code>/<code>ss</code>, et examinez les logs du serveur web à la recherche d'un pic de requêtes vers un endpoint coûteux spécifique.</li>
+</ul>
 </li>
 <li>
 <p><strong>Limitez ou bloquez le trafic malveillant au plus près de la bordure du réseau.</strong></p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : activation de la mitigation par le fournisseur anti-DDoS/de nettoyage en amont.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : règles de limitation de débit <code>iptables</code>/<code>nftables</code> sur votre propre équipement de bordure, ou routez le trafic via un CDN/reverse proxy à offre gratuite devant le service affecté.</p>
+<li><strong>Alternative CLI / open source</strong> : règles de limitation de débit <code>iptables</code>/<code>nftables</code> sur votre propre équipement de bordure, ou routez le trafic via un CDN/reverse proxy à offre gratuite devant le service affecté.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si une fonctionnalité applicative précise est le goulot d'étranglement, désactivez-la temporairement</strong> plutôt que de couper tout le service.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : bascule de fonctionnalité via la console d'administration.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : commentez ou redirigez la route concernée dans la configuration du serveur web (<code>nginx</code>/Apache) et rechargez.</p>
+<li><strong>Alternative CLI / open source</strong> : commentez ou redirigez la route concernée dans la configuration du serveur web (<code>nginx</code>/Apache) et rechargez.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si possible, basculez vers un site alternatif, un edge CDN, ou une route de nettoyage via le DNS.</strong></p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : activation du basculement DNS / du service de nettoyage de trafic.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : repointez manuellement l'enregistrement DNS vers une origine de secours ou un CDN à offre gratuite — ceci ne fonctionne rapidement que si le TTL DNS était déjà maintenu court avant l'attaque.</p>
+<li><strong>Alternative CLI / open source</strong> : repointez manuellement l'enregistrement DNS vers une origine de secours ou un CDN à offre gratuite — ceci ne fonctionne rapidement que si le TTL DNS était déjà maintenu court avant l'attaque.</li>
+</ul>
 </li>
 <li>
 <p><strong>Mettez en place un canal de communication alternatif</strong> pour tenir informés utilisateurs et clients pendant que le service principal est dégradé.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : une plateforme de page de statut.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : une mise à jour de statut statique hébergée ailleurs (un autre hébergement gratuit, ou une publication sur les réseaux sociaux) non affectée par l'attaque sur votre service principal.</p>
+<li><strong>Alternative CLI / open source</strong> : une mise à jour de statut statique hébergée ailleurs (un autre hébergement gratuit, ou une publication sur les réseaux sociaux) non affectée par l'attaque sur votre service principal.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escaladez vers le L2 et vers votre FAI ou fournisseur en amont avec ce que vous avez</strong> — heure de début de l'attaque, services affectés, et caractéristiques du trafic observé (IP sources, ports de destination, protocoles).</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : ligne d'assistance d'urgence de votre FAI ou fournisseur anti-DDoS.</li>
 <li><strong>Alternative CLI / open source</strong> : un appel téléphonique au NOC/service abus de votre FAI — la plupart des fournisseurs offrent une aide basique de contrôle du trafic sur demande, même sans contrat anti-DDoS payant — plus votre document d'incident habituel ou TheHive.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Déterminez si vous êtes la cible visée ou une victime collatérale</strong> — un voisin d'hébergement mutualisé ou de CDN attaqué peut aussi dégrader votre service.</li>
-<li><strong>Outil dédié</strong> : analyse des flux de trafic du fournisseur anti-DDoS.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : corrélez manuellement les IP et ports de destination dans vos logs pour voir si le trafic est largement distribué ou précisément dirigé vers vous.</p>
+<p><strong>Déterminez si vous êtes la cible visée ou une victime collatérale</strong> — un voisin d'hébergement mutualisé ou de CDN attaqué peut aussi dégrader votre service.</p>
+<ul>
+<li><strong>Outil dédié</strong> : analyse des flux de trafic du fournisseur anti-DDoS.</li>
+<li><strong>Alternative CLI / open source</strong> : corrélez manuellement les IP et ports de destination dans vos logs pour voir si le trafic est largement distribué ou précisément dirigé vers vous.</li>
+</ul>
 </li>
 <li>
 <p><strong>Capturez et analysez le trafic d'attaque</strong> pour construire une signature de mitigation — IP/AS sources, ports de destination, URL, et indicateurs de protocole.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : un NIDS/IPS avec déploiement de signature personnalisée.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : <code>tcpdump</code>/Tshark pour la capture, et des outils gratuits comme Snort ou Suricata pour écrire et déployer une signature de détection/blocage.</p>
+<li><strong>Alternative CLI / open source</strong> : <code>tcpdump</code>/Tshark pour la capture, et des outils gratuits comme Snort ou Suricata pour écrire et déployer une signature de détection/blocage.</li>
+</ul>
 </li>
 <li>
 <p><strong>Vérifiez l'existence d'une demande d'extorsion ou d'une revendication</strong> liée à l'attaque.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : recherche par mots-clés de la passerelle de sécurité email sur la boîte abus/sécurité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : recherchez manuellement dans la boîte de sécurité et l'adresse listée dans le WHOIS un message de type rançon-DDoS ; vérifiez les réseaux sociaux et les canaux hacktivistes connus pour une revendication.</p>
+<li><strong>Alternative CLI / open source</strong> : recherchez manuellement dans la boîte de sécurité et l'adresse listée dans le WHOIS un message de type rançon-DDoS ; vérifiez les réseaux sociaux et les canaux hacktivistes connus pour une revendication.</li>
+</ul>
 </li>
 <li>
 <p><strong>Travaillez avec votre FAI ou fournisseur anti-DDoS sur le filtrage en amont, le nettoyage de trafic, ou le routage blackhole</strong> — ces contrôles se situent généralement hors de votre propre réseau et seuls eux peuvent les appliquer efficacement.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : console de mitigation du fournisseur anti-DDoS.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : si vous opérez votre propre espace d'adressage IP, demandez un routage blackhole à distance (RTBH) à votre fournisseur de transit — une capacité offerte sur demande par la plupart des FAI, pas un produit payant.</p>
+<li><strong>Alternative CLI / open source</strong> : si vous opérez votre propre espace d'adressage IP, demandez un routage blackhole à distance (RTBH) à votre fournisseur de transit — une capacité offerte sur demande par la plupart des FAI, pas un produit payant.</li>
+</ul>
 </li>
 <li>
 <p><strong>Configurez un filtrage de sortie</strong> pour que vos propres systèmes n'aggravent pas le problème en répondant à du trafic usurpé ou réfléchi.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : déploiement de politique de sortie sur pare-feu nouvelle génération.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : règles de sortie <code>iptables</code>/<code>nftables</code> bloquant le trafic de réponse sortant inattendu.</p>
+<li><strong>Alternative CLI / open source</strong> : règles de sortie <code>iptables</code>/<code>nftables</code> bloquant le trafic de réponse sortant inattendu.</li>
+</ul>
 </li>
 <li>
 <p><strong>Confirmez la reprise</strong> — service à nouveau joignable et performances revenues à la normale — avant d'annuler quoi que ce soit.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : supervision synthétique / SaaS de disponibilité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : un vérificateur gratuit auto-hébergé comme Uptime Kuma, ou des vérifications manuelles répétées depuis plusieurs points d'observation.</p>
+<li><strong>Alternative CLI / open source</strong> : un vérificateur gratuit auto-hébergé comme Uptime Kuma, ou des vérifications manuelles répétées depuis plusieurs points d'observation.</li>
+</ul>
 </li>
 <li>
 <p><strong>Annulez les mesures de mitigation</strong> — basculement DNS, routes blackhole, limitations de débit d'urgence — une fois le trafic confirmé normal, en coordination avec l'équipe réseau.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : annulation via la console DNS/de gestion du trafic.</li>
 <li><strong>Alternative CLI / open source</strong> : annulez manuellement les enregistrements DNS et règles de pare-feu, en vérifiant chaque changement au fur et à mesure.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+<p>Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir <code>finding-your-csirt.md</code> si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.</p>
 </blockquote>
 <h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1950,6 +1958,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/search-lang.js"></script>
       
     
   </body>

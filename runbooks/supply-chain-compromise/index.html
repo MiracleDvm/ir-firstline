@@ -1698,7 +1698,7 @@
 
 
 <h1 id="supply-chain-third-party-compromise">Supply Chain / Third-Party Compromise<a class="headerlink" href="#supply-chain-third-party-compromise" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>Open this runbook when any of the following appear, alone or together:</p>
@@ -1733,103 +1733,111 @@
     K --&gt; L[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirm the signal.</strong> Cross-check the leak-site mention, threat-intel report, or the vendor's own notification against what access or interconnection that vendor actually has in your environment.</li>
-<li><strong>Dedicated tool</strong>: vendor/asset inventory or CMDB entry for the third party.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: a maintained spreadsheet or text file listing vendor accounts and interconnections — grep it for the vendor's name.</p>
+<p><strong>Confirm the signal.</strong> Cross-check the leak-site mention, threat-intel report, or the vendor's own notification against what access or interconnection that vendor actually has in your environment.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: vendor/asset inventory or CMDB entry for the third party.</li>
+<li><strong>CLI / open-source alternative</strong>: a maintained spreadsheet or text file listing vendor accounts and interconnections — grep it for the vendor's name.</li>
+</ul>
 </li>
 <li>
 <p><strong>Cut or suspend the interconnection immediately</strong> if compromise is confirmed, or if business-critical access doesn't depend on staying connected. Don't wait for the vendor's own timeline.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: firewall / network segmentation policy push (a pre-planned cutoff action).</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a manual firewall rule disabling the specific route, VPN tunnel, or IP range tied to the vendor (<code>iptables</code>, pfSense/OPNsense ACL), or disable the specific integration/API key directly.</p>
+<li><strong>CLI / open-source alternative</strong>: a manual firewall rule disabling the specific route, VPN tunnel, or IP range tied to the vendor (<code>iptables</code>, pfSense/OPNsense ACL), or disable the specific integration/API key directly.</li>
+</ul>
 </li>
 <li>
 <p><strong>Disable any account, API key, or credential dedicated to that third party</strong> — support access, integration account, or service account.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: IAM/PAM console targeted disable.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>Disable-ADAccount -Identity &lt;account&gt;</code>, or revoke the specific API key/token via the relevant service's admin console.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>Disable-ADAccount -Identity &lt;account&gt;</code>, or revoke the specific API key/token via the relevant service's admin console.</li>
+</ul>
 </li>
 <li>
 <p><strong>If email is the interconnection point, quarantine or filter messages from the affected vendor's domain</strong> rather than blocking it outright — you may still need their incident updates.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: email security gateway rule (redirect to a sandboxed mailbox, strip attachments/links).</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a mail-server-side rule holding messages from the domain for manual review before delivery.</p>
+<li><strong>CLI / open-source alternative</strong>: a mail-server-side rule holding messages from the domain for manual review before delivery.</li>
+</ul>
 </li>
 <li>
 <p><strong>Preserve logs of the interconnection</strong> — traffic, authentication, and API-call logs — before they roll off retention.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: SIEM export filtered to the vendor's source IPs/accounts.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually export the relevant firewall/VPN/API gateway logs to a timestamped file.</p>
+<li><strong>CLI / open-source alternative</strong>: manually export the relevant firewall/VPN/API gateway logs to a timestamped file.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escalate to L2 with what you have</strong> — which vendor, what access they had, and whether critical business traffic depends on staying connected.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your case-management/ticketing platform.</li>
 <li><strong>CLI / open-source alternative</strong>: TheHive, or a shared incident document.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-l2-actions">5. L2 Actions<a class="headerlink" href="#5-l2-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Establish a direct communication channel with the vendor's security team</strong>, outside your normal email if that channel itself might be affected.</li>
-<li><strong>Dedicated tool</strong>: your vendor's dedicated security/incident contact, from your vendor risk register.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: a phone call to a number you already had on file, or an out-of-band messaging channel.</p>
+<p><strong>Establish a direct communication channel with the vendor's security team</strong>, outside your normal email if that channel itself might be affected.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: your vendor's dedicated security/incident contact, from your vendor risk register.</li>
+<li><strong>CLI / open-source alternative</strong>: a phone call to a number you already had on file, or an out-of-band messaging channel.</li>
+</ul>
 </li>
 <li>
 <p><strong>Determine the full scope of what the vendor could reach</strong>: which systems, data, or credentials were exposed through that interconnection.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: CMDB/asset inventory cross-referenced with access logs.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually cross-reference your firewall/VPN/API gateway logs against your own asset list.</p>
+<li><strong>CLI / open-source alternative</strong>: manually cross-reference your firewall/VPN/API gateway logs against your own asset list.</li>
+</ul>
 </li>
 <li>
 <p><strong>Hunt for indicators of lateral movement</strong> from the vendor's access point into your own environment.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR/SIEM fleet-wide IOC sweep, using indicators shared by the vendor.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: YARA rules and Sysmon/Sysinternals review on hosts reachable from the vendor's access point.</p>
+<li><strong>CLI / open-source alternative</strong>: YARA rules and Sysmon/Sysinternals review on hosts reachable from the vendor's access point.</li>
+</ul>
 </li>
 <li>
 <p><strong>If the vendor supplies software, check whether you're running the compromised version</strong>, and verify recent updates against known-good checksums or signatures before trusting them.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: software composition analysis / SBOM management platform.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: free SBOM and dependency tools such as Syft and Grype, or <code>npm audit</code> / <code>pip-audit</code> for the affected package ecosystem; compare file hashes against the vendor's published checksums.</p>
+<li><strong>CLI / open-source alternative</strong>: free SBOM and dependency tools such as Syft and Grype, or <code>npm audit</code> / <code>pip-audit</code> for the affected package ecosystem; compare file hashes against the vendor's published checksums.</li>
+</ul>
 </li>
 <li>
 <p><strong>Request a formal incident report and an up-to-date indicator list from the vendor</strong>, and track their remediation transparency — treat a vendor that stops communicating as still-open risk.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: vendor risk management platform's incident tracking.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a shared incident document logging what the vendor has (and hasn't) confirmed, updated as you hear back.</p>
+<li><strong>CLI / open-source alternative</strong>: a shared incident document logging what the vendor has (and hasn't) confirmed, updated as you hear back.</li>
+</ul>
 </li>
 <li>
 <p><strong>Coordinate joint containment</strong> where the compromise sits on the vendor's side — you act on your side (disable, quarantine) while they act on theirs (revoke the attacker's access, rotate secrets).</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a joint incident bridge/call with both security teams.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a shared, timestamped incident log both sides can read and update.</p>
+<li><strong>CLI / open-source alternative</strong>: a shared, timestamped incident log both sides can read and update.</li>
+</ul>
 </li>
 <li>
 <p><strong>Before reopening the interconnection, verify with evidence — not just the vendor's assurance — that their environment is clean</strong>, and rotate every credential or secret shared with them.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: an independent security assessment of the restored connection before go-live.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually re-check the vendor's fix against the original indicators, and rotate API keys, passwords, and certificates yourself regardless of what they report.</p>
+<li><strong>CLI / open-source alternative</strong>: manually re-check the vendor's fix against the original indicators, and rotate API keys, passwords, and certificates yourself regardless of what they report.</li>
+</ul>
 </li>
 <li>
 <p><strong>Reassess this vendor's risk profile and access scope going forward</strong> — do they need the same level of access they had before?</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: vendor risk management platform's risk-score update.</li>
 <li><strong>CLI / open-source alternative</strong>: update your own vendor tracking spreadsheet with the incident and a reduced-access recommendation.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notification-escalation">6. Notification &amp; Escalation<a class="headerlink" href="#6-notification-escalation" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1952,6 +1960,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

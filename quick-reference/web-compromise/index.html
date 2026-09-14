@@ -1455,7 +1455,7 @@
 
 
 <h1 id="web-application-server-compromise-quick-reference">Web Application / Server Compromise — Quick Reference<a class="headerlink" href="#web-application-server-compromise-quick-reference" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft) — derived from <a href="../../runbooks/web-compromise/"><code>runbooks/web-compromise.md</code></a>; do not edit independently.</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft) — derived from <a href="../../runbooks/web-compromise/"><code>runbooks/web-compromise.md</code></a>; do not edit independently.</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 1. Confirm the compromise: defaced content, unexpected file in the web root, unrecognized processes, or a WAF/IDS alert.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2. Contain the host — isolate a critical service (stay powered on) or power off a non-critical one.</li>
@@ -1471,7 +1471,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 12. Rebuild from a known-good image rather than manually cleaning if you're not fully confident.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 13. Restore content from a verified-clean backup and reset every affected account's credentials.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 14. Monitor closely after restoring service for signs of reinfection.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</li>
 </ul>
 
 
@@ -1574,6 +1574,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

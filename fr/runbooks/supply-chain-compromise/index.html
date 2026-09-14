@@ -1698,7 +1698,7 @@
 
 
 <h1 id="compromission-tierce-partie-supply-chain">Compromission tierce-partie / supply chain<a class="headerlink" href="#compromission-tierce-partie-supply-chain" title="Permanent link">&para;</a></h1>
-<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<p class="irf-status"><strong>Statut :</strong> 0.1 (brouillon)</p>
 <hr />
 <h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
 <p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
@@ -1733,103 +1733,111 @@
     K --&gt; L[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirmez le signal.</strong> Recoupez la mention sur le site de fuite, le rapport de threat intel, ou la notification du tiers lui-même, avec l'accès ou l'interconnexion réel que ce fournisseur a dans votre environnement.</li>
-<li><strong>Outil dédié</strong> : inventaire de fournisseurs/actifs ou entrée CMDB pour le tiers.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : un tableur ou fichier texte maintenu listant les comptes et interconnexions fournisseurs — filtrez-le à la recherche du nom du fournisseur.</p>
+<p><strong>Confirmez le signal.</strong> Recoupez la mention sur le site de fuite, le rapport de threat intel, ou la notification du tiers lui-même, avec l'accès ou l'interconnexion réel que ce fournisseur a dans votre environnement.</p>
+<ul>
+<li><strong>Outil dédié</strong> : inventaire de fournisseurs/actifs ou entrée CMDB pour le tiers.</li>
+<li><strong>Alternative CLI / open source</strong> : un tableur ou fichier texte maintenu listant les comptes et interconnexions fournisseurs — filtrez-le à la recherche du nom du fournisseur.</li>
+</ul>
 </li>
 <li>
 <p><strong>Coupez ou suspendez immédiatement l'interconnexion</strong> si la compromission est confirmée, ou si l'accès critique pour l'activité ne dépend pas du maintien de la connexion. N'attendez pas le calendrier propre du fournisseur.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : déploiement de politique pare-feu / segmentation réseau (une action de coupure planifiée à l'avance).</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : une règle pare-feu manuelle désactivant la route, le tunnel VPN, ou la plage IP spécifique liée au fournisseur (<code>iptables</code>, ACL pfSense/OPNsense), ou désactivez directement l'intégration/clé API spécifique.</p>
+<li><strong>Alternative CLI / open source</strong> : une règle pare-feu manuelle désactivant la route, le tunnel VPN, ou la plage IP spécifique liée au fournisseur (<code>iptables</code>, ACL pfSense/OPNsense), ou désactivez directement l'intégration/clé API spécifique.</li>
+</ul>
 </li>
 <li>
 <p><strong>Désactivez tout compte, clé API, ou identifiant dédié à ce tiers</strong> — accès support, compte d'intégration, ou compte de service.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : désactivation ciblée depuis la console IAM/PAM.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : <code>Disable-ADAccount -Identity &lt;compte&gt;</code>, ou révoquez la clé API/le jeton spécifique via la console d'administration du service concerné.</p>
+<li><strong>Alternative CLI / open source</strong> : <code>Disable-ADAccount -Identity &lt;compte&gt;</code>, ou révoquez la clé API/le jeton spécifique via la console d'administration du service concerné.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si l'email est le point d'interconnexion, mettez en quarantaine ou filtrez les messages du domaine du fournisseur affecté</strong> plutôt que de le bloquer entièrement — vous aurez peut-être encore besoin de leurs mises à jour sur l'incident.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : règle de la passerelle de sécurité email (redirection vers une boîte aux lettres sandboxée, suppression des pièces jointes/liens).</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : une règle côté serveur de messagerie retenant les messages du domaine pour une revue manuelle avant livraison.</p>
+<li><strong>Alternative CLI / open source</strong> : une règle côté serveur de messagerie retenant les messages du domaine pour une revue manuelle avant livraison.</li>
+</ul>
 </li>
 <li>
 <p><strong>Préservez les logs de l'interconnexion</strong> — trafic, authentification, appels API — avant qu'ils ne sortent de la rétention.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : export SIEM filtré sur les IP/comptes sources du fournisseur.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : exportez manuellement les logs pare-feu/VPN/passerelle API pertinents vers un fichier horodaté.</p>
+<li><strong>Alternative CLI / open source</strong> : exportez manuellement les logs pare-feu/VPN/passerelle API pertinents vers un fichier horodaté.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escaladez vers le L2 avec ce que vous avez</strong> — quel fournisseur, quel accès il avait, et si du trafic critique pour l'activité dépend du maintien de la connexion.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : votre plateforme de gestion de cas/tickets.</li>
 <li><strong>Alternative CLI / open source</strong> : TheHive, ou un document d'incident partagé.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Établissez un canal de communication direct avec l'équipe sécurité du fournisseur</strong>, en dehors de votre email habituel si ce canal pourrait lui-même être affecté.</li>
-<li><strong>Outil dédié</strong> : le contact sécurité/incident dédié de votre fournisseur, depuis votre registre de risque fournisseurs.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : un appel téléphonique à un numéro déjà enregistré, ou un canal de messagerie hors bande.</p>
+<p><strong>Établissez un canal de communication direct avec l'équipe sécurité du fournisseur</strong>, en dehors de votre email habituel si ce canal pourrait lui-même être affecté.</p>
+<ul>
+<li><strong>Outil dédié</strong> : le contact sécurité/incident dédié de votre fournisseur, depuis votre registre de risque fournisseurs.</li>
+<li><strong>Alternative CLI / open source</strong> : un appel téléphonique à un numéro déjà enregistré, ou un canal de messagerie hors bande.</li>
+</ul>
 </li>
 <li>
 <p><strong>Déterminez le périmètre complet de ce que le fournisseur pouvait atteindre</strong> : quels systèmes, données, ou identifiants étaient exposés via cette interconnexion.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : inventaire CMDB/actifs recoupé avec les logs d'accès.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : recoupez manuellement vos logs pare-feu/VPN/passerelle API avec votre propre inventaire d'actifs.</p>
+<li><strong>Alternative CLI / open source</strong> : recoupez manuellement vos logs pare-feu/VPN/passerelle API avec votre propre inventaire d'actifs.</li>
+</ul>
 </li>
 <li>
 <p><strong>Recherchez des indicateurs de mouvement latéral</strong> depuis le point d'accès du fournisseur vers votre propre environnement.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : recherche d'IOC à l'échelle du parc via l'EDR/SIEM, en utilisant les indicateurs partagés par le fournisseur.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : règles YARA et revue Sysmon/Sysinternals sur les postes accessibles depuis le point d'accès du fournisseur.</p>
+<li><strong>Alternative CLI / open source</strong> : règles YARA et revue Sysmon/Sysinternals sur les postes accessibles depuis le point d'accès du fournisseur.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si le fournisseur livre du logiciel, vérifiez si vous exécutez la version compromise</strong>, et validez les mises à jour récentes contre des sommes de contrôle ou signatures connues comme saines avant de leur faire confiance.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : plateforme d'analyse de composition logicielle / gestion de SBOM.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : outils gratuits de SBOM et de dépendances comme Syft et Grype, ou <code>npm audit</code> / <code>pip-audit</code> selon l'écosystème concerné ; comparez les hashs de fichiers aux sommes de contrôle publiées par le fournisseur.</p>
+<li><strong>Alternative CLI / open source</strong> : outils gratuits de SBOM et de dépendances comme Syft et Grype, ou <code>npm audit</code> / <code>pip-audit</code> selon l'écosystème concerné ; comparez les hashs de fichiers aux sommes de contrôle publiées par le fournisseur.</li>
+</ul>
 </li>
 <li>
 <p><strong>Demandez un rapport d'incident formel et une liste d'indicateurs à jour au fournisseur</strong>, et suivez la transparence de sa remédiation — traitez un fournisseur qui cesse de communiquer comme un risque toujours ouvert.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : suivi d'incident de la plateforme de gestion du risque fournisseurs.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : un document d'incident partagé consignant ce que le fournisseur a (et n'a pas) confirmé, mis à jour au fil des échanges.</p>
+<li><strong>Alternative CLI / open source</strong> : un document d'incident partagé consignant ce que le fournisseur a (et n'a pas) confirmé, mis à jour au fil des échanges.</li>
+</ul>
 </li>
 <li>
 <p><strong>Coordonnez un confinement conjoint</strong> lorsque la compromission se situe côté fournisseur — vous agissez de votre côté (désactiver, mettre en quarantaine) pendant qu'ils agissent du leur (révoquer l'accès de l'attaquant, faire tourner les secrets).</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : un pont/appel d'incident conjoint entre les deux équipes sécurité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : un journal d'incident partagé et horodaté, consultable et modifiable par les deux parties.</p>
+<li><strong>Alternative CLI / open source</strong> : un journal d'incident partagé et horodaté, consultable et modifiable par les deux parties.</li>
+</ul>
 </li>
 <li>
 <p><strong>Avant de rouvrir l'interconnexion, vérifiez avec des preuves — pas seulement l'assurance du fournisseur — que son environnement est sain</strong>, et faites tourner chaque identifiant ou secret partagé avec lui.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : une évaluation de sécurité indépendante de la connexion restaurée avant remise en production.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : revérifiez manuellement la correction du fournisseur par rapport aux indicateurs d'origine, et faites tourner vous-même les clés API, mots de passe et certificats, quoi qu'il rapporte.</p>
+<li><strong>Alternative CLI / open source</strong> : revérifiez manuellement la correction du fournisseur par rapport aux indicateurs d'origine, et faites tourner vous-même les clés API, mots de passe et certificats, quoi qu'il rapporte.</li>
+</ul>
 </li>
 <li>
 <p><strong>Réévaluez le profil de risque de ce fournisseur et le périmètre de son accès pour l'avenir</strong> — a-t-il besoin du même niveau d'accès qu'avant ?</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : mise à jour du score de risque de la plateforme de gestion du risque fournisseurs.</li>
 <li><strong>Alternative CLI / open source</strong> : mettez à jour votre propre tableur de suivi fournisseurs avec l'incident et une recommandation de réduction d'accès.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+<p>Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir <code>finding-your-csirt.md</code> si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.</p>
 </blockquote>
 <h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1952,6 +1960,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/search-lang.js"></script>
       
     
   </body>

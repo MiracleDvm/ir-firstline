@@ -1698,7 +1698,7 @@
 
 
 <h1 id="phishing-business-email-compromise-bec">Phishing / Business Email Compromise (BEC)<a class="headerlink" href="#phishing-business-email-compromise-bec" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>Open this runbook when any of the following appear, alone or together:</p>
@@ -1732,110 +1732,118 @@
     I --&gt; J[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirm the report.</strong> Get the suspicious message itself — headers, body, attachments, links — without opening attachments or following links on any device with access to sensitive data or credentials.</li>
-<li><strong>Dedicated tool</strong>: email security gateway's message trace / quarantine view.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: export the raw message (<code>.eml</code>) via "view source" / "download message" in the mail client, and inspect it offline on an isolated machine.</p>
+<p><strong>Confirm the report.</strong> Get the suspicious message itself — headers, body, attachments, links — without opening attachments or following links on any device with access to sensitive data or credentials.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: email security gateway's message trace / quarantine view.</li>
+<li><strong>CLI / open-source alternative</strong>: export the raw message (<code>.eml</code>) via "view source" / "download message" in the mail client, and inspect it offline on an isolated machine.</li>
+</ul>
 </li>
 <li>
 <p><strong>If a financial request is involved (wire transfer, payment-detail change, gift cards), verify it out-of-band before acting on it</strong> — call the requester on a number you already had on file, never one supplied in the message.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a pre-established vendor/executive contact directory in your finance system.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a shared, offline contact list (spreadsheet or printed sheet) maintained outside of email.</p>
+<li><strong>CLI / open-source alternative</strong>: a shared, offline contact list (spreadsheet or printed sheet) maintained outside of email.</li>
+</ul>
 </li>
 <li>
 <p><strong>If a transfer already went out, contact your bank or payment provider immediately to request a recall or hold.</strong> Speed matters more here than almost anywhere else in this project — recall windows close within hours.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your bank's fraud/dispute hotline or online fraud-report portal.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: there's no CLI substitute for calling your bank — do it immediately, and follow up in writing for the record.</p>
+<li><strong>CLI / open-source alternative</strong>: there's no CLI substitute for calling your bank — do it immediately, and follow up in writing for the record.</li>
+</ul>
 </li>
 <li>
 <p><strong>Identify who else received the same message</strong>, and whether anyone clicked a link, opened an attachment, or entered credentials.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: email security gateway's "who received this" search, or SIEM correlation.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: search your mail server logs for the same sender, subject, or message-ID across mailboxes.</p>
+<li><strong>CLI / open-source alternative</strong>: search your mail server logs for the same sender, subject, or message-ID across mailboxes.</li>
+</ul>
 </li>
 <li>
 <p><strong>Contain any account that entered credentials or shows signs of compromise</strong>: disable it, revoke active sessions, and reset its password — see <code>runbooks/account-compromise.md</code> for the full procedure.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: identity provider admin console.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: the same free commands as in the Account Compromise runbook (e.g. <code>Disable-ADAccount</code>, <code>Revoke-MgUserSignInSession</code>).</p>
+<li><strong>CLI / open-source alternative</strong>: the same free commands as in the Account Compromise runbook (e.g. <code>Disable-ADAccount</code>, <code>Revoke-MgUserSignInSession</code>).</li>
+</ul>
 </li>
 <li>
 <p><strong>Block the sender and any malicious domains, links, or attachments found</strong>, and remove the message from other inboxes where possible.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: email security gateway policy push.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a mail-server-side rule blocking the sender/subject, or a script removing the message via your mail platform's free admin CLI.</p>
+<li><strong>CLI / open-source alternative</strong>: a mail-server-side rule blocking the sender/subject, or a script removing the message via your mail platform's free admin CLI.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escalate to L2 with what you have</strong> — the message itself, who was targeted, and whether any credentials or money moved.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your case-management/ticketing platform.</li>
 <li><strong>CLI / open-source alternative</strong>: TheHive, or a shared incident document.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-l2-actions">5. L2 Actions<a class="headerlink" href="#5-l2-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Analyze the message and any attachments/links in an isolated or sandboxed environment.</strong> Check headers (SPF/DKIM/DMARC results, originating server) and submit links/attachments/hashes to a scanning service.</li>
-<li><strong>Dedicated tool</strong>: enterprise sandbox / threat-intelligence platform.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: submit hashes and URLs to VirusTotal, or detonate attachments in a free sandbox such as Cuckoo or a disposable VM.</p>
+<p><strong>Analyze the message and any attachments/links in an isolated or sandboxed environment.</strong> Check headers (SPF/DKIM/DMARC results, originating server) and submit links/attachments/hashes to a scanning service.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: enterprise sandbox / threat-intelligence platform.</li>
+<li><strong>CLI / open-source alternative</strong>: submit hashes and URLs to VirusTotal, or detonate attachments in a free sandbox such as Cuckoo or a disposable VM.</li>
+</ul>
 </li>
 <li>
 <p><strong>Determine the campaign type</strong> — credential harvesting, malware delivery, or a BEC fraud attempt — and whether it's targeted or opportunistic.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: threat-intelligence platform correlation against known campaigns.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually check the message against a public phishing repository such as PhishTank or Google Safe Browsing.</p>
+<li><strong>CLI / open-source alternative</strong>: manually check the message against a public phishing repository such as PhishTank or Google Safe Browsing.</li>
+</ul>
 </li>
 <li>
 <p><strong>Audit mailbox rules and delegated access</strong> on every account that received the message or shows signs of compromise, looking for auto-forwarding or auto-deleting rules the attacker may have planted.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: mailbox admin console rule inspector.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: export inbox/transport rules through your mail platform's free admin CLI, as in <code>runbooks/account-compromise.md</code>.</p>
+<li><strong>CLI / open-source alternative</strong>: export inbox/transport rules through your mail platform's free admin CLI, as in <code>runbooks/account-compromise.md</code>.</li>
+</ul>
 </li>
 <li>
 <p><strong>Determine the full scope</strong>: total number of targeted and affected users, departments involved, and total financial exposure if a fraud attempt succeeded.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: SIEM correlation search across the organization.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: grep or script across exported mail and authentication logs for the same sender, links, or message-ID.</p>
+<li><strong>CLI / open-source alternative</strong>: grep or script across exported mail and authentication logs for the same sender, links, or message-ID.</li>
+</ul>
 </li>
 <li>
 <p><strong>If fraudulent content is hosted online</strong> (a lookalike login page, a spoofed invoice portal), identify its hosting provider and registrar, and file an abuse/takedown request with evidence attached (headers, screenshots, timestamps).</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a brand-protection / takedown service.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: run <code>whois</code> on the domain yourself, take a timestamped copy of the page with a free tool such as HTTrack, and email the hosting provider's abuse contact directly.</p>
+<li><strong>CLI / open-source alternative</strong>: run <code>whois</code> on the domain yourself, take a timestamped copy of the page with a free tool such as HTTrack, and email the hosting provider's abuse contact directly.</li>
+</ul>
 </li>
 <li>
 <p><strong>Harden email authentication and mailbox defenses.</strong> Confirm SPF, DKIM, and DMARC are correctly configured, disable legacy authentication protocols that bypass MFA, and tighten filters based on the indicators you found.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: email security gateway policy configuration.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: publish or adjust your SPF/DMARC DNS records directly (free, standard DNS) and confirm they resolve correctly with <code>dig txt</code> plus a free online DMARC checker.</p>
+<li><strong>CLI / open-source alternative</strong>: publish or adjust your SPF/DMARC DNS records directly (free, standard DNS) and confirm they resolve correctly with <code>dig txt</code> plus a free online DMARC checker.</li>
+</ul>
 </li>
 <li>
 <p><strong>If money moved, work with finance to document the loss</strong> and add temporary friction to the payment process — out-of-band verification, a second approver — until you've confirmed the underlying control gap is fixed.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: finance/ERP system workflow configuration.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a manually enforced checklist requiring a phone callback before any payment-detail change, until the automated control is back in place.</p>
+<li><strong>CLI / open-source alternative</strong>: a manually enforced checklist requiring a phone callback before any payment-detail change, until the automated control is back in place.</li>
+</ul>
 </li>
 <li>
 <p><strong>Watch for a second wave or a repeat attempt against the same target.</strong> Successful BEC attempts are frequently followed by a second, more urgent request within days.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a SIEM alert rule tuned to the confirmed indicators (sender, domain, message pattern).</li>
 <li><strong>CLI / open-source alternative</strong>: a scheduled log-grep job watching for the same indicators going forward.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notification-escalation">6. Notification &amp; Escalation<a class="headerlink" href="#6-notification-escalation" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1960,6 +1968,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

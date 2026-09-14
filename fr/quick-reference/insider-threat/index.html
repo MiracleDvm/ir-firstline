@@ -1455,7 +1455,7 @@
 
 
 <h1 id="menace-interne-aide-memoire">Menace interne — Aide-mémoire<a class="headerlink" href="#menace-interne-aide-memoire" title="Permanent link">&para;</a></h1>
-<p><strong>Statut :</strong> 0.1 (brouillon) — dérivé de <a href="../../runbooks/insider-threat/"><code>runbooks/insider-threat.md</code></a> ; ne pas modifier indépendamment.</p>
+<p class="irf-status"><strong>Statut :</strong> 0.1 (brouillon) — dérivé de <a href="../../runbooks/insider-threat/"><code>runbooks/insider-threat.md</code></a> ; ne pas modifier indépendamment.</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 1. Confirmez que le signalement est crédible en recoupant les journaux du compte concerné uniquement — pas de tout l'environnement.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2. N'entreprenez <strong>aucune</strong> action de confinement ou de confrontation vous-même — escaladez immédiatement vers le L2.</li>
@@ -1470,7 +1470,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 11. Déterminez le périmètre complet : quelles données/systèmes ont été accédés, et ce qui a quitté le contrôle de l'organisation.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 12. Si une activité malveillante/frauduleuse est confirmée, arrêtez l'investigation indépendante et transmettez au conseil juridique.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 13. Si rien de malveillant n'est confirmé, restaurez l'accès et clôturez le dossier discrètement.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 14. Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 14. Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir <code>finding-your-csirt.md</code> si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.</li>
 </ul>
 
 
@@ -1573,6 +1573,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/search-lang.js"></script>
       
     
   </body>

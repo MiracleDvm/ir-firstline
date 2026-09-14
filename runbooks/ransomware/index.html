@@ -1698,7 +1698,7 @@
 
 
 <h1 id="ransomware">Ransomware<a class="headerlink" href="#ransomware" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>Open this runbook when any of the following appear, alone or together:</p>
@@ -1732,103 +1732,139 @@
     I --&gt; J[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirm the signs.</strong> Check for a ransom note, unusual file extensions, mass file changes in a short window, or an EDR/SIEM alert tied to encryption behavior.</li>
+<li>
+<p><strong>Confirm the signs.</strong> Check for a ransom note, unusual file extensions, mass file changes in a short window, or an EDR/SIEM alert tied to encryption behavior.</p>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR/SIEM alert console — pivot on the triggering detection.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: inspect the desktop and affected folders directly; on Windows, <code>Get-ChildItem -Recurse -Path &lt;share&gt; | Sort-Object LastWriteTime -Descending | Select-Object -First 50</code> to spot mass recent changes; on Linux, <code>find /path -mmin -15 -type f</code>.</p>
+<p><strong>CLI / open-source alternative</strong>: inspect the desktop and affected folders directly, looking for mass recent changes.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows</label><label for="__tabbed_1_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ChildItem</span> <span class="n">-Recurse</span> <span class="n">-Path</span> <span class="p">&lt;</span><span class="n">share</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">LastWriteTime</span> <span class="n">-Descending</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-First</span> <span class="n">50</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>find<span class="w"> </span>/path<span class="w"> </span>-mmin<span class="w"> </span>-15<span class="w"> </span>-type<span class="w"> </span>f
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ul>
 </li>
 <li>
 <p><strong>Isolate the affected host(s) from the network immediately — do not power them off.</strong> Powering off destroys volatile memory evidence and can trigger destructive routines in some ransomware families.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR network isolation / quarantine action.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: disable the network adapter (<code>netsh interface set interface "&lt;name&gt;" admin=disable</code> on Windows, <code>ip link set &lt;iface&gt; down</code> on Linux) or physically unplug the network cable; leave the machine powered on.</p>
+<p><strong>CLI / open-source alternative</strong>: disable the network adapter, or physically unplug the network cable; leave the machine powered on.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows</label><label for="__tabbed_2_2">Linux</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="n">netsh</span> <span class="n">interface</span> <span class="nb">set </span><span class="n">interface</span> <span class="s2">&quot;&lt;name&gt;&quot;</span> <span class="n">admin</span><span class="p">=</span><span class="n">disable</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>&lt;iface&gt;<span class="w"> </span>down
+</code></pre></div>
+</div>
+</div>
+</div>
+</li>
+</ul>
 </li>
 <li>
 <p><strong>Protect shared drives and backups before they get encrypted too.</strong> Disconnect or lock down shares reachable from the affected host, even ones not yet showing symptoms.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: storage platform's share-lockdown feature, or EDR-integrated share protection.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>net use x: \\unc\path\ /DELETE</code> to drop mapped drives from the affected host, or disable the share directly at the file server console.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>net use x: \\unc\path\ /DELETE</code> to drop mapped drives from the affected host, or disable the share directly at the file server console.</li>
+</ul>
 </li>
 <li>
 <p><strong>Preserve evidence before doing anything else destructive.</strong> Photograph the ransom note and any on-screen message, note the encrypted-file extension and naming pattern, and record exact timestamps.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR forensic snapshot / triage collection.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a smartphone photo of the screen, plus a memory capture with a free imaging tool (e.g., one compatible with Volatility) if it doesn't delay isolation.</p>
+<li><strong>CLI / open-source alternative</strong>: a smartphone photo of the screen, plus a memory capture with a free imaging tool (e.g., one compatible with Volatility) if it doesn't delay isolation.</li>
+</ul>
 </li>
 <li>
 <p><strong>Disable accounts showing signs of compromise</strong> — especially privileged accounts used at unusual hours, or accounts created around the time of the incident.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: IAM/PAM console bulk account disable.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>Disable-ADAccount -Identity &lt;user&gt;</code> (Active Directory PowerShell module), or lock the account directly in your directory service console.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>Disable-ADAccount -Identity &lt;user&gt;</code> (Active Directory PowerShell module), or lock the account directly in your directory service console.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escalate to L2 with what you have</strong> — affected hosts/users, ransom note contents, file extension pattern, and a rough timeline. Do not negotiate, pay, or restore from backup at this stage.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your case-management/ticketing platform.</li>
 <li><strong>CLI / open-source alternative</strong>: TheHive, or a shared incident document — whatever your team already uses to hand off cases.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-l2-actions">5. L2 Actions<a class="headerlink" href="#5-l2-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Identify the ransomware family/variant.</strong> Use the ransom note content, the encrypted-file extension, and the contact method as fingerprints.</li>
-<li><strong>Dedicated tool</strong>: your EDR/AV vendor's sample-analysis service.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: submit an encrypted file and the ransom note to a free identification service such as ID Ransomware or the No More Ransom Project's Crypto Sheriff.</p>
+<p><strong>Identify the ransomware family/variant.</strong> Use the ransom note content, the encrypted-file extension, and the contact method as fingerprints.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: your EDR/AV vendor's sample-analysis service.</li>
+<li><strong>CLI / open-source alternative</strong>: submit an encrypted file and the ransom note to a free identification service such as ID Ransomware or the No More Ransom Project's Crypto Sheriff.</li>
+</ul>
 </li>
 <li>
 <p><strong>Determine the full scope.</strong> Hunt for the same indicators across the environment — hosts, accounts, shares.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR fleet-wide IOC sweep.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: write and run YARA rules against suspect hosts, or use Sysmon logs and Sysinternals tools (Autoruns, Process Explorer) to check similar systems by hand.</p>
+<li><strong>CLI / open-source alternative</strong>: write and run YARA rules against suspect hosts, or use Sysmon logs and Sysinternals tools (Autoruns, Process Explorer) to check similar systems by hand.</li>
+</ul>
 </li>
 <li>
 <p><strong>Find the infection vector</strong> — phishing attachment, exposed RDP, self-propagation, or delivery by another piece of malware already on the network.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: email security gateway's forensic search, or EDR process-tree timeline.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: review mail server logs and firewall/VPN logs manually; check for exposed RDP with a basic scan of your own perimeter (e.g., <code>nmap</code>).</p>
+<li><strong>CLI / open-source alternative</strong>: review mail server logs and firewall/VPN logs manually; check for exposed RDP with a basic scan of your own perimeter (e.g., <code>nmap</code>).</li>
+</ul>
 </li>
 <li>
 <p><strong>Contain at network level.</strong> Block command-and-control domains/IPs, isolate the affected VLAN or segment, and geo-filter if attacker infrastructure is concentrated in specific regions.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: next-generation firewall policy push.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manual firewall rule changes (<code>iptables</code>, pfSense/OPNsense ACLs), or a DNS sinkhole (e.g., Pi-hole, <code>unbound</code>) for the identified C2 domains.</p>
+<li><strong>CLI / open-source alternative</strong>: manual firewall rule changes (<code>iptables</code>, pfSense/OPNsense ACLs), or a DNS sinkhole (e.g., Pi-hole, <code>unbound</code>) for the identified C2 domains.</li>
+</ul>
 </li>
 <li>
 <p><strong>Eradicate.</strong> Remove attacker binaries and persistence mechanisms, revert malicious configuration changes, and rebuild from known-clean media wherever you're not fully confident a host is clean.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: EDR remediation actions (kill process, quarantine file, remove persistence).</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: Sysinternals Autoruns to find and remove persistence entries; reimage from a known-clean OS image where in doubt.</p>
+<li><strong>CLI / open-source alternative</strong>: Sysinternals Autoruns to find and remove persistence entries; reimage from a known-clean OS image where in doubt.</li>
+</ul>
 </li>
 <li>
 <p><strong>Recover.</strong> Restore from backups you've verified are clean, onto hardened and patched systems, and reset credentials — especially administrator and other privileged accounts — before reconnecting anything.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: backup platform's integrity-verified restore, combined with EDR confirmation that the target is clean before reconnect.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manual restore plus an offline antivirus scan pass (e.g., ClamAV) before reconnecting; bulk credential reset via <code>Reset-ADAccountPassword</code> or your directory service's equivalent.</p>
+<li><strong>CLI / open-source alternative</strong>: manual restore plus an offline antivirus scan pass (e.g., ClamAV) before reconnecting; bulk credential reset via <code>Reset-ADAccountPassword</code> or your directory service's equivalent.</li>
+</ul>
 </li>
 <li>
 <p><strong>Check for a known decryptor</strong> before considering any other option for data you believe is unrecoverable.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a decryptor published by your EDR/AV vendor for the identified family, if one exists.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: the No More Ransom Project's Decryption Tools directory — free, community-maintained, no vendor account needed.</p>
+<li><strong>CLI / open-source alternative</strong>: the No More Ransom Project's Decryption Tools directory — free, community-maintained, no vendor account needed.</li>
+</ul>
 </li>
 <li>
 <p><strong>Watch for reinfection and for data-leak publication</strong> tied to this incident.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: threat-intelligence / dark-web monitoring subscription.</li>
 <li><strong>CLI / open-source alternative</strong>: manually check public ransomware leak-site trackers, and temporarily raise alert priority on this incident's IOCs in your existing monitoring.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notification-escalation">6. Notification &amp; Escalation<a class="headerlink" href="#6-notification-escalation" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1954,6 +1990,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

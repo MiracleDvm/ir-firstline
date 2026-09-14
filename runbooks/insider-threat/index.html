@@ -1698,7 +1698,7 @@
 
 
 <h1 id="insider-threat">Insider Threat<a class="headerlink" href="#insider-threat" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>Open this runbook when any of the following appear, alone or together:</p>
@@ -1731,96 +1731,104 @@
     I --&gt; J[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirm the report is credible.</strong> Cross-check the alert against logs for the specific account involved — not the whole environment.</li>
-<li><strong>Dedicated tool</strong>: SIEM/UEBA console, pivoted to the user.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: manually review the account's authentication and file-access logs — Windows Security Event Log, or <code>auditd</code> logs on Linux — for the relevant time window.</p>
+<p><strong>Confirm the report is credible.</strong> Cross-check the alert against logs for the specific account involved — not the whole environment.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: SIEM/UEBA console, pivoted to the user.</li>
+<li><strong>CLI / open-source alternative</strong>: manually review the account's authentication and file-access logs — Windows Security Event Log, or <code>auditd</code> logs on Linux — for the relevant time window.</li>
+</ul>
 </li>
 <li>
 <p><strong>Do not take any containment or confrontational action yourself.</strong> Escalate immediately to L2 and your incident lead with what you have.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your case-management/ticketing platform, flagged as a restricted-visibility case.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: TheHive with case visibility limited to named responders, or a private, access-limited channel — avoid your team's normal shared channel.</p>
+<li><strong>CLI / open-source alternative</strong>: TheHive with case visibility limited to named responders, or a private, access-limited channel — avoid your team's normal shared channel.</li>
+</ul>
 </li>
 <li>
 <p><strong>Preserve the triggering evidence exactly as found</strong> — screenshot, log excerpt, export — without alerting the subject or their colleagues that an investigation has started.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: SIEM case export / EDR forensic snapshot.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually export the relevant log lines to a timestamped file; record exact system times and your own actions for a clean audit trail.</p>
+<li><strong>CLI / open-source alternative</strong>: manually export the relevant log lines to a timestamped file; record exact system times and your own actions for a clean audit trail.</li>
+</ul>
 </li>
 <li>
 <p><strong>Note whether the person still has active access right now</strong> — currently employed, on notice, or already departed. This changes how urgently L2 needs to move.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: HR/IAM system employee-status lookup.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: check the account's last successful authentication and current group memberships directly in your directory service.</p>
+<li><strong>CLI / open-source alternative</strong>: check the account's last successful authentication and current group memberships directly in your directory service.</li>
+</ul>
 </li>
 <li>
 <p><strong>Confirm the authorization path before anything further happens.</strong> Nothing beyond detection and escalation should proceed without written sign-off from the appropriate stakeholders (see L2 Action 1).</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your incident-management platform's approval workflow.</li>
 <li><strong>CLI / open-source alternative</strong>: a simple written approval (email, or a signed ticket comment) kept as part of the case record.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-l2-actions">5. L2 Actions<a class="headerlink" href="#5-l2-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Involve the right people before proceeding.</strong> Typically HR, legal counsel, and the subject's manager, alongside your investigation lead. Nothing past this point happens without their sign-off.</li>
-<li><strong>Dedicated tool</strong>: your incident-management platform's stakeholder/approval workflow.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: a written record (email thread, signed ticket) naming who authorized what, kept with the case file.</p>
+<p><strong>Involve the right people before proceeding.</strong> Typically HR, legal counsel, and the subject's manager, alongside your investigation lead. Nothing past this point happens without their sign-off.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: your incident-management platform's stakeholder/approval workflow.</li>
+<li><strong>CLI / open-source alternative</strong>: a written record (email thread, signed ticket) naming who authorized what, kept with the case file.</li>
+</ul>
 </li>
 <li>
 <p><strong>Once authorized, freeze the subject's access all at once</strong> — application entitlements, system/service accounts, remote access (VPN, tokens), and physical access (badge) — to avoid tipping them off between steps.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: IAM/PAM console bulk revoke, combined with the physical access control system.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>Disable-ADAccount</code> or your directory service's equivalent for the account; manual badge deactivation via the building system; manual removal of VPN/remote-access profiles.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>Disable-ADAccount</code> or your directory service's equivalent for the account; manual badge deactivation via the building system; manual removal of VPN/remote-access profiles.</li>
+</ul>
 </li>
 <li>
 <p><strong>If the subject remains at work pending the outcome, reduce access to the minimum needed</strong> rather than removing it outright — this avoids alerting them prematurely while you finish scoping.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: least-privilege / just-in-time access platform.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually adjust group memberships to a restricted baseline in your directory service.</p>
+<li><strong>CLI / open-source alternative</strong>: manually adjust group memberships to a restricted baseline in your directory service.</li>
+</ul>
 </li>
 <li>
 <p><strong>Investigate without tipping off the subject</strong>: authentication logs, file/data access history, and — with proper authorization — the content of their work devices and accounts.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: forensic imaging platform, DLP investigation console.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: standard host forensics tooling (e.g., a free disk imager, native OS log review) — see <code>runbooks/account-compromise.md</code> for the general log-investigation technique; this runbook covers what's specific to the insider angle.</p>
+<li><strong>CLI / open-source alternative</strong>: standard host forensics tooling (e.g., a free disk imager, native OS log review) — see <code>runbooks/account-compromise.md</code> for the general log-investigation technique; this runbook covers what's specific to the insider angle.</li>
+</ul>
 </li>
 <li>
 <p><strong>Review any code, scripts, scheduled tasks, or automation the subject created or had access to</strong>, for anything that could serve as a backdoor or sabotage mechanism.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: source-control audit tooling, EDR persistence-hunting.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually review commit history and scheduled tasks/cron jobs on systems the subject administered; Sysinternals Autoruns for Windows persistence review.</p>
+<li><strong>CLI / open-source alternative</strong>: manually review commit history and scheduled tasks/cron jobs on systems the subject administered; Sysinternals Autoruns for Windows persistence review.</li>
+</ul>
 </li>
 <li>
 <p><strong>Determine the full scope</strong>: what data or systems were accessed, over what time period, and what left the organization's control.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: DLP/CASB activity log, data classification platform.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually correlate file-access timestamps against outbound transfer logs (email, cloud upload, removable media) from whatever logging you have.</p>
+<li><strong>CLI / open-source alternative</strong>: manually correlate file-access timestamps against outbound transfer logs (email, cloud upload, removable media) from whatever logging you have.</li>
+</ul>
 </li>
 <li>
 <p><strong>If malicious or fraudulent activity is confirmed, stop independent technical investigation and hand off to legal counsel</strong> — and law enforcement, at their direction — with the evidence you've gathered. Don't keep digging on your own past this point.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your case-management platform's evidence-export / chain-of-custody feature.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a documented, timestamped evidence package (with hashes of exported files/logs), handed over per your legal team's instructions.</p>
+<li><strong>CLI / open-source alternative</strong>: a documented, timestamped evidence package (with hashes of exported files/logs), handed over per your legal team's instructions.</li>
+</ul>
 </li>
 <li>
 <p><strong>If nothing malicious is ultimately confirmed, restore the person's access and close the case discreetly.</strong> A cleared employee shouldn't carry a visible mark from the investigation.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: IAM console access restoration.</li>
 <li><strong>CLI / open-source alternative</strong>: reverse the same manual steps used to freeze access.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notification-escalation">6. Notification &amp; Escalation<a class="headerlink" href="#6-notification-escalation" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1944,6 +1952,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

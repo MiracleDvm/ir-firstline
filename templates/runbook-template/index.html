@@ -1707,7 +1707,7 @@ both languages — a runbook is not delivered until both exist.</p>
 becomes <strong>v1.0 (validated)</strong> once a <code>real-world-tested</code> Issue is closed
 against it — never set that status yourself.</p>
 </blockquote>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>List the concrete, observable signals that mean "open this runbook" — alert
@@ -1757,9 +1757,7 @@ section 4, covering investigation and eradication steps.</p>
 <p>Use this exact generic wording (translated, never with a number added) —
 do not name a specific authority or a notification deadline:</p>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according
-to the regulations applicable in your jurisdiction — consult your legal
-counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <p>What destroys evidence or makes the incident worse — e.g., premature shutdown
@@ -1880,6 +1878,8 @@ copy a source paragraph verbatim.</p>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

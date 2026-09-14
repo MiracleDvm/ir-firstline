@@ -1698,7 +1698,7 @@
 
 
 <h1 id="data-leak-exposure">Data Leak / Exposure<a class="headerlink" href="#data-leak-exposure" title="Permanent link">&para;</a></h1>
-<p><strong>Status:</strong> 0.1 (draft)</p>
+<p class="irf-status"><strong>Status:</strong> 0.1 (draft)</p>
 <hr />
 <h2 id="1-trigger-criteria">1. Trigger Criteria<a class="headerlink" href="#1-trigger-criteria" title="Permanent link">&para;</a></h2>
 <p>Open this runbook when any of the following appear, alone or together:</p>
@@ -1735,103 +1735,111 @@
     J --&gt; K[Notify + lessons learned]</code></pre>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirm the exposure.</strong> Verify the data is real, sensitive, and actually accessible — not a false positive or test data.</li>
-<li><strong>Dedicated tool</strong>: DLP/CASB alert console.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: fetch the reported location yourself (<code>curl -I &lt;url&gt;</code>, or an incognito browser check); for cloud storage, check permissions directly with the provider's free CLI (<code>aws s3api get-bucket-acl</code>, <code>az storage container show-permission</code>, <code>gsutil iam get gs://&lt;bucket&gt;</code>).</p>
+<p><strong>Confirm the exposure.</strong> Verify the data is real, sensitive, and actually accessible — not a false positive or test data.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: DLP/CASB alert console.</li>
+<li><strong>CLI / open-source alternative</strong>: fetch the reported location yourself (<code>curl -I &lt;url&gt;</code>, or an incognito browser check); for cloud storage, check permissions directly with the provider's free CLI (<code>aws s3api get-bucket-acl</code>, <code>az storage container show-permission</code>, <code>gsutil iam get gs://&lt;bucket&gt;</code>).</li>
+</ul>
 </li>
 <li>
 <p><strong>Stop the ongoing exposure immediately</strong> — revoke public access, take the resource offline, or block the recipient/URL, whichever applies.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: cloud security posture management (CSPM) one-click remediation.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: flip the resource to private directly via the provider's free CLI (<code>aws s3api put-bucket-acl --acl private</code>, <code>az storage container set-permission --public-access off</code>, <code>gsutil iam ch -d allUsers</code>); for email, recall the message if supported, or immediately ask the recipient to delete it.</p>
+<li><strong>CLI / open-source alternative</strong>: flip the resource to private directly via the provider's free CLI (<code>aws s3api put-bucket-acl --acl private</code>, <code>az storage container set-permission --public-access off</code>, <code>gsutil iam ch -d allUsers</code>); for email, recall the message if supported, or immediately ask the recipient to delete it.</li>
+</ul>
 </li>
 <li>
 <p><strong>Preserve evidence before doing anything else destructive.</strong> Save the exposed data as found — metadata, timestamps, exact URL or path — without downloading more than needed to confirm scope.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: DLP incident evidence capture.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: screenshots plus a targeted <code>curl</code>/<code>wget</code> of the resource's listing or header (not the full dataset) into a secure evidence folder, with timestamps recorded.</p>
+<li><strong>CLI / open-source alternative</strong>: screenshots plus a targeted <code>curl</code>/<code>wget</code> of the resource's listing or header (not the full dataset) into a secure evidence folder, with timestamps recorded.</li>
+</ul>
 </li>
 <li>
 <p><strong>Get a first read on the likely cause</strong> — misconfiguration, external compromise (look for unfamiliar accounts or IPs accessing the resource before the leak), or a legitimate user's action.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: cloud audit log / SIEM correlation around the exposure window.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manually review the resource's access logs for the period before discovery (<code>aws s3api get-bucket-logging</code> plus log review, or your platform's free audit-log export).</p>
+<li><strong>CLI / open-source alternative</strong>: manually review the resource's access logs for the period before discovery (<code>aws s3api get-bucket-logging</code> plus log review, or your platform's free audit-log export).</li>
+</ul>
 </li>
 <li>
 <p><strong>Check for the same misconfiguration elsewhere.</strong> If one bucket, share, or repository was exposed, sibling resources built from the same template often are too.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: CSPM / cloud security scanner sweeping all resources.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: a short script looping your provider's free CLI across all buckets/containers/repositories, checking public-access flags.</p>
+<li><strong>CLI / open-source alternative</strong>: a short script looping your provider's free CLI across all buckets/containers/repositories, checking public-access flags.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escalate to L2 with what you have</strong> — what was exposed, since when (if known), how it was found, and the likely cause.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your case-management/ticketing platform.</li>
 <li><strong>CLI / open-source alternative</strong>: TheHive, or a shared incident document.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-l2-actions">5. L2 Actions<a class="headerlink" href="#5-l2-actions" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Determine exactly what data was exposed and its sensitivity.</strong> Personal data, credentials, financial records, intellectual property — classify it.</li>
-<li><strong>Dedicated tool</strong>: data classification / DLP content-inspection tool.</li>
 <li>
-<p><strong>CLI / open-source alternative</strong>: sample and grep the exposed dataset for patterns (email address formats, card-number-like sequences) to characterize its contents without exfiltrating more of it yourself.</p>
+<p><strong>Determine exactly what data was exposed and its sensitivity.</strong> Personal data, credentials, financial records, intellectual property — classify it.</p>
+<ul>
+<li><strong>Dedicated tool</strong>: data classification / DLP content-inspection tool.</li>
+<li><strong>CLI / open-source alternative</strong>: sample and grep the exposed dataset for patterns (email address formats, card-number-like sequences) to characterize its contents without exfiltrating more of it yourself.</li>
+</ul>
 </li>
 <li>
 <p><strong>Determine how long the data was exposed and who could plausibly have accessed it.</strong></p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: cloud audit log analytics / CASB access history.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: export and grep the resource's raw access logs for the exposure window; for a public resource, check search-engine caches to see if it was indexed.</p>
+<li><strong>CLI / open-source alternative</strong>: export and grep the resource's raw access logs for the exposure window; for a public resource, check search-engine caches to see if it was indexed.</li>
+</ul>
 </li>
 <li>
 <p><strong>Check whether the leaked data has already spread</strong> — search engines, paste sites, public code repositories, or a leak-site tracker if a ransomware group is implicated.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: threat-intelligence / dark-web and leak-site monitoring service.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: manual search-engine queries for distinctive strings from the dataset, a public paste-site search, and free ransomware leak-site trackers where relevant.</p>
+<li><strong>CLI / open-source alternative</strong>: manual search-engine queries for distinctive strings from the dataset, a public paste-site search, and free ransomware leak-site trackers where relevant.</li>
+</ul>
 </li>
 <li>
 <p><strong>If a specific individual appears to be the source, involve HR and legal before taking any further action</strong> — do not unilaterally search a named employee's private files or communications.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: your organization's established HR/legal escalation process.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: none — this step has no technical substitute. If a deeper investigation of a specific user's activity is warranted, follow <code>insider-threat.md</code> once HR/legal has authorized it.</p>
+<li><strong>CLI / open-source alternative</strong>: none — this step has no technical substitute. If a deeper investigation of a specific user's activity is warranted, follow <code>insider-threat.md</code> once HR/legal has authorized it.</li>
+</ul>
 </li>
 <li>
 <p><strong>If external attacker compromise is the likely cause, link this incident to the relevant runbook and continue eradication there</strong> rather than duplicating that work here.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: SIEM/EDR case linking.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: cross-reference the same IOCs and timeline in your shared incident document; follow <code>account-compromise.md</code> or <code>ransomware.md</code> as applicable.</p>
+<li><strong>CLI / open-source alternative</strong>: cross-reference the same IOCs and timeline in your shared incident document; follow <code>account-compromise.md</code> or <code>ransomware.md</code> as applicable.</li>
+</ul>
 </li>
 <li>
 <p><strong>Request takedown of any copies posted publicly.</strong> Contact the hosting provider, registrar, or platform's abuse contact with evidence attached.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: a brand-protection / takedown service.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: <code>whois</code> the domain or hosting provider yourself and email their abuse contact directly with the URL, screenshots, and timestamps.</p>
+<li><strong>CLI / open-source alternative</strong>: <code>whois</code> the domain or hosting provider yourself and email their abuse contact directly with the URL, screenshots, and timestamps.</li>
+</ul>
 </li>
 <li>
 <p><strong>Fix the root cause broadly, not just the single exposed resource.</strong> Correct the underlying permission template, IAM policy, or process that allowed the exposure, then re-run the sweep from L1 action 5 across the whole environment.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: infrastructure-as-code policy scanner / CSPM auto-remediation.</li>
-<li>
-<p><strong>CLI / open-source alternative</strong>: update the shared provisioning template (Terraform, CloudFormation, or your manual checklist) and manually re-check every similar resource.</p>
+<li><strong>CLI / open-source alternative</strong>: update the shared provisioning template (Terraform, CloudFormation, or your manual checklist) and manually re-check every similar resource.</li>
+</ul>
 </li>
 <li>
 <p><strong>Monitor for continued spread and for signs the data is being used</strong> — targeted phishing referencing the leaked data, or fraud attempts against exposed individuals.</p>
-</li>
+<ul>
 <li><strong>Dedicated tool</strong>: threat-intelligence feed tuned to this incident's indicators.</li>
 <li><strong>CLI / open-source alternative</strong>: a scheduled search-engine/paste-site query for distinctive dataset strings, continued for several weeks.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notification-escalation">6. Notification &amp; Escalation<a class="headerlink" href="#6-notification-escalation" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notify your competent authority (national CERT, DPO, regulator) according to the regulations applicable in your jurisdiction — consult your legal counsel. See <code>finding-your-csirt.md</code> to identify who to contact.</p>
+<p>Escalate internally first — brief your SOC/IR lead and management with what you've confirmed and what's still uncertain. The decision to notify anyone outside your organization (a national CERT, a regulator, law enforcement) belongs to your organization's leadership and legal/DPO function, not to the responding analyst. See <code>finding-your-csirt.md</code> if your organization needs help identifying which external body to reach.</p>
 </blockquote>
 <h2 id="7-pitfalls-to-avoid">7. Pitfalls to Avoid<a class="headerlink" href="#7-pitfalls-to-avoid" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1955,6 +1963,8 @@
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../assets/search-lang.js"></script>
       
     
   </body>

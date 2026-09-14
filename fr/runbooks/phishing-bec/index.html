@@ -1698,7 +1698,7 @@
 
 
 <h1 id="phishing-compromission-de-messagerie-professionnelle-bec">Phishing / Compromission de messagerie professionnelle (BEC)<a class="headerlink" href="#phishing-compromission-de-messagerie-professionnelle-bec" title="Permanent link">&para;</a></h1>
-<p><strong>Statut :</strong> 0.1 (brouillon)</p>
+<p class="irf-status"><strong>Statut :</strong> 0.1 (brouillon)</p>
 <hr />
 <h2 id="1-criteres-de-declenchement">1. Critères de déclenchement<a class="headerlink" href="#1-criteres-de-declenchement" title="Permanent link">&para;</a></h2>
 <p>Ouvrez ce runbook dès que l'un de ces signaux apparaît, seul ou combiné :</p>
@@ -1732,110 +1732,118 @@
     I --&gt; J[Notifier + tirer les leçons]</code></pre>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Confirmez le signalement.</strong> Récupérez le message suspect lui-même — en-têtes, corps, pièces jointes, liens — sans ouvrir de pièce jointe ni suivre de lien depuis un appareil ayant accès à des données sensibles ou des identifiants.</li>
-<li><strong>Outil dédié</strong> : trace des messages / vue de mise en quarantaine de la passerelle de sécurité email.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : exportez le message brut (<code>.eml</code>) via « afficher la source » / « télécharger le message » dans le client de messagerie, et examinez-le hors ligne sur une machine isolée.</p>
+<p><strong>Confirmez le signalement.</strong> Récupérez le message suspect lui-même — en-têtes, corps, pièces jointes, liens — sans ouvrir de pièce jointe ni suivre de lien depuis un appareil ayant accès à des données sensibles ou des identifiants.</p>
+<ul>
+<li><strong>Outil dédié</strong> : trace des messages / vue de mise en quarantaine de la passerelle de sécurité email.</li>
+<li><strong>Alternative CLI / open source</strong> : exportez le message brut (<code>.eml</code>) via « afficher la source » / « télécharger le message » dans le client de messagerie, et examinez-le hors ligne sur une machine isolée.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si une demande financière est en jeu (virement, modification de coordonnées de paiement, cartes-cadeaux), vérifiez-la hors bande avant d'agir</strong> — appelez le demandeur à un numéro déjà enregistré, jamais celui fourni dans le message.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : un annuaire de contacts fournisseurs/dirigeants préétabli dans votre système financier.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : une liste de contacts partagée, hors ligne (tableur ou fiche imprimée), maintenue en dehors de la messagerie.</p>
+<li><strong>Alternative CLI / open source</strong> : une liste de contacts partagée, hors ligne (tableur ou fiche imprimée), maintenue en dehors de la messagerie.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si un virement a déjà été effectué, contactez immédiatement votre banque ou prestataire de paiement pour demander un rappel ou un blocage.</strong> La rapidité compte ici plus que presque partout ailleurs dans ce projet — les fenêtres de rappel se ferment en quelques heures.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : la hotline fraude/litige de votre banque ou son portail de signalement de fraude en ligne.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : il n'existe pas d'alternative CLI à un appel à votre banque — faites-le immédiatement, et confirmez par écrit ensuite pour la traçabilité.</p>
+<li><strong>Alternative CLI / open source</strong> : il n'existe pas d'alternative CLI à un appel à votre banque — faites-le immédiatement, et confirmez par écrit ensuite pour la traçabilité.</li>
+</ul>
 </li>
 <li>
 <p><strong>Identifiez qui d'autre a reçu le même message</strong>, et si quelqu'un a cliqué sur un lien, ouvert une pièce jointe, ou saisi des identifiants.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : recherche « qui a reçu ceci » de la passerelle de sécurité email, ou corrélation SIEM.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : recherchez dans les logs de votre serveur de messagerie le même expéditeur, sujet, ou identifiant de message à travers les boîtes aux lettres.</p>
+<li><strong>Alternative CLI / open source</strong> : recherchez dans les logs de votre serveur de messagerie le même expéditeur, sujet, ou identifiant de message à travers les boîtes aux lettres.</li>
+</ul>
 </li>
 <li>
 <p><strong>Confinez tout compte ayant saisi des identifiants ou montrant des signes de compromission</strong> : désactivez-le, révoquez les sessions actives, et réinitialisez son mot de passe — voir <code>runbooks/account-compromise.md</code> pour la procédure complète.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : console d'administration du fournisseur d'identité.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : les mêmes commandes gratuites que dans le runbook Compromission de compte (ex. <code>Disable-ADAccount</code>, <code>Revoke-MgUserSignInSession</code>).</p>
+<li><strong>Alternative CLI / open source</strong> : les mêmes commandes gratuites que dans le runbook Compromission de compte (ex. <code>Disable-ADAccount</code>, <code>Revoke-MgUserSignInSession</code>).</li>
+</ul>
 </li>
 <li>
 <p><strong>Bloquez l'expéditeur et tout domaine, lien ou pièce jointe malveillants trouvés</strong>, et supprimez le message des autres boîtes de réception si possible.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : déploiement de politique de la passerelle de sécurité email.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : une règle côté serveur de messagerie bloquant l'expéditeur/le sujet, ou un script supprimant le message via la CLI d'administration gratuite de votre plateforme de messagerie.</p>
+<li><strong>Alternative CLI / open source</strong> : une règle côté serveur de messagerie bloquant l'expéditeur/le sujet, ou un script supprimant le message via la CLI d'administration gratuite de votre plateforme de messagerie.</li>
+</ul>
 </li>
 <li>
 <p><strong>Escaladez vers le L2 avec ce que vous avez</strong> — le message lui-même, qui a été ciblé, et si des identifiants ou de l'argent ont été compromis.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : votre plateforme de gestion de cas/tickets.</li>
 <li><strong>Alternative CLI / open source</strong> : TheHive, ou un document d'incident partagé.</li>
+</ul>
+</li>
 </ol>
 <h2 id="5-actions-l2">5. Actions L2<a class="headerlink" href="#5-actions-l2" title="Permanent link">&para;</a></h2>
 <ol>
-<li><strong>Analysez le message et toute pièce jointe/lien dans un environnement isolé ou sandboxé.</strong> Vérifiez les en-têtes (résultats SPF/DKIM/DMARC, serveur d'origine) et soumettez liens/pièces jointes/hashs à un service d'analyse.</li>
-<li><strong>Outil dédié</strong> : sandbox d'entreprise / plateforme de threat intelligence.</li>
 <li>
-<p><strong>Alternative CLI / open source</strong> : soumettez hashs et URL à VirusTotal, ou détonnez les pièces jointes dans une sandbox gratuite comme Cuckoo ou une VM jetable.</p>
+<p><strong>Analysez le message et toute pièce jointe/lien dans un environnement isolé ou sandboxé.</strong> Vérifiez les en-têtes (résultats SPF/DKIM/DMARC, serveur d'origine) et soumettez liens/pièces jointes/hashs à un service d'analyse.</p>
+<ul>
+<li><strong>Outil dédié</strong> : sandbox d'entreprise / plateforme de threat intelligence.</li>
+<li><strong>Alternative CLI / open source</strong> : soumettez hashs et URL à VirusTotal, ou détonnez les pièces jointes dans une sandbox gratuite comme Cuckoo ou une VM jetable.</li>
+</ul>
 </li>
 <li>
 <p><strong>Déterminez le type de campagne</strong> — collecte d'identifiants, diffusion de malware, ou tentative de fraude BEC — et si elle est ciblée ou opportuniste.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : corrélation de la plateforme de threat intelligence avec des campagnes connues.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : vérifiez manuellement le message dans un annuaire public de phishing comme PhishTank ou Google Safe Browsing.</p>
+<li><strong>Alternative CLI / open source</strong> : vérifiez manuellement le message dans un annuaire public de phishing comme PhishTank ou Google Safe Browsing.</li>
+</ul>
 </li>
 <li>
 <p><strong>Auditez les règles de boîte de réception et l'accès délégué</strong> de chaque compte ayant reçu le message ou montrant des signes de compromission, à la recherche de règles de transfert ou de suppression automatique plantées par l'attaquant.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : inspecteur de règles de la console d'administration de messagerie.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : exportez les règles de boîte de réception/transport via la CLI d'administration gratuite de votre plateforme de messagerie, comme dans <code>runbooks/account-compromise.md</code>.</p>
+<li><strong>Alternative CLI / open source</strong> : exportez les règles de boîte de réception/transport via la CLI d'administration gratuite de votre plateforme de messagerie, comme dans <code>runbooks/account-compromise.md</code>.</li>
+</ul>
 </li>
 <li>
 <p><strong>Déterminez le périmètre complet</strong> : nombre total d'utilisateurs ciblés et affectés, services impliqués, et exposition financière totale si une tentative de fraude a réussi.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : recherche de corrélation SIEM à l'échelle de l'organisation.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : filtrez ou scriptez sur les logs de messagerie et d'authentification exportés à la recherche du même expéditeur, des mêmes liens, ou du même identifiant de message.</p>
+<li><strong>Alternative CLI / open source</strong> : filtrez ou scriptez sur les logs de messagerie et d'authentification exportés à la recherche du même expéditeur, des mêmes liens, ou du même identifiant de message.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si un contenu frauduleux est hébergé en ligne</strong> (page de connexion usurpée, portail de facture frauduleux), identifiez son hébergeur et son bureau d'enregistrement, et déposez une demande d'abus/retrait avec les preuves jointes (en-têtes, captures d'écran, horodatages).</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : un service de protection de marque / de retrait de contenu.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : faites un <code>whois</code> du domaine vous-même, prenez une copie horodatée de la page avec un outil gratuit comme HTTrack, et écrivez directement au contact abus de l'hébergeur.</p>
+<li><strong>Alternative CLI / open source</strong> : faites un <code>whois</code> du domaine vous-même, prenez une copie horodatée de la page avec un outil gratuit comme HTTrack, et écrivez directement au contact abus de l'hébergeur.</li>
+</ul>
 </li>
 <li>
 <p><strong>Durcissez l'authentification email et les défenses de la messagerie.</strong> Confirmez que SPF, DKIM et DMARC sont correctement configurés, désactivez les protocoles d'authentification hérités qui contournent le MFA, et resserrez les filtres selon les indicateurs trouvés.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : configuration de politique de la passerelle de sécurité email.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : publiez ou ajustez vous-même vos enregistrements DNS SPF/DMARC (gratuit, DNS standard) et vérifiez qu'ils résolvent correctement avec <code>dig txt</code> et un vérificateur DMARC gratuit en ligne.</p>
+<li><strong>Alternative CLI / open source</strong> : publiez ou ajustez vous-même vos enregistrements DNS SPF/DMARC (gratuit, DNS standard) et vérifiez qu'ils résolvent correctement avec <code>dig txt</code> et un vérificateur DMARC gratuit en ligne.</li>
+</ul>
 </li>
 <li>
 <p><strong>Si de l'argent a été transféré, travaillez avec la finance pour documenter la perte</strong> et ajoutez une friction temporaire au processus de paiement — vérification hors bande, second validateur — jusqu'à confirmation que la faille de contrôle sous-jacente est corrigée.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : configuration du workflow du système finance/ERP.</li>
-<li>
-<p><strong>Alternative CLI / open source</strong> : une checklist appliquée manuellement exigeant un rappel téléphonique avant toute modification de coordonnées de paiement, jusqu'au rétablissement du contrôle automatisé.</p>
+<li><strong>Alternative CLI / open source</strong> : une checklist appliquée manuellement exigeant un rappel téléphonique avant toute modification de coordonnées de paiement, jusqu'au rétablissement du contrôle automatisé.</li>
+</ul>
 </li>
 <li>
 <p><strong>Surveillez une seconde vague ou une nouvelle tentative contre la même cible.</strong> Les tentatives de BEC réussies sont fréquemment suivies d'une seconde demande, plus urgente, dans les jours qui suivent.</p>
-</li>
+<ul>
 <li><strong>Outil dédié</strong> : une règle d'alerte SIEM ajustée sur les indicateurs confirmés (expéditeur, domaine, motif du message).</li>
 <li><strong>Alternative CLI / open source</strong> : une tâche planifiée de filtrage de journaux surveillant ces mêmes indicateurs.</li>
+</ul>
+</li>
 </ol>
 <h2 id="6-notifications-escalade">6. Notifications &amp; escalade<a class="headerlink" href="#6-notifications-escalade" title="Permanent link">&para;</a></h2>
 <blockquote>
-<p>Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</p>
+<p>Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir <code>finding-your-csirt.md</code> si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.</p>
 </blockquote>
 <h2 id="7-erreurs-a-eviter">7. Erreurs à éviter<a class="headerlink" href="#7-erreurs-a-eviter" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1960,6 +1968,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/search-lang.js"></script>
       
     
   </body>

@@ -9,7 +9,7 @@
   --irf-border-radius: 8px;
   /* Brand color: same hue in both themes, only luminosity adjusts. */
   --irf-brand-dark: #35c5bb;
-  --irf-brand-light: #1c8a80;
+  --irf-brand-light: #12655e;
 }
 
 /* ---------- Dark (default) ---------- */
@@ -42,6 +42,14 @@
 
   --md-code-bg-color: var(--irf-bg-raised);
   --md-code-fg-color: var(--irf-fg);
+
+  /* Material hardcodes the footer (prev/next nav) to near-black regardless
+     of scheme by default — bring it in line with the rest of the page. */
+  --md-footer-bg-color: var(--irf-bg-raised);
+  --md-footer-bg-color--dark: var(--irf-bg);
+  --md-footer-fg-color: var(--irf-fg);
+  --md-footer-fg-color--light: var(--irf-fg-muted);
+  --md-footer-fg-color--lighter: var(--irf-fg-muted);
 }
 
 /* ---------- Light ----------
@@ -52,7 +60,7 @@
   --irf-bg: #eeece7;
   --irf-bg-raised: #f6f4f0;
   --irf-fg: #40434a;
-  --irf-fg-muted: #767b84;
+  --irf-fg-muted: #5f6570;
   --irf-brand: var(--irf-brand-light);
   --irf-brand-tint: #1c8a8014;
   --irf-accent-critical: #a85a3f;
@@ -77,6 +85,12 @@
 
   --md-code-bg-color: #eae8e4;
   --md-code-fg-color: var(--irf-fg);
+
+  --md-footer-bg-color: var(--irf-bg-raised);
+  --md-footer-bg-color--dark: var(--irf-bg);
+  --md-footer-fg-color: var(--irf-fg);
+  --md-footer-fg-color--light: var(--irf-fg-muted);
+  --md-footer-fg-color--lighter: var(--irf-fg-muted);
 }
 
 /* Header and nav tabs sit on the raised surface with a hairline border
@@ -94,6 +108,56 @@
 
 .md-header__button.md-logo :is(img, svg) {
   filter: none;
+}
+
+/* The repo link blends into the header at default weight/color, easy to
+   miss next to the search icon — give it the brand color so it reads as
+   a deliberate affordance, not just more chrome. */
+.md-header .md-source {
+  color: var(--irf-brand);
+  opacity: 0.9;
+}
+
+.md-header .md-source:hover {
+  opacity: 1;
+}
+
+/* Footer gets the same hairline treatment as the header for consistency */
+.md-footer-meta {
+  border-top: 1px solid var(--irf-border);
+}
+
+/* Back-to-top defaults to a fixed position top-center, which sits directly
+   over in-flow content (a Mermaid diagram, in particular) as the page
+   scrolls. Move it out of the content column into the gutter instead. */
+.md-top {
+  top: auto;
+  bottom: 1.2rem;
+  left: auto;
+  right: 1.2rem;
+  margin: 0;
+  transform: none;
+  /* Belt-and-suspenders: with both top and bottom non-auto, a fixed-position
+     box with height:auto stretches to fill the gap between them. Force a
+     content-sized height so it can never balloon into a tall block even if
+     something else on the page reintroduces a non-auto top. */
+  height: max-content;
+  width: max-content;
+}
+
+/* Material's hide/show animation still assumes the default horizontal
+   centering (transform: translate(-50%, .2rem) when hidden) — without this
+   override the button jumps sideways during the fade as it reverts to that
+   centered transform, instead of just fading in place at the right edge. */
+.md-top[hidden] {
+  transform: translateY(0.2rem);
+}
+
+/* Tabs bar hugs the right edge instead of sitting flush left next to the
+   logo — reading order stays Home -> ... -> Contributing, only the
+   block's own alignment within the header row is flipped. */
+.md-tabs__list {
+  justify-content: flex-end;
 }
 
 .md-tabs__link {
@@ -129,6 +193,24 @@
 .md-typeset .admonition.danger > .admonition-title,
 .md-typeset .admonition.warning > .admonition-title {
   background-color: color-mix(in srgb, var(--irf-accent-critical) 12%, transparent);
+}
+
+/* Status line — a small, calm badge instead of a bare bold sentence.
+   Still shows the true 0.x/draft state (never soften the substance,
+   only how much visual weight it carries on the page). */
+.md-typeset p.irf-status {
+  display: inline-block;
+  margin: 0.2rem 0 1.5rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.78rem;
+  border: 1px solid var(--irf-border);
+  border-radius: 999px;
+  background: var(--irf-bg-raised);
+  color: var(--irf-fg-muted);
+}
+
+.md-typeset p.irf-status strong {
+  color: var(--irf-fg);
 }
 
 /* ---------- Homepage runbook grid ---------- */

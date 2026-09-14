@@ -1455,7 +1455,7 @@
 
 
 <h1 id="compromission-dapplicationserveur-web-aide-memoire">Compromission d'application/serveur web — Aide-mémoire<a class="headerlink" href="#compromission-dapplicationserveur-web-aide-memoire" title="Permanent link">&para;</a></h1>
-<p><strong>Statut :</strong> 0.1 (brouillon) — dérivé de <a href="../../runbooks/web-compromise/"><code>runbooks/web-compromise.md</code></a> ; ne pas modifier indépendamment.</p>
+<p class="irf-status"><strong>Statut :</strong> 0.1 (brouillon) — dérivé de <a href="../../runbooks/web-compromise/"><code>runbooks/web-compromise.md</code></a> ; ne pas modifier indépendamment.</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 1. Confirmez la compromission : contenu défacé, fichier inattendu dans la racine web, processus non reconnus, ou alerte WAF/IDS.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2. Confinez l'hôte — isolez un service critique (laissez-le allumé) ou éteignez un hôte non critique.</li>
@@ -1471,7 +1471,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 12. Reconstruisez depuis une image connue saine plutôt que de nettoyer manuellement en cas de doute.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 13. Restaurez le contenu depuis une sauvegarde vérifiée saine et réinitialisez les identifiants de chaque compte affecté.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 14. Surveillez étroitement après le rétablissement du service pour détecter une éventuelle réinfection.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. Notifiez votre autorité compétente (CERT national, DPO, régulateur) selon la réglementation applicable à votre juridiction — consultez votre conseil juridique. Voir <code>finding-your-csirt.md</code> pour identifier qui contacter.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 15. Escaladez d'abord en interne — informez votre responsable SOC/IR et la direction de ce que vous avez confirmé et de ce qui reste incertain. La décision de notifier une entité externe (CERT national, régulateur, forces de l'ordre) revient à la direction et au service juridique/DPO de votre organisation, pas à l'analyste qui répond à l'incident. Voir <code>finding-your-csirt.md</code> si votre organisation a besoin d'aide pour identifier l'organisme externe à contacter.</li>
 </ul>
 
 
@@ -1574,6 +1574,8 @@
     
     
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../assets/search-lang.js"></script>
       
     
   </body>
