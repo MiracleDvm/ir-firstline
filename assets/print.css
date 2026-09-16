@@ -3,13 +3,98 @@
    this file only fixes the handful of things it doesn't cover. */
 
 @media print {
+  /* Landscape by default: the decision tree needs real page width to be
+     both complete and legible without a reader having to zoom, and CSS
+     can't set orientation per page-range in a live browser print — this
+     is a document-wide default. Ordinary text still reads fine in
+     landscape, just with a longer line length; a reader who prefers
+     portrait can still switch it back in the print dialog. */
+  @page {
+    size: landscape;
+    margin: 1.2cm 1cm;
+  }
+
+  /* The "Download PDF" button that triggers this print itself has no
+     reason to appear in the output. */
+  .irf-download-pdf {
+    display: none !important;
+  }
+
+  /* Brand identity for the printed/PDF output: a small cover strip above
+     the title, and the brand teal carried through onto headings instead of
+     Material's muted print gray. Chrome's print dialog doesn't reliably
+     support CSS running headers/footers (@page margin boxes), so this is
+     a one-time strip at the top of the document rather than a per-page
+     header — the realistic ceiling for a pure print-stylesheet approach. */
+  .irf-print-header {
+    display: flex !important;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid #12655e;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #12655e;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .irf-print-header svg {
+    fill: #12655e;
+  }
+
+  .md-typeset h1 {
+    color: #12655e !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .md-typeset h2 {
+    border-bottom: 1px solid #ddd9d0;
+    padding-bottom: 0.2em;
+  }
+
   /* Mermaid diagrams render as inline SVG with background fills; most
-     browsers strip background colors on print unless told otherwise. */
-  .mermaid,
-  .mermaid svg {
+     browsers strip background colors on print unless told otherwise.
+     print-color-adjust is inherited, so setting it on the host element
+     reaches the diagram's content even though it renders in a closed
+     shadow root that a direct `.mermaid svg` selector can't target. */
+  .mermaid {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
     color-adjust: exact;
+  }
+
+  /* theme.css deliberately gives .mermaid a fixed 1700px width on screen
+     (see the comment there) so the diagram doesn't shrink to fit the
+     narrow content column, with the collapsible box scrolling
+     horizontally to show the rest. A printed page can't scroll — at that
+     same fixed width the diagram would just be cut off past the page
+     edge. Let it shrink back to the page width here instead. */
+  .mermaid {
+    width: 100% !important;
+  }
+
+  .irf-mermaid-scroll {
+    overflow-x: visible;
+  }
+
+  /* position:sticky behaves unpredictably across paginated print output —
+     reset the collapse-bar sticky behavior back to normal in-flow. */
+  .md-typeset .note > summary {
+    position: static;
+  }
+
+  /* The decision tree is collapsed/expanded via <details> on screen — if a
+     reader folded it before printing, force its content visible anyway so
+     the diagram isn't silently missing from the PDF. <details> hides its
+     content natively without the open attribute; display:block on the
+     element itself doesn't override that, so target the children. */
+  .md-typeset details:not([open]) > :not(summary) {
+    display: block !important;
   }
 
   /* Keep quick-reference checkboxes visible instead of a barely-there

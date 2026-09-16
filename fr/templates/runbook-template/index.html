@@ -1731,12 +1731,21 @@ traduite, donc un diagramme resté en anglais sur la version française
 sonne cassé. Garde les mêmes identifiants de nœuds, flèches et logique de
 branchement dans les deux versions, pour que les deux diagrammes ne
 divergent jamais structurellement, même si leur texte visible diffère.</p>
-<pre class="mermaid"><code>flowchart TD
-    A[Alerte] --&gt; B{Isoler ?}
-    B --&gt;|Oui| C[Préserver les preuves]
-    B --&gt;|Non| D[Poursuivre la surveillance]
-    C --&gt; E[Escalade L2]
-    D --&gt; A</code></pre>
+<p>Utilise <code>flowchart LR</code> (gauche à droite), pas <code>TD</code> — un arbre vertical de
+10 étapes ou plus devient très long et impose un défilement lourd. Encadre-le
+dans un bloc repliable (<code>???+ note "..."</code>, ouvert par défaut) pour qu'il ne
+domine pas la page et que le lecteur puisse le replier une fois vu :</p>
+<div class="highlight"><pre><span></span><code>???+ note &quot;Arbre de décision — cliquer pour réduire&quot;
+
+<span class="sb">    ```mermaid</span>
+<span class="s">    flowchart LR</span>
+<span class="s">        A[Alerte] --&gt; B{Isoler ?}</span>
+<span class="s">        B --&gt;|Oui| C[Préserver les preuves]</span>
+<span class="s">        B --&gt;|Non| D[Poursuivre la surveillance]</span>
+<span class="s">        C --&gt; E[Escalade L2]</span>
+<span class="s">        D --&gt; A</span>
+<span class="sb">    ```</span>
+</code></pre></div>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <p>Numérotées, classées par priorité. <strong>Chaque</strong> action technique doit proposer
 les deux options — un analyste sans EDR ni SIEM commercial doit pouvoir
@@ -1886,6 +1895,10 @@ texte original — ne jamais copier un paragraphe source tel quel.</p>
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../assets/search-lang.js"></script>
+      
+        <script src="../../../assets/download-pdf.js"></script>
+      
+        <script src="../../../assets/mermaid-scroll.js"></script>
       
     
   </body>

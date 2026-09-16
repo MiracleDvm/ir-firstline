@@ -1719,7 +1719,9 @@
 </ul>
 <p>These are internal operational targets to challenge with real incident data — not regulatory deadlines.</p>
 <h2 id="3-decision-tree">3. Decision Tree<a class="headerlink" href="#3-decision-tree" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Decision tree — click to collapse</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Exposed / leaked data reported] --&gt; B{Exposure still active?}
     B --&gt;|Yes| C[Stop the exposure now]
     B --&gt;|No| D[Preserve evidence]
@@ -1733,6 +1735,7 @@
     H --&gt; I
     I --&gt; J[Request takedown + monitor spread]
     J --&gt; K[Notify + lessons learned]</code></pre>
+</details>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1855,12 +1858,12 @@
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1530/">T1530</a> — Data from Cloud Storage.</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1567/">T1567</a> — Exfiltration Over Web Service.</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1213/">T1213</a> — Data from Information Repositories.</li>
-<li>Tools cited as examples: the AWS CLI, Azure CLI, and <code>gcloud</code>/<code>gsutil</code> (all free), Aleph (open-source tool for investigating leaked document sets), TheHive, MISP.</li>
+<li>Tools cited as examples: the <a href="https://aws.amazon.com/cli/">AWS CLI</a>, <a href="https://learn.microsoft.com/en-us/cli/azure/">Azure CLI</a>, and <a href="https://cloud.google.com/cli"><code>gcloud</code></a>/<a href="https://cloud.google.com/storage/docs/gsutil"><code>gsutil</code></a> (all free), <a href="https://github.com/alephdata/aleph">Aleph</a> (open-source tool for investigating leaked document sets), <a href="https://github.com/TheHive-Project/TheHive">TheHive</a>, <a href="https://www.misp-project.org/">MISP</a>.</li>
 </ul>
 <h2 id="9-sources-of-inspiration">9. Sources of Inspiration<a class="headerlink" href="#9-sources-of-inspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CERT Société Générale — IRM #11 "Information Leakage" (v2.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
-<li>CERT aDvens — IRM-11 "Fuite de données" (2025-10-27) — <code>github.com/cert-advens/IRM</code> — CC BY 3.0 Unported.</li>
+<li>CERT Société Générale — IRM #11 "Information Leakage" (v2.0) — <a href="https://github.com/certsocietegenerale/IRM">github.com/certsocietegenerale/IRM</a> — CC BY 3.0 Unported.</li>
+<li>CERT aDvens — IRM-11 "Fuite de données" (2025-10-27) — <a href="https://github.com/cert-advens/IRM">github.com/cert-advens/IRM</a> — CC BY 3.0 Unported.</li>
 </ul>
 
 
@@ -1965,6 +1968,10 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../assets/search-lang.js"></script>
+      
+        <script src="../../assets/download-pdf.js"></script>
+      
+        <script src="../../assets/mermaid-scroll.js"></script>
       
     
   </body>

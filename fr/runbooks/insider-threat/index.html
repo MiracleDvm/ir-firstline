@@ -1718,7 +1718,9 @@
 </ul>
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires. Contrairement à la plupart des runbooks de ce projet, la vitesse passe ici après l'autorisation : agir avant que les bonnes personnes aient donné leur accord est le risque principal, pas le délai.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Arbre de décision — cliquer pour réduire</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Activité interne suspecte] --&gt; B{Caractère malveillant/frauduleux confirmé ?}
     B --&gt;|Incertain| C[Escalade L2 - investigation discrète]
     B --&gt;|Oui| D[Escalade L2 - arrêter l'action technique]
@@ -1729,6 +1731,7 @@
     G --&gt;|Non| H[Restaurer l'accès, clôturer le dossier]
     D --&gt; I[Transmettre au juridique/RH]
     I --&gt; J[Notifier + tirer les leçons]</code></pre>
+</details>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1844,12 +1847,12 @@
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1078/">T1078</a> — Valid Accounts (pertinent quand l'accès d'un employé parti n'a pas été révoqué).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1531/">T1531</a> — Account Access Removal (un motif de sabotage courant : verrouiller les autres en partant).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1052/">T1052</a> — Exfiltration Over Physical Medium (le classique chemin d'exfiltration par support amovible).</li>
-<li>Outils cités en exemple : <code>auditd</code>, la suite Sysinternals (Autoruns, Sysmon), TheHive, MISP, osquery, outils gratuits d'imagerie disque.</li>
+<li>Outils cités en exemple : <a href="https://github.com/linux-audit/audit-userspace"><code>auditd</code></a>, la suite <a href="https://learn.microsoft.com/en-us/sysinternals/">Sysinternals</a> (<a href="https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns">Autoruns</a>, <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon">Sysmon</a>), <a href="https://github.com/TheHive-Project/TheHive">TheHive</a>, <a href="https://www.misp-project.org/">MISP</a>, <a href="https://osquery.io/">osquery</a>, outils gratuits d'imagerie disque.</li>
 </ul>
 <h2 id="9-sources-dinspiration">9. Sources d'inspiration<a class="headerlink" href="#9-sources-dinspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CERT Société Générale — IRM #12 « Insider Abuse » (v2.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
-<li>CERT aDvens — IRM-12 « Attaques en interne » (2025-10-27) — <code>github.com/cert-advens/IRM</code> — CC BY 3.0 Unported.</li>
+<li>CERT Société Générale — IRM #12 « Insider Abuse » (v2.0) — <a href="https://github.com/certsocietegenerale/IRM">github.com/certsocietegenerale/IRM</a> — CC BY 3.0 Unported.</li>
+<li>CERT aDvens — IRM-12 « Attaques en interne » (2025-10-27) — <a href="https://github.com/cert-advens/IRM">github.com/cert-advens/IRM</a> — CC BY 3.0 Unported.</li>
 </ul>
 
 
@@ -1954,6 +1957,10 @@
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../assets/search-lang.js"></script>
+      
+        <script src="../../../assets/download-pdf.js"></script>
+      
+        <script src="../../../assets/mermaid-scroll.js"></script>
       
     
   </body>

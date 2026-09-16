@@ -1719,7 +1719,9 @@
 </ul>
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Arbre de décision — cliquer pour réduire</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Note de rançon / modifications massives de fichiers] --&gt; B[Isoler le poste]
     B --&gt; C[Préserver les preuves]
     C --&gt; D{Partages ou plusieurs postes affectés ?}
@@ -1730,6 +1732,7 @@
     G --&gt; H[Éradiquer + reconstruire]
     H --&gt; I[Restaurer depuis une sauvegarde saine]
     I --&gt; J[Notifier + tirer les leçons]</code></pre>
+</details>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1881,13 +1884,13 @@
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1486/">T1486</a> — Data Encrypted for Impact.</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1490/">T1490</a> — Inhibit System Recovery (la suppression des sauvegardes/clichés instantanés est un comportement courant des ransomwares).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/tactics/TA0001/">TA0001</a> — Initial Access (vérifiez les techniques de cette tactique pour trouver le vecteur d'infection).</li>
-<li>Outils cités en exemple : YARA, DFIR-ORC (outil de triage open source initialement publié par l'ANSSI), la suite Sysinternals, Volatility, TheHive, le projet No More Ransom, ID Ransomware.</li>
+<li>Outils cités en exemple : <a href="https://virustotal.github.io/yara/">YARA</a>, <a href="https://github.com/DFIR-ORC/dfir-orc">DFIR-ORC</a> (outil de triage open source initialement publié par l'ANSSI), la suite <a href="https://learn.microsoft.com/en-us/sysinternals/">Sysinternals</a>, <a href="https://volatilityfoundation.org/">Volatility</a>, <a href="https://github.com/TheHive-Project/TheHive">TheHive</a>, le projet <a href="https://www.nomoreransom.org/">No More Ransom</a>, <a href="https://id-ransomware.malwarehunterteam.com/">ID Ransomware</a>.</li>
 </ul>
 <h2 id="9-sources-dinspiration">9. Sources d'inspiration<a class="headerlink" href="#9-sources-dinspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CERT Société Générale — IRM #17 « Ransomware » (v2.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
-<li>CERT aDvens — IRM-17 « Attaque par rançongiciel » (2025-10-27) — <code>github.com/cert-advens/IRM</code> — CC BY 3.0 Unported.</li>
-<li>Counteractive — « Playbook: Ransomware » — <code>github.com/counteractive/incident-response-plan-template</code> — Apache License 2.0.</li>
+<li>CERT Société Générale — IRM #17 « Ransomware » (v2.0) — <a href="https://github.com/certsocietegenerale/IRM">github.com/certsocietegenerale/IRM</a> — CC BY 3.0 Unported.</li>
+<li>CERT aDvens — IRM-17 « Attaque par rançongiciel » (2025-10-27) — <a href="https://github.com/cert-advens/IRM">github.com/cert-advens/IRM</a> — CC BY 3.0 Unported.</li>
+<li>Counteractive — « Playbook: Ransomware » — <a href="https://github.com/counteractive/incident-response-plan-template">github.com/counteractive/incident-response-plan-template</a> — Apache License 2.0.</li>
 </ul>
 
 
@@ -1992,6 +1995,10 @@
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../assets/search-lang.js"></script>
+      
+        <script src="../../../assets/download-pdf.js"></script>
+      
+        <script src="../../../assets/mermaid-scroll.js"></script>
       
     
   </body>

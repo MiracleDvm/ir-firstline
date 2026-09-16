@@ -1717,7 +1717,9 @@
 </ul>
 <p>These are internal operational targets to challenge with real incident data — not regulatory deadlines. Note: for a large volumetric attack, actual resolution time often depends on how quickly your upstream ISP or anti-DDoS provider acts, not just your own response speed — escalate to them early rather than waiting to see if internal measures are enough.</p>
 <h2 id="3-decision-tree">3. Decision Tree<a class="headerlink" href="#3-decision-tree" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Decision tree — click to collapse</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Service degraded / DDoS alert] --&gt; B{Confirmed DDoS?}
     B --&gt;|No| C[Investigate as capacity/config issue]
     B --&gt;|Yes| D{Network layer or application layer?}
@@ -1729,6 +1731,7 @@
     H --&gt; I[Confirm recovery to baseline]
     I --&gt; J[Roll back mitigations]
     J --&gt; K[Notify + lessons learned]</code></pre>
+</details>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1850,12 +1853,12 @@
 <ul>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1498/">T1498</a> — Network Denial of Service (direct flood or reflection amplification).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1499/">T1499</a> — Endpoint Denial of Service (including application/service exhaustion floods).</li>
-<li>Tools cited as examples: tcpdump, Wireshark/Tshark, Snort, Suricata, ntop/ntopng, MRTG, Cacti, Nagios, iptables/nftables, Uptime Kuma.</li>
+<li>Tools cited as examples: <a href="https://www.tcpdump.org/">tcpdump</a>, <a href="https://www.wireshark.org/">Wireshark/Tshark</a>, <a href="https://www.snort.org/">Snort</a>, <a href="https://suricata.io/">Suricata</a>, <a href="https://www.ntop.org/">ntop/ntopng</a>, <a href="https://oss.oetiker.ch/mrtg/">MRTG</a>, <a href="https://www.cacti.net/">Cacti</a>, <a href="https://www.nagios.org/">Nagios</a>, <a href="https://www.netfilter.org/">iptables/nftables</a>, <a href="https://github.com/louislam/uptime-kuma">Uptime Kuma</a>.</li>
 </ul>
 <h2 id="9-sources-of-inspiration">9. Sources of Inspiration<a class="headerlink" href="#9-sources-of-inspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CERT Société Générale — IRM #4 "DDoS Incident Response" (v2.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
-<li>CERT aDvens — IRM-04 "Déni de Service Distribué (DDOS)" (2025-10-27) — <code>github.com/cert-advens/IRM</code> — CC BY 3.0 Unported.</li>
+<li>CERT Société Générale — IRM #4 "DDoS Incident Response" (v2.0) — <a href="https://github.com/certsocietegenerale/IRM">github.com/certsocietegenerale/IRM</a> — CC BY 3.0 Unported.</li>
+<li>CERT aDvens — IRM-04 "Déni de Service Distribué (DDOS)" (2025-10-27) — <a href="https://github.com/cert-advens/IRM">github.com/cert-advens/IRM</a> — CC BY 3.0 Unported.</li>
 </ul>
 
 
@@ -1960,6 +1963,10 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../assets/search-lang.js"></script>
+      
+        <script src="../../assets/download-pdf.js"></script>
+      
+        <script src="../../assets/mermaid-scroll.js"></script>
       
     
   </body>

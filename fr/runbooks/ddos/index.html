@@ -1717,7 +1717,9 @@
 </ul>
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires. Remarque : pour une attaque volumétrique importante, le délai réel de résolution dépend souvent de la rapidité d'action de votre FAI ou fournisseur anti-DDoS en amont, pas seulement de votre propre vitesse de réponse — escaladez tôt vers eux plutôt que d'attendre de voir si les mesures internes suffisent.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Arbre de décision — cliquer pour réduire</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Service dégradé / alerte DDoS] --&gt; B{DDoS confirmé ?}
     B --&gt;|Non| C[Investiguer comme un problème de capacité/config]
     B --&gt;|Oui| D{Couche réseau ou couche application ?}
@@ -1729,6 +1731,7 @@
     H --&gt; I[Confirmer le retour à la normale]
     I --&gt; J[Retirer les mesures de mitigation]
     J --&gt; K[Notifier + tirer les leçons]</code></pre>
+</details>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1850,12 +1853,12 @@
 <ul>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1498/">T1498</a> — Network Denial of Service (inondation directe ou par amplification par réflexion).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1499/">T1499</a> — Endpoint Denial of Service (y compris les inondations d'épuisement de service/application).</li>
-<li>Outils cités en exemple : tcpdump, Wireshark/Tshark, Snort, Suricata, ntop/ntopng, MRTG, Cacti, Nagios, iptables/nftables, Uptime Kuma.</li>
+<li>Outils cités en exemple : <a href="https://www.tcpdump.org/">tcpdump</a>, <a href="https://www.wireshark.org/">Wireshark/Tshark</a>, <a href="https://www.snort.org/">Snort</a>, <a href="https://suricata.io/">Suricata</a>, <a href="https://www.ntop.org/">ntop/ntopng</a>, <a href="https://oss.oetiker.ch/mrtg/">MRTG</a>, <a href="https://www.cacti.net/">Cacti</a>, <a href="https://www.nagios.org/">Nagios</a>, <a href="https://www.netfilter.org/">iptables/nftables</a>, <a href="https://github.com/louislam/uptime-kuma">Uptime Kuma</a>.</li>
 </ul>
 <h2 id="9-sources-dinspiration">9. Sources d'inspiration<a class="headerlink" href="#9-sources-dinspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CERT Société Générale — IRM #4 « DDoS Incident Response » (v2.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
-<li>CERT aDvens — IRM-04 « Déni de Service Distribué (DDOS) » (2025-10-27) — <code>github.com/cert-advens/IRM</code> — CC BY 3.0 Unported.</li>
+<li>CERT Société Générale — IRM #4 « DDoS Incident Response » (v2.0) — <a href="https://github.com/certsocietegenerale/IRM">github.com/certsocietegenerale/IRM</a> — CC BY 3.0 Unported.</li>
+<li>CERT aDvens — IRM-04 « Déni de Service Distribué (DDOS) » (2025-10-27) — <a href="https://github.com/cert-advens/IRM">github.com/cert-advens/IRM</a> — CC BY 3.0 Unported.</li>
 </ul>
 
 
@@ -1960,6 +1963,10 @@
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../assets/search-lang.js"></script>
+      
+        <script src="../../../assets/download-pdf.js"></script>
+      
+        <script src="../../../assets/mermaid-scroll.js"></script>
       
     
   </body>

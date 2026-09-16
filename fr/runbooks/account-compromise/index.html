@@ -1718,7 +1718,9 @@
 </ul>
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Arbre de décision — cliquer pour réduire</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Connexion suspecte / alerte de compte] --&gt; B{Compromission confirmée ?}
     B --&gt;|Non| C[Surveiller, clôturer l'alerte]
     B --&gt;|Oui| D[Désactiver le compte + révoquer les sessions]
@@ -1731,6 +1733,7 @@
     I --&gt; J
     J --&gt; K[Supprimer la persistance + durcir]
     K --&gt; L[Notifier + tirer les leçons]</code></pre>
+</details>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1854,14 +1857,14 @@
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1110/">T1110</a> — Brute Force (le password spray est la sous-technique T1110.003).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1098/001/">T1098.001</a> — Account Manipulation: Additional Cloud Credentials.</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1114/003/">T1114.003</a> — Email Collection: Email Forwarding Rule.</li>
-<li>Outils cités en exemple : le module gratuit Microsoft Graph PowerShell, TheHive, MISP, des passerelles d'authentification open source comme Authelia ou Keycloak, fail2ban.</li>
+<li>Outils cités en exemple : le module gratuit <a href="https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview">Microsoft Graph PowerShell</a>, <a href="https://github.com/TheHive-Project/TheHive">TheHive</a>, <a href="https://www.misp-project.org/">MISP</a>, des passerelles d'authentification open source comme <a href="https://www.authelia.com/">Authelia</a> ou <a href="https://www.keycloak.org/">Keycloak</a>, <a href="https://github.com/fail2ban/fail2ban">fail2ban</a>.</li>
 </ul>
 <h2 id="9-sources-dinspiration">9. Sources d'inspiration<a class="headerlink" href="#9-sources-dinspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Microsoft — « Phishing investigation » (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0 (contenu documentaire).</li>
-<li>Microsoft — « Password spray investigation » (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
-<li>Microsoft — « App consent grant investigation » (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
-<li>Microsoft — « Compromised and malicious applications investigation » (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
+<li>Microsoft — « Phishing investigation » (Incident response playbooks) — <a href="https://github.com/MicrosoftDocs/security">github.com/MicrosoftDocs/security</a> — CC BY 4.0 (contenu documentaire).</li>
+<li>Microsoft — « Password spray investigation » (Incident response playbooks) — <a href="https://github.com/MicrosoftDocs/security">github.com/MicrosoftDocs/security</a> — CC BY 4.0.</li>
+<li>Microsoft — « App consent grant investigation » (Incident response playbooks) — <a href="https://github.com/MicrosoftDocs/security">github.com/MicrosoftDocs/security</a> — CC BY 4.0.</li>
+<li>Microsoft — « Compromised and malicious applications investigation » (Incident response playbooks) — <a href="https://github.com/MicrosoftDocs/security">github.com/MicrosoftDocs/security</a> — CC BY 4.0.</li>
 </ul>
 
 
@@ -1966,6 +1969,10 @@
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../assets/search-lang.js"></script>
+      
+        <script src="../../../assets/download-pdf.js"></script>
+      
+        <script src="../../../assets/mermaid-scroll.js"></script>
       
     
   </body>

@@ -1728,12 +1728,21 @@ readers see this diagram on an otherwise fully-translated page, so an
 English-only diagram on the French version reads as broken. Keep the same
 node IDs, arrows, and branching logic in both versions so the two diagrams
 never structurally drift apart, even though their visible text differs.</p>
-<pre class="mermaid"><code>flowchart TD
-    A[Alert] --&gt; B{Isolate?}
-    B --&gt;|Yes| C[Preserve evidence]
-    B --&gt;|No| D[Continue monitoring]
-    C --&gt; E[Escalate to L2]
-    D --&gt; A</code></pre>
+<p>Use <code>flowchart LR</code> (left-to-right), not <code>TD</code> — a top-down tree with 10+
+steps runs very long and forces heavy scrolling. Wrap it in a collapsible
+block (<code>???+ note "..."</code>, open by default) so it doesn't dominate the page
+and a reader can fold it away once they've seen it:</p>
+<div class="highlight"><pre><span></span><code>???+ note &quot;Decision tree — click to collapse&quot;
+
+<span class="sb">    ```mermaid</span>
+<span class="s">    flowchart LR</span>
+<span class="s">        A[Alert] --&gt; B{Isolate?}</span>
+<span class="s">        B --&gt;|Yes| C[Preserve evidence]</span>
+<span class="s">        B --&gt;|No| D[Continue monitoring]</span>
+<span class="s">        C --&gt; E[Escalate to L2]</span>
+<span class="s">        D --&gt; A</span>
+<span class="sb">    ```</span>
+</code></pre></div>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <p>Numbered, ordered by priority. <strong>Every</strong> technical action must give both
 options — an analyst with no EDR or commercial SIEM must be able to complete
@@ -1880,6 +1889,10 @@ copy a source paragraph verbatim.</p>
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../assets/search-lang.js"></script>
+      
+        <script src="../../assets/download-pdf.js"></script>
+      
+        <script src="../../assets/mermaid-scroll.js"></script>
       
     
   </body>

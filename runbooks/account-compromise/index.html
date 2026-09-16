@@ -1718,7 +1718,9 @@
 </ul>
 <p>These are internal operational targets to challenge with real incident data — not regulatory deadlines.</p>
 <h2 id="3-decision-tree">3. Decision Tree<a class="headerlink" href="#3-decision-tree" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Decision tree — click to collapse</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Suspicious sign-in / account alert] --&gt; B{Compromise confirmed?}
     B --&gt;|No| C[Monitor, close alert]
     B --&gt;|Yes| D[Disable account + revoke sessions]
@@ -1731,6 +1733,7 @@
     I --&gt; J
     J --&gt; K[Remove persistence + harden]
     K --&gt; L[Notify + lessons learned]</code></pre>
+</details>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1854,14 +1857,14 @@
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1110/">T1110</a> — Brute Force (password spray is sub-technique T1110.003).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1098/001/">T1098.001</a> — Account Manipulation: Additional Cloud Credentials.</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1114/003/">T1114.003</a> — Email Collection: Email Forwarding Rule.</li>
-<li>Tools cited as examples: the free Microsoft Graph PowerShell module, TheHive, MISP, open-source auth gateways such as Authelia or Keycloak, fail2ban.</li>
+<li>Tools cited as examples: the free <a href="https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview">Microsoft Graph PowerShell module</a>, <a href="https://github.com/TheHive-Project/TheHive">TheHive</a>, <a href="https://www.misp-project.org/">MISP</a>, open-source auth gateways such as <a href="https://www.authelia.com/">Authelia</a> or <a href="https://www.keycloak.org/">Keycloak</a>, <a href="https://github.com/fail2ban/fail2ban">fail2ban</a>.</li>
 </ul>
 <h2 id="9-sources-of-inspiration">9. Sources of Inspiration<a class="headerlink" href="#9-sources-of-inspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Microsoft — "Phishing investigation" (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0 (documentation content).</li>
-<li>Microsoft — "Password spray investigation" (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
-<li>Microsoft — "App consent grant investigation" (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
-<li>Microsoft — "Compromised and malicious applications investigation" (Incident response playbooks) — <code>github.com/MicrosoftDocs/security</code> — CC BY 4.0.</li>
+<li>Microsoft — "Phishing investigation" (Incident response playbooks) — <a href="https://github.com/MicrosoftDocs/security">github.com/MicrosoftDocs/security</a> — CC BY 4.0 (documentation content).</li>
+<li>Microsoft — "Password spray investigation" (Incident response playbooks) — <a href="https://github.com/MicrosoftDocs/security">github.com/MicrosoftDocs/security</a> — CC BY 4.0.</li>
+<li>Microsoft — "App consent grant investigation" (Incident response playbooks) — <a href="https://github.com/MicrosoftDocs/security">github.com/MicrosoftDocs/security</a> — CC BY 4.0.</li>
+<li>Microsoft — "Compromised and malicious applications investigation" (Incident response playbooks) — <a href="https://github.com/MicrosoftDocs/security">github.com/MicrosoftDocs/security</a> — CC BY 4.0.</li>
 </ul>
 
 
@@ -1966,6 +1969,10 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../assets/search-lang.js"></script>
+      
+        <script src="../../assets/download-pdf.js"></script>
+      
+        <script src="../../assets/mermaid-scroll.js"></script>
       
     
   </body>

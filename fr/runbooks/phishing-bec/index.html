@@ -1718,7 +1718,9 @@
 </ul>
 <p>Ce sont des cibles opérationnelles internes à challenger avec des données d'incidents réels — pas des délais réglementaires. Remarque : si un virement frauduleux est en jeu, la fenêtre pour demander un rappel bancaire se compte en heures, pas en jours — traitez cette étape spécifique comme plus urgente que les objectifs généraux ci-dessus.</p>
 <h2 id="3-arbre-de-decision">3. Arbre de décision<a class="headerlink" href="#3-arbre-de-decision" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Arbre de décision — cliquer pour réduire</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Email suspect / signalement de fraude] --&gt; B{Demande financière impliquée ?}
     B --&gt;|Oui| C[Vérifier hors bande avant d'agir]
     C --&gt; D{Fraude confirmée ?}
@@ -1730,6 +1732,7 @@
     G --&gt; H[Cadrer la campagne]
     H --&gt; I[Éradiquer + durcir]
     I --&gt; J[Notifier + tirer les leçons]</code></pre>
+</details>
 <h2 id="4-actions-l1">4. Actions L1<a class="headerlink" href="#4-actions-l1" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1859,13 +1862,13 @@
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1566/">T1566</a> — Phishing (T1566.001 Spearphishing Attachment, T1566.002 Spearphishing Link).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1114/003/">T1114.003</a> — Email Collection: Email Forwarding Rule.</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1585/002/">T1585.002</a> — Establish Accounts: Email Accounts.</li>
-<li>Outils cités en exemple : VirusTotal, PhishTank, Cuckoo Sandbox, Hybrid Analysis, HTTrack, TheHive, MISP.</li>
+<li>Outils cités en exemple : <a href="https://www.virustotal.com/">VirusTotal</a>, <a href="https://www.phishtank.com/">PhishTank</a>, <a href="https://cuckoosandbox.org/">Cuckoo Sandbox</a>, <a href="https://hybrid-analysis.com/">Hybrid Analysis</a>, <a href="https://www.httrack.com/">HTTrack</a>, <a href="https://github.com/TheHive-Project/TheHive">TheHive</a>, <a href="https://www.misp-project.org/">MISP</a>.</li>
 </ul>
 <h2 id="9-sources-dinspiration">9. Sources d'inspiration<a class="headerlink" href="#9-sources-dinspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CERT Société Générale — IRM #16 « Phishing » (v2.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
-<li>CERT Société Générale — IRM #22 « Business Email Compromise » (v1.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
-<li>Counteractive — « Playbook: Phishing » — <code>github.com/counteractive/incident-response-plan-template</code> — Apache License 2.0.</li>
+<li>CERT Société Générale — IRM #16 « Phishing » (v2.0) — <a href="https://github.com/certsocietegenerale/IRM">github.com/certsocietegenerale/IRM</a> — CC BY 3.0 Unported.</li>
+<li>CERT Société Générale — IRM #22 « Business Email Compromise » (v1.0) — <a href="https://github.com/certsocietegenerale/IRM">github.com/certsocietegenerale/IRM</a> — CC BY 3.0 Unported.</li>
+<li>Counteractive — « Playbook: Phishing » — <a href="https://github.com/counteractive/incident-response-plan-template">github.com/counteractive/incident-response-plan-template</a> — Apache License 2.0.</li>
 </ul>
 
 
@@ -1970,6 +1973,10 @@
       <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../../assets/search-lang.js"></script>
+      
+        <script src="../../../assets/download-pdf.js"></script>
+      
+        <script src="../../../assets/mermaid-scroll.js"></script>
       
     
   </body>

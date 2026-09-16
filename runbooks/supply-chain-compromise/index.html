@@ -1717,7 +1717,9 @@
 </ul>
 <p>These are internal operational targets to challenge with real incident data — not regulatory deadlines.</p>
 <h2 id="3-decision-tree">3. Decision Tree<a class="headerlink" href="#3-decision-tree" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TD
+<details class="note" open="open">
+<summary>Decision tree — click to collapse</summary>
+<pre class="mermaid"><code>flowchart LR
     A[Vendor breach signal] --&gt; B{Confirmed access to your environment?}
     B --&gt;|Yes| C[Cut interconnection now]
     B --&gt;|Unclear| D[Restrict access, keep monitoring]
@@ -1731,6 +1733,7 @@
     I --&gt; J[Coordinate with vendor + eradicate on your side]
     J --&gt; K[Reassess before reopening access]
     K --&gt; L[Notify + lessons learned]</code></pre>
+</details>
 <h2 id="4-l1-actions">4. L1 Actions<a class="headerlink" href="#4-l1-actions" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
@@ -1852,12 +1855,12 @@
 <ul>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1195/">T1195</a> — Supply Chain Compromise (T1195.001 Compromise Software Dependencies and Development Tools, T1195.002 Compromise Software Supply Chain, T1195.003 Compromise Hardware Supply Chain).</li>
 <li>MITRE ATT&amp;CK <a href="https://attack.mitre.org/techniques/T1199/">T1199</a> — Trusted Relationship.</li>
-<li>Tools cited as examples: Syft, Grype, OWASP Dependency-Check, <code>npm audit</code>, <code>pip-audit</code>, TheHive, MISP.</li>
+<li>Tools cited as examples: <a href="https://github.com/anchore/syft">Syft</a>, <a href="https://github.com/anchore/grype">Grype</a>, <a href="https://owasp.org/www-project-dependency-check/">OWASP Dependency-Check</a>, <a href="https://docs.npmjs.com/cli/commands/npm-audit"><code>npm audit</code></a>, <a href="https://pypi.org/project/pip-audit/"><code>pip-audit</code></a>, <a href="https://github.com/TheHive-Project/TheHive">TheHive</a>, <a href="https://www.misp-project.org/">MISP</a>.</li>
 </ul>
 <h2 id="9-sources-of-inspiration">9. Sources of Inspiration<a class="headerlink" href="#9-sources-of-inspiration" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CERT Société Générale — IRM #19 "Third-Party Compromise" (v1.0) — <code>github.com/certsocietegenerale/IRM</code> — CC BY 3.0 Unported.</li>
-<li>CERT aDvens — IRM-19 "Compromission d'un tiers" (2025-10-27) — <code>github.com/cert-advens/IRM</code> — CC BY 3.0 Unported.</li>
+<li>CERT Société Générale — IRM #19 "Third-Party Compromise" (v1.0) — <a href="https://github.com/certsocietegenerale/IRM">github.com/certsocietegenerale/IRM</a> — CC BY 3.0 Unported.</li>
+<li>CERT aDvens — IRM-19 "Compromission d'un tiers" (2025-10-27) — <a href="https://github.com/cert-advens/IRM">github.com/cert-advens/IRM</a> — CC BY 3.0 Unported.</li>
 </ul>
 
 
@@ -1962,6 +1965,10 @@
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="../../assets/search-lang.js"></script>
+      
+        <script src="../../assets/download-pdf.js"></script>
+      
+        <script src="../../assets/mermaid-scroll.js"></script>
       
     
   </body>
