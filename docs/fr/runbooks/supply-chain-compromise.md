@@ -25,22 +25,24 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ## 3. Arbre de décision
 
-```mermaid
-flowchart TD
-    A[Signal de compromission fournisseur] --> B{Accès confirmé à votre environnement ?}
-    B -->|Oui| C[Couper l'interconnexion immédiatement]
-    B -->|Incertain| D[Restreindre l'accès, poursuivre la surveillance]
-    C --> E[Préserver les logs d'interconnexion]
-    D --> E
-    E --> F{Trafic critique pour l'activité impliqué ?}
-    F -->|Oui| G[Escalade L2 - reconnexion contrôlée]
-    F -->|Non| H[Escalade L2 - coupure totale]
-    G --> I[Cadrer : ce qui était accessible, ce qui a circulé]
-    H --> I
-    I --> J[Coordonner avec le fournisseur + éradiquer de votre côté]
-    J --> K[Réévaluer avant de rouvrir l'accès]
-    K --> L[Notifier + tirer les leçons]
-```
+???+ note "Arbre de décision — cliquer pour réduire"
+
+    ```mermaid
+    flowchart LR
+        A[Signal de compromission fournisseur] --> B{Accès confirmé à votre environnement ?}
+        B -->|Oui| C[Couper l'interconnexion immédiatement]
+        B -->|Incertain| D[Restreindre l'accès, poursuivre la surveillance]
+        C --> E[Préserver les logs d'interconnexion]
+        D --> E
+        E --> F{Trafic critique pour l'activité impliqué ?}
+        F -->|Oui| G[Escalade L2 - reconnexion contrôlée]
+        F -->|Non| H[Escalade L2 - coupure totale]
+        G --> I[Cadrer : ce qui était accessible, ce qui a circulé]
+        H --> I
+        I --> J[Coordonner avec le fournisseur + éradiquer de votre côté]
+        J --> K[Réévaluer avant de rouvrir l'accès]
+        K --> L[Notifier + tirer les leçons]
+    ```
 
 ## 4. Actions L1
 
@@ -119,9 +121,9 @@ flowchart TD
 
 - MITRE ATT&CK [T1195](https://attack.mitre.org/techniques/T1195/) — Supply Chain Compromise (T1195.001 Compromise Software Dependencies and Development Tools, T1195.002 Compromise Software Supply Chain, T1195.003 Compromise Hardware Supply Chain).
 - MITRE ATT&CK [T1199](https://attack.mitre.org/techniques/T1199/) — Trusted Relationship.
-- Outils cités en exemple : Syft, Grype, OWASP Dependency-Check, `npm audit`, `pip-audit`, TheHive, MISP.
+- Outils cités en exemple : [Syft](https://github.com/anchore/syft), [Grype](https://github.com/anchore/grype), [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/), [`npm audit`](https://docs.npmjs.com/cli/commands/npm-audit), [`pip-audit`](https://pypi.org/project/pip-audit/), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/).
 
 ## 9. Sources d'inspiration
 
-- CERT Société Générale — IRM #19 « Third-Party Compromise » (v1.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-19 « Compromission d'un tiers » (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #19 « Third-Party Compromise » (v1.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-19 « Compromission d'un tiers » (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.

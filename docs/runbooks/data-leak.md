@@ -27,22 +27,24 @@ These are internal operational targets to challenge with real incident data — 
 
 ## 3. Decision Tree
 
-```mermaid
-flowchart TD
-    A[Exposed / leaked data reported] --> B{Exposure still active?}
-    B -->|Yes| C[Stop the exposure now]
-    B -->|No| D[Preserve evidence]
-    C --> D
-    D --> E{Likely cause?}
-    E -->|Misconfiguration| F[Escalate to L2 - fix access controls]
-    E -->|External attacker| G[Escalate to L2 - link to compromise]
-    E -->|Suspected insider| H[Escalate to L2 - involve HR/legal]
-    F --> I[Determine what, how much, who could access]
-    G --> I
-    H --> I
-    I --> J[Request takedown + monitor spread]
-    J --> K[Notify + lessons learned]
-```
+???+ note "Decision tree — click to collapse"
+
+    ```mermaid
+    flowchart LR
+        A[Exposed / leaked data reported] --> B{Exposure still active?}
+        B -->|Yes| C[Stop the exposure now]
+        B -->|No| D[Preserve evidence]
+        C --> D
+        D --> E{Likely cause?}
+        E -->|Misconfiguration| F[Escalate to L2 - fix access controls]
+        E -->|External attacker| G[Escalate to L2 - link to compromise]
+        E -->|Suspected insider| H[Escalate to L2 - involve HR/legal]
+        F --> I[Determine what, how much, who could access]
+        G --> I
+        H --> I
+        I --> J[Request takedown + monitor spread]
+        J --> K[Notify + lessons learned]
+    ```
 
 ## 4. L1 Actions
 
@@ -122,9 +124,9 @@ flowchart TD
 - MITRE ATT&CK [T1530](https://attack.mitre.org/techniques/T1530/) — Data from Cloud Storage.
 - MITRE ATT&CK [T1567](https://attack.mitre.org/techniques/T1567/) — Exfiltration Over Web Service.
 - MITRE ATT&CK [T1213](https://attack.mitre.org/techniques/T1213/) — Data from Information Repositories.
-- Tools cited as examples: the AWS CLI, Azure CLI, and `gcloud`/`gsutil` (all free), Aleph (open-source tool for investigating leaked document sets), TheHive, MISP.
+- Tools cited as examples: the [AWS CLI](https://aws.amazon.com/cli/), [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/), and [`gcloud`](https://cloud.google.com/cli)/[`gsutil`](https://cloud.google.com/storage/docs/gsutil) (all free), [Aleph](https://github.com/alephdata/aleph) (open-source tool for investigating leaked document sets), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/).
 
 ## 9. Sources of Inspiration
 
-- CERT Société Générale — IRM #11 "Information Leakage" (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-11 "Fuite de données" (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #11 "Information Leakage" (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-11 "Fuite de données" (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.

@@ -25,20 +25,22 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ## 3. Arbre de décision
 
-```mermaid
-flowchart TD
-    A[Service dégradé / alerte DDoS] --> B{DDoS confirmé ?}
-    B -->|Non| C[Investiguer comme un problème de capacité/config]
-    B -->|Oui| D{Couche réseau ou couche application ?}
-    D -->|Réseau| E[Limiter / blackholer près de la bordure]
-    D -->|Application| F[Désactiver la fonctionnalité / nettoyer le trafic applicatif]
-    E --> G[Escalade L2 + FAI/fournisseur]
-    F --> G
-    G --> H[Capturer le trafic, vérifier extorsion/revendication]
-    H --> I[Confirmer le retour à la normale]
-    I --> J[Retirer les mesures de mitigation]
-    J --> K[Notifier + tirer les leçons]
-```
+???+ note "Arbre de décision — cliquer pour réduire"
+
+    ```mermaid
+    flowchart LR
+        A[Service dégradé / alerte DDoS] --> B{DDoS confirmé ?}
+        B -->|Non| C[Investiguer comme un problème de capacité/config]
+        B -->|Oui| D{Couche réseau ou couche application ?}
+        D -->|Réseau| E[Limiter / blackholer près de la bordure]
+        D -->|Application| F[Désactiver la fonctionnalité / nettoyer le trafic applicatif]
+        E --> G[Escalade L2 + FAI/fournisseur]
+        F --> G
+        G --> H[Capturer le trafic, vérifier extorsion/revendication]
+        H --> I[Confirmer le retour à la normale]
+        I --> J[Retirer les mesures de mitigation]
+        J --> K[Notifier + tirer les leçons]
+    ```
 
 ## 4. Actions L1
 
@@ -117,9 +119,9 @@ flowchart TD
 
 - MITRE ATT&CK [T1498](https://attack.mitre.org/techniques/T1498/) — Network Denial of Service (inondation directe ou par amplification par réflexion).
 - MITRE ATT&CK [T1499](https://attack.mitre.org/techniques/T1499/) — Endpoint Denial of Service (y compris les inondations d'épuisement de service/application).
-- Outils cités en exemple : tcpdump, Wireshark/Tshark, Snort, Suricata, ntop/ntopng, MRTG, Cacti, Nagios, iptables/nftables, Uptime Kuma.
+- Outils cités en exemple : [tcpdump](https://www.tcpdump.org/), [Wireshark/Tshark](https://www.wireshark.org/), [Snort](https://www.snort.org/), [Suricata](https://suricata.io/), [ntop/ntopng](https://www.ntop.org/), [MRTG](https://oss.oetiker.ch/mrtg/), [Cacti](https://www.cacti.net/), [Nagios](https://www.nagios.org/), [iptables/nftables](https://www.netfilter.org/), [Uptime Kuma](https://github.com/louislam/uptime-kuma).
 
 ## 9. Sources d'inspiration
 
-- CERT Société Générale — IRM #4 « DDoS Incident Response » (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-04 « Déni de Service Distribué (DDOS) » (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #4 « DDoS Incident Response » (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-04 « Déni de Service Distribué (DDOS) » (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.

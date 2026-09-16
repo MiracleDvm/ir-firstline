@@ -26,19 +26,21 @@ These are internal operational targets to challenge with real incident data — 
 
 ## 3. Decision Tree
 
-```mermaid
-flowchart TD
-    A[Suspicious insider activity] --> B{Malicious/fraudulent confirmed?}
-    B -->|Unclear| C[Escalate to L2 - quiet investigation]
-    B -->|Yes| D[Escalate to L2 - stop technical action]
-    C --> E[Obtain written authorization]
-    E --> F[Freeze access + preserve evidence]
-    F --> G{Malicious confirmed?}
-    G -->|Yes| D
-    G -->|No| H[Restore access, close case]
-    D --> I[Hand off to legal/HR]
-    I --> J[Notify + lessons learned]
-```
+???+ note "Decision tree — click to collapse"
+
+    ```mermaid
+    flowchart LR
+        A[Suspicious insider activity] --> B{Malicious/fraudulent confirmed?}
+        B -->|Unclear| C[Escalate to L2 - quiet investigation]
+        B -->|Yes| D[Escalate to L2 - stop technical action]
+        C --> E[Obtain written authorization]
+        E --> F[Freeze access + preserve evidence]
+        F --> G{Malicious confirmed?}
+        G -->|Yes| D
+        G -->|No| H[Restore access, close case]
+        D --> I[Hand off to legal/HR]
+        I --> J[Notify + lessons learned]
+    ```
 
 ## 4. L1 Actions
 
@@ -114,9 +116,9 @@ flowchart TD
 - MITRE ATT&CK [T1078](https://attack.mitre.org/techniques/T1078/) — Valid Accounts (relevant when a departed employee's access hasn't been revoked).
 - MITRE ATT&CK [T1531](https://attack.mitre.org/techniques/T1531/) — Account Access Removal (a common sabotage pattern: locking others out on the way out).
 - MITRE ATT&CK [T1052](https://attack.mitre.org/techniques/T1052/) — Exfiltration Over Physical Medium (the classic removable-media exfiltration path).
-- Tools cited as examples: `auditd`, the Sysinternals Suite (Autoruns, Sysmon), TheHive, MISP, osquery, free disk-imaging tools.
+- Tools cited as examples: [`auditd`](https://github.com/linux-audit/audit-userspace), the [Sysinternals Suite](https://learn.microsoft.com/en-us/sysinternals/) ([Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns), [Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/), [osquery](https://osquery.io/), free disk-imaging tools.
 
 ## 9. Sources of Inspiration
 
-- CERT Société Générale — IRM #12 "Insider Abuse" (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-12 "Attaques en interne" (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #12 "Insider Abuse" (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-12 "Attaques en interne" (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.

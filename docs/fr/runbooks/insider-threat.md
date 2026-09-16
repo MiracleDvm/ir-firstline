@@ -26,19 +26,21 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ## 3. Arbre de décision
 
-```mermaid
-flowchart TD
-    A[Activité interne suspecte] --> B{Caractère malveillant/frauduleux confirmé ?}
-    B -->|Incertain| C[Escalade L2 - investigation discrète]
-    B -->|Oui| D[Escalade L2 - arrêter l'action technique]
-    C --> E[Obtenir une autorisation écrite]
-    E --> F[Geler l'accès + préserver les preuves]
-    F --> G{Caractère malveillant confirmé ?}
-    G -->|Oui| D
-    G -->|Non| H[Restaurer l'accès, clôturer le dossier]
-    D --> I[Transmettre au juridique/RH]
-    I --> J[Notifier + tirer les leçons]
-```
+???+ note "Arbre de décision — cliquer pour réduire"
+
+    ```mermaid
+    flowchart LR
+        A[Activité interne suspecte] --> B{Caractère malveillant/frauduleux confirmé ?}
+        B -->|Incertain| C[Escalade L2 - investigation discrète]
+        B -->|Oui| D[Escalade L2 - arrêter l'action technique]
+        C --> E[Obtenir une autorisation écrite]
+        E --> F[Geler l'accès + préserver les preuves]
+        F --> G{Caractère malveillant confirmé ?}
+        G -->|Oui| D
+        G -->|Non| H[Restaurer l'accès, clôturer le dossier]
+        D --> I[Transmettre au juridique/RH]
+        I --> J[Notifier + tirer les leçons]
+    ```
 
 ## 4. Actions L1
 
@@ -114,9 +116,9 @@ flowchart TD
 - MITRE ATT&CK [T1078](https://attack.mitre.org/techniques/T1078/) — Valid Accounts (pertinent quand l'accès d'un employé parti n'a pas été révoqué).
 - MITRE ATT&CK [T1531](https://attack.mitre.org/techniques/T1531/) — Account Access Removal (un motif de sabotage courant : verrouiller les autres en partant).
 - MITRE ATT&CK [T1052](https://attack.mitre.org/techniques/T1052/) — Exfiltration Over Physical Medium (le classique chemin d'exfiltration par support amovible).
-- Outils cités en exemple : `auditd`, la suite Sysinternals (Autoruns, Sysmon), TheHive, MISP, osquery, outils gratuits d'imagerie disque.
+- Outils cités en exemple : [`auditd`](https://github.com/linux-audit/audit-userspace), la suite [Sysinternals](https://learn.microsoft.com/en-us/sysinternals/) ([Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns), [Sysmon](https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon)), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/), [osquery](https://osquery.io/), outils gratuits d'imagerie disque.
 
 ## 9. Sources d'inspiration
 
-- CERT Société Générale — IRM #12 « Insider Abuse » (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-12 « Attaques en interne » (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #12 « Insider Abuse » (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-12 « Attaques en interne » (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.

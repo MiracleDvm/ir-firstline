@@ -27,19 +27,21 @@ These are internal operational targets to challenge with real incident data — 
 
 ## 3. Decision Tree
 
-```mermaid
-flowchart TD
-    A[Ransom note / mass file changes] --> B[Isolate host]
-    B --> C[Preserve evidence]
-    C --> D{Shares or multiple hosts affected?}
-    D -->|Yes| E[Escalate to L2 - network scope]
-    D -->|No| F[Escalate to L2 - single host]
-    E --> G[Identify variant + entry vector]
-    F --> G
-    G --> H[Eradicate + rebuild]
-    H --> I[Restore from clean backup]
-    I --> J[Notify + lessons learned]
-```
+???+ note "Decision tree — click to collapse"
+
+    ```mermaid
+    flowchart LR
+        A[Ransom note / mass file changes] --> B[Isolate host]
+        B --> C[Preserve evidence]
+        C --> D{Shares or multiple hosts affected?}
+        D -->|Yes| E[Escalate to L2 - network scope]
+        D -->|No| F[Escalate to L2 - single host]
+        E --> G[Identify variant + entry vector]
+        F --> G
+        G --> H[Eradicate + rebuild]
+        H --> I[Restore from clean backup]
+        I --> J[Notify + lessons learned]
+    ```
 
 ## 4. L1 Actions
 
@@ -144,10 +146,10 @@ flowchart TD
 - MITRE ATT&CK [T1486](https://attack.mitre.org/techniques/T1486/) — Data Encrypted for Impact.
 - MITRE ATT&CK [T1490](https://attack.mitre.org/techniques/T1490/) — Inhibit System Recovery (backup/shadow-copy deletion is a common ransomware behavior).
 - MITRE ATT&CK [TA0001](https://attack.mitre.org/tactics/TA0001/) — Initial Access (check this tactic's techniques to find the infection vector).
-- Tools cited as examples: YARA, DFIR-ORC (an open-source triage tool originally released by ANSSI), the Sysinternals Suite, Volatility, TheHive, the No More Ransom Project, ID Ransomware.
+- Tools cited as examples: [YARA](https://virustotal.github.io/yara/), [DFIR-ORC](https://github.com/DFIR-ORC/dfir-orc) (an open-source triage tool originally released by ANSSI), the [Sysinternals Suite](https://learn.microsoft.com/en-us/sysinternals/), [Volatility](https://volatilityfoundation.org/), [TheHive](https://github.com/TheHive-Project/TheHive), the [No More Ransom Project](https://www.nomoreransom.org/), [ID Ransomware](https://id-ransomware.malwarehunterteam.com/).
 
 ## 9. Sources of Inspiration
 
-- CERT Société Générale — IRM #17 "Ransomware" (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-17 "Attaque par rançongiciel" (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
-- Counteractive — "Playbook: Ransomware" — `github.com/counteractive/incident-response-plan-template` — Apache License 2.0.
+- CERT Société Générale — IRM #17 "Ransomware" (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-17 "Attaque par rançongiciel" (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.
+- Counteractive — "Playbook: Ransomware" — [github.com/counteractive/incident-response-plan-template](https://github.com/counteractive/incident-response-plan-template) — Apache License 2.0.

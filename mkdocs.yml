@@ -86,6 +86,8 @@ extra_css:
 
 extra_javascript:
   - assets/search-lang.js
+  - assets/download-pdf.js
+  - assets/mermaid-scroll.js
 
 markdown_extensions:
   - admonition

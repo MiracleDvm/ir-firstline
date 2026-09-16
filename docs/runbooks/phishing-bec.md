@@ -26,20 +26,22 @@ These are internal operational targets to challenge with real incident data — 
 
 ## 3. Decision Tree
 
-```mermaid
-flowchart TD
-    A[Suspicious email / fraud report] --> B{Financial request involved?}
-    B -->|Yes| C[Verify out-of-band before acting]
-    C --> D{Confirmed fraudulent?}
-    D -->|Yes| E[Contain account + attempt payment recall]
-    B -->|No| F[Analyze message + block indicators]
-    D -->|No| F
-    E --> G[Escalate to L2]
-    F --> G
-    G --> H[Scope the campaign]
-    H --> I[Eradicate + harden]
-    I --> J[Notify + lessons learned]
-```
+???+ note "Decision tree — click to collapse"
+
+    ```mermaid
+    flowchart LR
+        A[Suspicious email / fraud report] --> B{Financial request involved?}
+        B -->|Yes| C[Verify out-of-band before acting]
+        C --> D{Confirmed fraudulent?}
+        D -->|Yes| E[Contain account + attempt payment recall]
+        B -->|No| F[Analyze message + block indicators]
+        D -->|No| F
+        E --> G[Escalate to L2]
+        F --> G
+        G --> H[Scope the campaign]
+        H --> I[Eradicate + harden]
+        I --> J[Notify + lessons learned]
+    ```
 
 ## 4. L1 Actions
 
@@ -123,10 +125,10 @@ flowchart TD
 - MITRE ATT&CK [T1566](https://attack.mitre.org/techniques/T1566/) — Phishing (T1566.001 Spearphishing Attachment, T1566.002 Spearphishing Link).
 - MITRE ATT&CK [T1114.003](https://attack.mitre.org/techniques/T1114/003/) — Email Collection: Email Forwarding Rule.
 - MITRE ATT&CK [T1585.002](https://attack.mitre.org/techniques/T1585/002/) — Establish Accounts: Email Accounts.
-- Tools cited as examples: VirusTotal, PhishTank, Cuckoo Sandbox, Hybrid Analysis, HTTrack, TheHive, MISP.
+- Tools cited as examples: [VirusTotal](https://www.virustotal.com/), [PhishTank](https://www.phishtank.com/), [Cuckoo Sandbox](https://cuckoosandbox.org/), [Hybrid Analysis](https://hybrid-analysis.com/), [HTTrack](https://www.httrack.com/), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/).
 
 ## 9. Sources of Inspiration
 
-- CERT Société Générale — IRM #16 "Phishing" (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT Société Générale — IRM #22 "Business Email Compromise" (v1.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- Counteractive — "Playbook: Phishing" — `github.com/counteractive/incident-response-plan-template` — Apache License 2.0.
+- CERT Société Générale — IRM #16 "Phishing" (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #22 "Business Email Compromise" (v1.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- Counteractive — "Playbook: Phishing" — [github.com/counteractive/incident-response-plan-template](https://github.com/counteractive/incident-response-plan-template) — Apache License 2.0.

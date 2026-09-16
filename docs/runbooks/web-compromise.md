@@ -26,19 +26,21 @@ These are internal operational targets to challenge with real incident data — 
 
 ## 3. Decision Tree
 
-```mermaid
-flowchart TD
-    A[Defacement / webshell / intrusion alert] --> B{Public-facing content affected?}
-    B -->|Yes| C[Take offline or serve maintenance page]
-    B -->|No| D[Isolate the host]
-    C --> E[Preserve evidence]
-    D --> E
-    E --> F[Escalate to L2]
-    F --> G[Find entry vector + persistence]
-    G --> H[Eradicate + patch vulnerability]
-    H --> I[Restore from clean backup]
-    I --> J[Notify + lessons learned]
-```
+???+ note "Decision tree — click to collapse"
+
+    ```mermaid
+    flowchart LR
+        A[Defacement / webshell / intrusion alert] --> B{Public-facing content affected?}
+        B -->|Yes| C[Take offline or serve maintenance page]
+        B -->|No| D[Isolate the host]
+        C --> E[Preserve evidence]
+        D --> E
+        E --> F[Escalate to L2]
+        F --> G[Find entry vector + persistence]
+        G --> H[Eradicate + patch vulnerability]
+        H --> I[Restore from clean backup]
+        I --> J[Notify + lessons learned]
+    ```
 
 ## 4. L1 Actions
 
@@ -143,11 +145,11 @@ flowchart TD
 - MITRE ATT&CK [T1505.003](https://attack.mitre.org/techniques/T1505/003/) — Server Software Component: Web Shell.
 - MITRE ATT&CK [T1053](https://attack.mitre.org/techniques/T1053/) — Scheduled Task/Job.
 - MITRE ATT&CK [T1136](https://attack.mitre.org/techniques/T1136/) — Create Account.
-- Tools cited as examples: YARA, Sysinternals Autoruns, AIDE, rkhunter, Sleuth Kit/Autopsy, Volatility, FTK Imager, HTTrack, TheHive.
+- Tools cited as examples: [YARA](https://virustotal.github.io/yara/), [Sysinternals Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns), [AIDE](https://aide.github.io/), [rkhunter](https://rkhunter.sourceforge.net/), [Sleuth Kit/Autopsy](https://www.sleuthkit.org/), [Volatility](https://volatilityfoundation.org/), [FTK Imager](https://www.exterro.com/digital-forensics-software/ftk-imager), [HTTrack](https://www.httrack.com/), [TheHive](https://github.com/TheHive-Project/TheHive).
 
 ## 9. Sources of Inspiration
 
-- CERT Société Générale — IRM #2 "Windows Intrusion Detection" (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT Société Générale — IRM #3 "Unix/Linux Intrusion Detection" (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT Société Générale — IRM #6 "Website Defacement" (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- Counteractive — "Playbook: Website Defacement" — `github.com/counteractive/incident-response-plan-template` — Apache License 2.0.
+- CERT Société Générale — IRM #2 "Windows Intrusion Detection" (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #3 "Unix/Linux Intrusion Detection" (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #6 "Website Defacement" (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- Counteractive — "Playbook: Website Defacement" — [github.com/counteractive/incident-response-plan-template](https://github.com/counteractive/incident-response-plan-template) — Apache License 2.0.

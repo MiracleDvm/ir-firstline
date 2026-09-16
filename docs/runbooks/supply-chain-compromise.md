@@ -25,22 +25,24 @@ These are internal operational targets to challenge with real incident data — 
 
 ## 3. Decision Tree
 
-```mermaid
-flowchart TD
-    A[Vendor breach signal] --> B{Confirmed access to your environment?}
-    B -->|Yes| C[Cut interconnection now]
-    B -->|Unclear| D[Restrict access, keep monitoring]
-    C --> E[Preserve interconnection logs]
-    D --> E
-    E --> F{Business-critical traffic involved?}
-    F -->|Yes| G[Escalate to L2 - controlled reconnection]
-    F -->|No| H[Escalate to L2 - full cutoff]
-    G --> I[Scope: what was reachable, what moved]
-    H --> I
-    I --> J[Coordinate with vendor + eradicate on your side]
-    J --> K[Reassess before reopening access]
-    K --> L[Notify + lessons learned]
-```
+???+ note "Decision tree — click to collapse"
+
+    ```mermaid
+    flowchart LR
+        A[Vendor breach signal] --> B{Confirmed access to your environment?}
+        B -->|Yes| C[Cut interconnection now]
+        B -->|Unclear| D[Restrict access, keep monitoring]
+        C --> E[Preserve interconnection logs]
+        D --> E
+        E --> F{Business-critical traffic involved?}
+        F -->|Yes| G[Escalate to L2 - controlled reconnection]
+        F -->|No| H[Escalate to L2 - full cutoff]
+        G --> I[Scope: what was reachable, what moved]
+        H --> I
+        I --> J[Coordinate with vendor + eradicate on your side]
+        J --> K[Reassess before reopening access]
+        K --> L[Notify + lessons learned]
+    ```
 
 ## 4. L1 Actions
 
@@ -119,9 +121,9 @@ flowchart TD
 
 - MITRE ATT&CK [T1195](https://attack.mitre.org/techniques/T1195/) — Supply Chain Compromise (T1195.001 Compromise Software Dependencies and Development Tools, T1195.002 Compromise Software Supply Chain, T1195.003 Compromise Hardware Supply Chain).
 - MITRE ATT&CK [T1199](https://attack.mitre.org/techniques/T1199/) — Trusted Relationship.
-- Tools cited as examples: Syft, Grype, OWASP Dependency-Check, `npm audit`, `pip-audit`, TheHive, MISP.
+- Tools cited as examples: [Syft](https://github.com/anchore/syft), [Grype](https://github.com/anchore/grype), [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/), [`npm audit`](https://docs.npmjs.com/cli/commands/npm-audit), [`pip-audit`](https://pypi.org/project/pip-audit/), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/).
 
 ## 9. Sources of Inspiration
 
-- CERT Société Générale — IRM #19 "Third-Party Compromise" (v1.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-19 "Compromission d'un tiers" (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #19 "Third-Party Compromise" (v1.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-19 "Compromission d'un tiers" (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.

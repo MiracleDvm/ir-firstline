@@ -26,21 +26,23 @@ These are internal operational targets to challenge with real incident data — 
 
 ## 3. Decision Tree
 
-```mermaid
-flowchart TD
-    A[Suspicious sign-in / account alert] --> B{Compromise confirmed?}
-    B -->|No| C[Monitor, close alert]
-    B -->|Yes| D[Disable account + revoke sessions]
-    D --> E[Reset credentials]
-    E --> F[Check for persistence]
-    F --> G{Other accounts affected?}
-    G -->|Yes| H[Escalate to L2 - multi-account]
-    G -->|No| I[Escalate to L2 - single account]
-    H --> J[Find root cause]
-    I --> J
-    J --> K[Remove persistence + harden]
-    K --> L[Notify + lessons learned]
-```
+???+ note "Decision tree — click to collapse"
+
+    ```mermaid
+    flowchart LR
+        A[Suspicious sign-in / account alert] --> B{Compromise confirmed?}
+        B -->|No| C[Monitor, close alert]
+        B -->|Yes| D[Disable account + revoke sessions]
+        D --> E[Reset credentials]
+        E --> F[Check for persistence]
+        F --> G{Other accounts affected?}
+        G -->|Yes| H[Escalate to L2 - multi-account]
+        G -->|No| I[Escalate to L2 - single account]
+        H --> J[Find root cause]
+        I --> J
+        J --> K[Remove persistence + harden]
+        K --> L[Notify + lessons learned]
+    ```
 
 ## 4. L1 Actions
 
@@ -121,11 +123,11 @@ flowchart TD
 - MITRE ATT&CK [T1110](https://attack.mitre.org/techniques/T1110/) — Brute Force (password spray is sub-technique T1110.003).
 - MITRE ATT&CK [T1098.001](https://attack.mitre.org/techniques/T1098/001/) — Account Manipulation: Additional Cloud Credentials.
 - MITRE ATT&CK [T1114.003](https://attack.mitre.org/techniques/T1114/003/) — Email Collection: Email Forwarding Rule.
-- Tools cited as examples: the free Microsoft Graph PowerShell module, TheHive, MISP, open-source auth gateways such as Authelia or Keycloak, fail2ban.
+- Tools cited as examples: the free [Microsoft Graph PowerShell module](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/), open-source auth gateways such as [Authelia](https://www.authelia.com/) or [Keycloak](https://www.keycloak.org/), [fail2ban](https://github.com/fail2ban/fail2ban).
 
 ## 9. Sources of Inspiration
 
-- Microsoft — "Phishing investigation" (Incident response playbooks) — `github.com/MicrosoftDocs/security` — CC BY 4.0 (documentation content).
-- Microsoft — "Password spray investigation" (Incident response playbooks) — `github.com/MicrosoftDocs/security` — CC BY 4.0.
-- Microsoft — "App consent grant investigation" (Incident response playbooks) — `github.com/MicrosoftDocs/security` — CC BY 4.0.
-- Microsoft — "Compromised and malicious applications investigation" (Incident response playbooks) — `github.com/MicrosoftDocs/security` — CC BY 4.0.
+- Microsoft — "Phishing investigation" (Incident response playbooks) — [github.com/MicrosoftDocs/security](https://github.com/MicrosoftDocs/security) — CC BY 4.0 (documentation content).
+- Microsoft — "Password spray investigation" (Incident response playbooks) — [github.com/MicrosoftDocs/security](https://github.com/MicrosoftDocs/security) — CC BY 4.0.
+- Microsoft — "App consent grant investigation" (Incident response playbooks) — [github.com/MicrosoftDocs/security](https://github.com/MicrosoftDocs/security) — CC BY 4.0.
+- Microsoft — "Compromised and malicious applications investigation" (Incident response playbooks) — [github.com/MicrosoftDocs/security](https://github.com/MicrosoftDocs/security) — CC BY 4.0.

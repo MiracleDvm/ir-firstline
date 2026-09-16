@@ -42,13 +42,22 @@ sonne cassé. Garde les mêmes identifiants de nœuds, flèches et logique de
 branchement dans les deux versions, pour que les deux diagrammes ne
 divergent jamais structurellement, même si leur texte visible diffère.
 
-```mermaid
-flowchart TD
-    A[Alerte] --> B{Isoler ?}
-    B -->|Oui| C[Préserver les preuves]
-    B -->|Non| D[Poursuivre la surveillance]
-    C --> E[Escalade L2]
-    D --> A
+Utilise `flowchart LR` (gauche à droite), pas `TD` — un arbre vertical de
+10 étapes ou plus devient très long et impose un défilement lourd. Encadre-le
+dans un bloc repliable (`???+ note "..."`, ouvert par défaut) pour qu'il ne
+domine pas la page et que le lecteur puisse le replier une fois vu :
+
+```markdown
+???+ note "Arbre de décision — cliquer pour réduire"
+
+    ```mermaid
+    flowchart LR
+        A[Alerte] --> B{Isoler ?}
+        B -->|Oui| C[Préserver les preuves]
+        B -->|Non| D[Poursuivre la surveillance]
+        C --> E[Escalade L2]
+        D --> A
+    ```
 ```
 
 ## 4. Actions L1

@@ -27,19 +27,21 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ## 3. Arbre de décision
 
-```mermaid
-flowchart TD
-    A[Note de rançon / modifications massives de fichiers] --> B[Isoler le poste]
-    B --> C[Préserver les preuves]
-    C --> D{Partages ou plusieurs postes affectés ?}
-    D -->|Oui| E[Escalade L2 - périmètre réseau]
-    D -->|Non| F[Escalade L2 - poste unique]
-    E --> G[Identifier la variante + le vecteur d'entrée]
-    F --> G
-    G --> H[Éradiquer + reconstruire]
-    H --> I[Restaurer depuis une sauvegarde saine]
-    I --> J[Notifier + tirer les leçons]
-```
+???+ note "Arbre de décision — cliquer pour réduire"
+
+    ```mermaid
+    flowchart LR
+        A[Note de rançon / modifications massives de fichiers] --> B[Isoler le poste]
+        B --> C[Préserver les preuves]
+        C --> D{Partages ou plusieurs postes affectés ?}
+        D -->|Oui| E[Escalade L2 - périmètre réseau]
+        D -->|Non| F[Escalade L2 - poste unique]
+        E --> G[Identifier la variante + le vecteur d'entrée]
+        F --> G
+        G --> H[Éradiquer + reconstruire]
+        H --> I[Restaurer depuis une sauvegarde saine]
+        I --> J[Notifier + tirer les leçons]
+    ```
 
 ## 4. Actions L1
 
@@ -144,10 +146,10 @@ flowchart TD
 - MITRE ATT&CK [T1486](https://attack.mitre.org/techniques/T1486/) — Data Encrypted for Impact.
 - MITRE ATT&CK [T1490](https://attack.mitre.org/techniques/T1490/) — Inhibit System Recovery (la suppression des sauvegardes/clichés instantanés est un comportement courant des ransomwares).
 - MITRE ATT&CK [TA0001](https://attack.mitre.org/tactics/TA0001/) — Initial Access (vérifiez les techniques de cette tactique pour trouver le vecteur d'infection).
-- Outils cités en exemple : YARA, DFIR-ORC (outil de triage open source initialement publié par l'ANSSI), la suite Sysinternals, Volatility, TheHive, le projet No More Ransom, ID Ransomware.
+- Outils cités en exemple : [YARA](https://virustotal.github.io/yara/), [DFIR-ORC](https://github.com/DFIR-ORC/dfir-orc) (outil de triage open source initialement publié par l'ANSSI), la suite [Sysinternals](https://learn.microsoft.com/en-us/sysinternals/), [Volatility](https://volatilityfoundation.org/), [TheHive](https://github.com/TheHive-Project/TheHive), le projet [No More Ransom](https://www.nomoreransom.org/), [ID Ransomware](https://id-ransomware.malwarehunterteam.com/).
 
 ## 9. Sources d'inspiration
 
-- CERT Société Générale — IRM #17 « Ransomware » (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-17 « Attaque par rançongiciel » (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
-- Counteractive — « Playbook: Ransomware » — `github.com/counteractive/incident-response-plan-template` — Apache License 2.0.
+- CERT Société Générale — IRM #17 « Ransomware » (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-17 « Attaque par rançongiciel » (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.
+- Counteractive — « Playbook: Ransomware » — [github.com/counteractive/incident-response-plan-template](https://github.com/counteractive/incident-response-plan-template) — Apache License 2.0.

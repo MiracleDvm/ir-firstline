@@ -39,13 +39,22 @@ English-only diagram on the French version reads as broken. Keep the same
 node IDs, arrows, and branching logic in both versions so the two diagrams
 never structurally drift apart, even though their visible text differs.
 
-```mermaid
-flowchart TD
-    A[Alert] --> B{Isolate?}
-    B -->|Yes| C[Preserve evidence]
-    B -->|No| D[Continue monitoring]
-    C --> E[Escalate to L2]
-    D --> A
+Use `flowchart LR` (left-to-right), not `TD` — a top-down tree with 10+
+steps runs very long and forces heavy scrolling. Wrap it in a collapsible
+block (`???+ note "..."`, open by default) so it doesn't dominate the page
+and a reader can fold it away once they've seen it:
+
+```markdown
+???+ note "Decision tree — click to collapse"
+
+    ```mermaid
+    flowchart LR
+        A[Alert] --> B{Isolate?}
+        B -->|Yes| C[Preserve evidence]
+        B -->|No| D[Continue monitoring]
+        C --> E[Escalate to L2]
+        D --> A
+    ```
 ```
 
 ## 4. L1 Actions

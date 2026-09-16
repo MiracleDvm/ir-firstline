@@ -26,21 +26,23 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ## 3. Arbre de décision
 
-```mermaid
-flowchart TD
-    A[Connexion suspecte / alerte de compte] --> B{Compromission confirmée ?}
-    B -->|Non| C[Surveiller, clôturer l'alerte]
-    B -->|Oui| D[Désactiver le compte + révoquer les sessions]
-    D --> E[Réinitialiser les identifiants]
-    E --> F[Rechercher une persistance]
-    F --> G{Autres comptes affectés ?}
-    G -->|Oui| H[Escalade L2 - multi-comptes]
-    G -->|Non| I[Escalade L2 - compte unique]
-    H --> J[Trouver la cause racine]
-    I --> J
-    J --> K[Supprimer la persistance + durcir]
-    K --> L[Notifier + tirer les leçons]
-```
+???+ note "Arbre de décision — cliquer pour réduire"
+
+    ```mermaid
+    flowchart LR
+        A[Connexion suspecte / alerte de compte] --> B{Compromission confirmée ?}
+        B -->|Non| C[Surveiller, clôturer l'alerte]
+        B -->|Oui| D[Désactiver le compte + révoquer les sessions]
+        D --> E[Réinitialiser les identifiants]
+        E --> F[Rechercher une persistance]
+        F --> G{Autres comptes affectés ?}
+        G -->|Oui| H[Escalade L2 - multi-comptes]
+        G -->|Non| I[Escalade L2 - compte unique]
+        H --> J[Trouver la cause racine]
+        I --> J
+        J --> K[Supprimer la persistance + durcir]
+        K --> L[Notifier + tirer les leçons]
+    ```
 
 ## 4. Actions L1
 
@@ -121,11 +123,11 @@ flowchart TD
 - MITRE ATT&CK [T1110](https://attack.mitre.org/techniques/T1110/) — Brute Force (le password spray est la sous-technique T1110.003).
 - MITRE ATT&CK [T1098.001](https://attack.mitre.org/techniques/T1098/001/) — Account Manipulation: Additional Cloud Credentials.
 - MITRE ATT&CK [T1114.003](https://attack.mitre.org/techniques/T1114/003/) — Email Collection: Email Forwarding Rule.
-- Outils cités en exemple : le module gratuit Microsoft Graph PowerShell, TheHive, MISP, des passerelles d'authentification open source comme Authelia ou Keycloak, fail2ban.
+- Outils cités en exemple : le module gratuit [Microsoft Graph PowerShell](https://learn.microsoft.com/en-us/powershell/microsoftgraph/overview), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/), des passerelles d'authentification open source comme [Authelia](https://www.authelia.com/) ou [Keycloak](https://www.keycloak.org/), [fail2ban](https://github.com/fail2ban/fail2ban).
 
 ## 9. Sources d'inspiration
 
-- Microsoft — « Phishing investigation » (Incident response playbooks) — `github.com/MicrosoftDocs/security` — CC BY 4.0 (contenu documentaire).
-- Microsoft — « Password spray investigation » (Incident response playbooks) — `github.com/MicrosoftDocs/security` — CC BY 4.0.
-- Microsoft — « App consent grant investigation » (Incident response playbooks) — `github.com/MicrosoftDocs/security` — CC BY 4.0.
-- Microsoft — « Compromised and malicious applications investigation » (Incident response playbooks) — `github.com/MicrosoftDocs/security` — CC BY 4.0.
+- Microsoft — « Phishing investigation » (Incident response playbooks) — [github.com/MicrosoftDocs/security](https://github.com/MicrosoftDocs/security) — CC BY 4.0 (contenu documentaire).
+- Microsoft — « Password spray investigation » (Incident response playbooks) — [github.com/MicrosoftDocs/security](https://github.com/MicrosoftDocs/security) — CC BY 4.0.
+- Microsoft — « App consent grant investigation » (Incident response playbooks) — [github.com/MicrosoftDocs/security](https://github.com/MicrosoftDocs/security) — CC BY 4.0.
+- Microsoft — « Compromised and malicious applications investigation » (Incident response playbooks) — [github.com/MicrosoftDocs/security](https://github.com/MicrosoftDocs/security) — CC BY 4.0.

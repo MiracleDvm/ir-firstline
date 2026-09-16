@@ -27,22 +27,24 @@ Ce sont des cibles opérationnelles internes à challenger avec des données d'i
 
 ## 3. Arbre de décision
 
-```mermaid
-flowchart TD
-    A[Signalement de données exposées / divulguées] --> B{Exposition encore active ?}
-    B -->|Oui| C[Stopper l'exposition immédiatement]
-    B -->|Non| D[Préserver les preuves]
-    C --> D
-    D --> E{Cause probable ?}
-    E -->|Mauvaise configuration| F[Escalade L2 - corriger les contrôles d'accès]
-    E -->|Attaquant externe| G[Escalade L2 - relier à une compromission]
-    E -->|Insider suspecté| H[Escalade L2 - impliquer RH/juridique]
-    F --> I[Déterminer quoi, combien, qui pouvait accéder]
-    G --> I
-    H --> I
-    I --> J[Demander le retrait + surveiller la propagation]
-    J --> K[Notifier + tirer les leçons]
-```
+???+ note "Arbre de décision — cliquer pour réduire"
+
+    ```mermaid
+    flowchart LR
+        A[Signalement de données exposées / divulguées] --> B{Exposition encore active ?}
+        B -->|Oui| C[Stopper l'exposition immédiatement]
+        B -->|Non| D[Préserver les preuves]
+        C --> D
+        D --> E{Cause probable ?}
+        E -->|Mauvaise configuration| F[Escalade L2 - corriger les contrôles d'accès]
+        E -->|Attaquant externe| G[Escalade L2 - relier à une compromission]
+        E -->|Insider suspecté| H[Escalade L2 - impliquer RH/juridique]
+        F --> I[Déterminer quoi, combien, qui pouvait accéder]
+        G --> I
+        H --> I
+        I --> J[Demander le retrait + surveiller la propagation]
+        J --> K[Notifier + tirer les leçons]
+    ```
 
 ## 4. Actions L1
 
@@ -122,9 +124,9 @@ flowchart TD
 - MITRE ATT&CK [T1530](https://attack.mitre.org/techniques/T1530/) — Data from Cloud Storage.
 - MITRE ATT&CK [T1567](https://attack.mitre.org/techniques/T1567/) — Exfiltration Over Web Service.
 - MITRE ATT&CK [T1213](https://attack.mitre.org/techniques/T1213/) — Data from Information Repositories.
-- Outils cités en exemple : AWS CLI, Azure CLI, et `gcloud`/`gsutil` (tous gratuits), Aleph (outil open source pour investiguer des jeux de documents divulgués), TheHive, MISP.
+- Outils cités en exemple : [AWS CLI](https://aws.amazon.com/cli/), [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/), et [`gcloud`](https://cloud.google.com/cli)/[`gsutil`](https://cloud.google.com/storage/docs/gsutil) (tous gratuits), [Aleph](https://github.com/alephdata/aleph) (outil open source pour investiguer des jeux de documents divulgués), [TheHive](https://github.com/TheHive-Project/TheHive), [MISP](https://www.misp-project.org/).
 
 ## 9. Sources d'inspiration
 
-- CERT Société Générale — IRM #11 « Information Leakage » (v2.0) — `github.com/certsocietegenerale/IRM` — CC BY 3.0 Unported.
-- CERT aDvens — IRM-11 « Fuite de données » (2025-10-27) — `github.com/cert-advens/IRM` — CC BY 3.0 Unported.
+- CERT Société Générale — IRM #11 « Information Leakage » (v2.0) — [github.com/certsocietegenerale/IRM](https://github.com/certsocietegenerale/IRM) — CC BY 3.0 Unported.
+- CERT aDvens — IRM-11 « Fuite de données » (2025-10-27) — [github.com/cert-advens/IRM](https://github.com/cert-advens/IRM) — CC BY 3.0 Unported.
