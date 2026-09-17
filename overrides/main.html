@@ -10,6 +10,10 @@
   {% set home_title = ("IR Firstline — La première réponse ne devrait pas dépendre de votre budget" if is_fr else "IR Firstline — The first response shouldn't depend on your budget") %}
   {% set page_title = home_title if is_home else ((page.title ~ ' — ' ~ config.site_name) if page.title and page.title != config.site_name else config.site_name) %}
   {% set page_desc = (page.meta.description if page.meta and page.meta.description else config.site_description) %}
+  {# Material's base.html already emits <meta name="description">,
+     <link rel="canonical">, and per-language hreflang <link
+     rel="alternate"> tags via the i18n plugin — this block only adds
+     what Material doesn't: Open Graph / Twitter Card tags. #}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ page_title }}">
   <meta property="og:description" content="{{ page_desc }}">
