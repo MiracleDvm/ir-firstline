@@ -1,0 +1,4 @@
+# Default owner for the whole repository. GitHub requests a review from
+# this owner on pull requests that touch any file, unless a more specific
+# pattern below overrides it.
+* @MiracleDvm
