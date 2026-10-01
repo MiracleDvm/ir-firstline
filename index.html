@@ -545,6 +545,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#whats-inside" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's inside
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contribute" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1546,6 +1557,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#whats-inside" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's inside
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contribute" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1600,20 +1622,36 @@ without the tooling the runbook quietly assumes.</p>
 actually took — mostly stay in a team's private Slack, instead of
 feeding back into the documentation everyone else is using.</p>
 <h2 id="whats-different-here">What's different here<a class="headerlink" href="#whats-different-here" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>The technical core is universal.</strong> No agency name, no vendor
-  requirement, and no legal deadline lives in the body of a runbook.
-  Ever.</li>
-<li><strong>Every action has a free path.</strong> Each step names a dedicated tool
-  and a CLI/open-source alternative that gets the same result — an
-  analyst with nothing but native OS tools can run the whole thing.</li>
-<li><strong>Bilingual by construction.</strong> English and French, same structure,
-  same depth — not a summary in one language and the real thing in the
-  other.</li>
-<li><strong>Quality is proven, not declared.</strong> A runbook stays a draft until
-  someone reports that it held up in a real incident. No one —
-  including the maintainers — marks their own work "validated."</li>
-</ul>
+<div class="irf-features">
+<div class="irf-feature-card">
+<p><strong>🌐 Universal technical core</strong>
+<br>
+Every runbook action offers two paths:
+- <strong>Dedicated tool</strong> (CrowdStrike, SentinelOne, Splunk)
+- <strong>CLI / open-source alternative</strong> (<code>tasklist</code>, <code>netstat</code>, Sysinternals, Volatility)
+<br>
+<em>An analyst without EDR can run 100% of the runbook with native tools.</em></p>
+</div>
+<div class="irf-feature-card">
+<p><strong>💰 Low-resource first</strong>
+<br>
+The project removes any dependency on a commercial tool as a prerequisite.
+Commercial variants are a bonus, not an entry point.</p>
+</div>
+<div class="irf-feature-card">
+<p><strong>🌍 Bilingual FR/EN by construction</strong>
+<br>
+- English is the reference language (consistency with MITRE, NIST, CISA)
+- French is a quality-equal translation, never a summary
+- Golden rule: a runbook PR is only merged if it delivers both languages</p>
+</div>
+<div class="irf-feature-card">
+<p><strong>✅ Verifiable quality, never declared</strong>
+<br>
+The transition to v1.0 is only triggered by closing a <code>real-world-tested</code>
+Issue against this runbook. Quality is a proof, not an opinion.</p>
+</div>
+</div>
 <h2 id="how-a-runbook-is-built">How a runbook is built<a class="headerlink" href="#how-a-runbook-is-built" title="Permanent link">&para;</a></h2>
 <p>Each one follows the same shape: the signals that tell you to open it,
 internal time targets for containment and eradication, a decision
@@ -1622,13 +1660,49 @@ investigation, a generic pointer to your own jurisdiction's authority
 — never a specific one — and what destroys evidence if you get it
 wrong.</p>
 <p><a href="runbooks/">Browse the runbooks →</a></p>
+<h2 id="whats-inside">What's inside<a class="headerlink" href="#whats-inside" title="Permanent link">&para;</a></h2>
+<p>Ten incident scenarios, each as a full runbook (trigger criteria, time
+targets, a decision tree, step-by-step L1/L2 actions, and pitfalls to
+avoid) plus a one-page quick-reference checklist.</p>
+<ul>
+<li>Ransomware — <strong>0.1 (draft)</strong> ⧗</li>
+<li>Account Compromise — <strong>0.1 (draft)</strong> ⧗</li>
+<li>Phishing / Business Email Compromise (BEC) — <strong>0.1 (draft)</strong> ⧗</li>
+<li>DDoS — <strong>0.1 (draft)</strong> ⧗</li>
+<li>Web / Application Compromise — <strong>0.1 (draft)</strong> ⧗</li>
+<li>Critical Vulnerability (active exploitation) — <strong>0.1 (draft)</strong> ⧗</li>
+<li>Supply Chain Compromise — <strong>0.1 (draft)</strong> ⧗</li>
+<li>Data Leak — <strong>0.1 (draft)</strong> ⧗</li>
+<li>Insider Threat — <strong>0.1 (draft)</strong> ⧗</li>
+<li>Malware Infection — <strong>0.1 (draft)</strong> ⧗</li>
+</ul>
+<p><em>Chaque runbook est doublé d'une quick-reference : une page = une checklist
+L1 condensée (10–15 actions ordonnées), conçue pour être imprimée et utilisée
+en pleine crise.</em></p>
 <h2 id="contribute">Contribute<a class="headerlink" href="#contribute" title="Permanent link">&para;</a></h2>
-<p>Used one of these during an actual incident? That's the single most
+<p>Used one of these during a real incident? That's the single most
 valuable thing you can report — it's literally how a runbook earns its
-v1.0. Found a scenario missing, or a French section that reads like a
-translation instead of the real thing? Same door, different issue.</p>
+v1.0. Found a missing scenario, or a French section that reads like
+a translation instead of the real thing? Same door, different issue.</p>
+<div class="irf-cta">
+<blockquote>
+<p><strong>Votre incident réel peut faire passer un runbook en v1.0.</strong>
+Partagez votre expérience via une issue <code>Feedback</code> — c'est la contribution
+la plus précieuse que ce projet puisse recevoir.</p>
+</blockquote>
+</div>
 <p><a href="contributing/">How to contribute →</a></p>
 <hr />
+<div class="irf-disclaimer">
+<blockquote>
+<p><strong>Ces runbooks sont un guide technique, pas un conseil juridique.</strong>
+Ils ne contiennent volontairement aucun délai légal spécifique à une
+juridiction et ne nomment aucune agence gouvernementale comme étape
+obligatoire — voir <a href="finding-your-csirt/"><code>finding-your-csirt.md</code></a>
+pour identifier qui contacter, et consultez votre propre conseil
+juridique pour vos obligations de notification.</p>
+</blockquote>
+</div>
 <p>Content is published under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
 
 

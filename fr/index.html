@@ -545,6 +545,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quoi-de-linterieur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quoi de l'intérieur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contribuer" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1546,6 +1557,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quoi-de-linterieur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quoi de l'intérieur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contribuer" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1603,22 +1625,36 @@ l'outillage que le runbook suppose silencieusement.</p>
 privé d'une équipe, au lieu de nourrir la documentation que tout le
 monde utilise.</p>
 <h2 id="ce-qui-change-ici">Ce qui change ici<a class="headerlink" href="#ce-qui-change-ici" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Le cœur technique est universel.</strong> Aucun nom d'agence, aucune
-  exigence d'éditeur, aucun délai légal ne vit dans le corps d'un
-  runbook. Jamais.</li>
-<li><strong>Chaque action a un chemin gratuit.</strong> Chaque étape propose un outil
-  dédié et une alternative CLI/open source obtenant le même résultat —
-  un analyste avec seulement les outils natifs de l'OS peut exécuter le
-  runbook en entier.</li>
-<li><strong>Bilingue par construction.</strong> Anglais et français, même structure,
-  même profondeur — pas un résumé dans une langue et le vrai contenu
-  dans l'autre.</li>
-<li><strong>La qualité se prouve, elle ne se déclare pas.</strong> Un runbook reste un
-  brouillon jusqu'à ce que quelqu'un rapporte qu'il a tenu lors d'un
-  incident réel. Personne — pas même les mainteneurs — ne marque son
-  propre travail « validé ».</li>
-</ul>
+<div class="irf-features">
+<div class="irf-feature-card">
+<p><strong>🌐 Cœur technique universel</strong>
+<br>
+Chaque action du runbook propose deux voies :
+- <strong>Outil dédié</strong> (CrowdStrike, SentinelOne, Splunk) 
+- <strong>Alternative CLI &amp; open source</strong> (<code>tasklist</code>, <code>netstat</code>, Sysinternals, Volatility)
+<br>
+<em>un analyste sans EDR peut exécuter 100 % du runbook avec ce qui est natif.</em></p>
+</div>
+<div class="irf-feature-card">
+<p><strong>💰 Bas du spectre (low-resource first)</strong>
+<br>
+Le projet supprime toute dépendance à un outil commercial comme prérequis.
+Les variantes commerciales sont un bonus, jamais une porte d'entrée.</p>
+</div>
+<div class="irf-feature-card">
+<p><strong>🌍 Bilingue FR/EN par construction</strong>
+<br>
+- L'anglais est la langue de référence (cohérence MITRE, NIST, CISA)
+- Le français est une traduction de qualité égale, jamais un résumé
+- Règle d'or : une PR de runbook n'est mergeable que si elle livre les deux langues</p>
+</div>
+<div class="irf-feature-card">
+<p><strong>✅ Qualité vérifiable, jamais déclarée</strong>
+<br>
+Le passage en v1.0 n'est déclenché que par la fermeture d'une Issue
+<code>real-world-tested</code> sur ce runbook. La qualité est une preuve, pas une opinion.</p>
+</div>
+</div>
 <h2 id="comment-un-runbook-est-construit">Comment un runbook est construit<a class="headerlink" href="#comment-un-runbook-est-construit" title="Permanent link">&para;</a></h2>
 <p>Chacun suit la même forme : les signaux qui indiquent de l'ouvrir, des
 objectifs de temps internes pour le confinement et l'éradication, un
@@ -1626,15 +1662,51 @@ arbre de décision, des actions numérotées pour la première réponse et
 pour l'investigation approfondie, un renvoi générique vers l'autorité de
 votre propre juridiction — jamais une autorité précise — et ce qui
 détruit les preuves si on s'y prend mal.</p>
-<p><a href="runbooks/">Parcourir les runbooks →</a></p>
+<h2 id="quoi-de-linterieur">Quoi de l'intérieur<a class="headerlink" href="#quoi-de-linterieur" title="Permanent link">&para;</a></h2>
+<p>Dix scénarios d'incident, chacun sous forme de runbook complet (critères
+de déclenchement, objectifs de temps, arbre de décision, actions
+numérotées L1/L2, et écueils à éviter) plus une check-list d'aide-mémoire
+d'une page.</p>
+<ul>
+<li><strong>Rançongiciel — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>Compromission de compte — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>Hameçonnage / BEC — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>DDoS — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>Compromission web — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>Vulnérabilité critique (exploitation active) — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>Compromission de chaîne d'approvisionnement — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>Fuite de données — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>Menace interne — 0.1 (brouillon)</strong> ⧗</li>
+<li><strong>Infection malware — 0.1 (brouillon)</strong> ⧗</li>
+</ul>
+<p><em>Chaque runbook est doublé d'une quick-reference : une page = une checklist
+L1 condensée (10–15 actions ordonnées), conçue pour être imprimée et utilisée
+en pleine crise.</em></p>
 <h2 id="contribuer">Contribuer<a class="headerlink" href="#contribuer" title="Permanent link">&para;</a></h2>
 <p>Vous avez utilisé l'un d'eux lors d'un incident réel ? C'est la chose la
 plus précieuse que vous puissiez rapporter — c'est littéralement ce qui
 fait passer un runbook en v1.0. Un scénario manquant, ou une section
 française qui sonne comme une traduction plutôt que comme le vrai
 contenu ? Même porte, autre sujet.</p>
+<div class="irf-cta">
+<blockquote>
+<p><strong>Votre incident réel peut faire passer un runbook en v1.0.</strong>
+Partagez votre expérience via une issue <code>Feedback</code> — c'est la contribution
+la plus précieuse que ce projet puisse recevoir.</p>
+</blockquote>
+</div>
 <p><a href="contributing/">Comment contribuer →</a></p>
 <hr />
+<div class="irf-disclaimer">
+<blockquote>
+<p><strong>Ces runbooks sont un guide technique, pas un conseil juridique.</strong>
+Ils ne contiennent volontairement aucun délai légal spécifique à une
+juridiction et ne nomment aucune agence gouvernementale comme étape
+obligatoire — voir <a href="finding-your-csirt/"><code>finding-your-csirt.md</code></a>
+pour identifier qui contacter, et consultez votre propre conseil
+juridique pour vos obligations de notification.</p>
+</blockquote>
+</div>
 <p>Le contenu est publié sous licence
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
 
