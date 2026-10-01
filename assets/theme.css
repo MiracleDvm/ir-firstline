@@ -1,0 +1,84 @@
+/* IR Firstline — Custom styles for presentation site */
+
+/* Feature cards grid */
+.irf-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.irf-feature-card {
+    background: var(--md-default-bg-color, #fff);
+    border: 1px solid var(--md-default-fg-color, #21252c);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.irf-feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.irf-feature-card h3 {
+    color: var(--md-primary-fg-color, #1976d2);
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.irf-feature-card p {
+    color: var(--md-text-color, #666);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* CTA box */
+.irf-cta {
+    background: var(--md-code-fg-color, #e0e0e0);
+    border-left: 4px solid var(--md-primary-fg-color, #1976d2);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--md-text-color, #666);
+}
+
+/* Disclaimer box */
+.irf-disclaimer {
+    background: #fff8e1;
+    border: 1px solid #fbc02d;
+    border-radius: 4px;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #655a01;
+}
+
+/* Status badges for runbook list */
+.irf-status-draft {
+    display: inline-block;
+    padding: 2px 6px;
+    background: #f57f17;
+    color: white;
+    font-size: 0.7rem;
+    border-radius: 3px;
+    margin-left: 4px;
+    vertical-align: middle;
+}
+
+/* Feature card icons (simple text-based) */
+.irf-feature-card .irf-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .irf-feature-card {
+        transition: none;
+    }
+}

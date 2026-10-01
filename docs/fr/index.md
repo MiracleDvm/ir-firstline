@@ -27,20 +27,41 @@ monde utilise.
 
 ## Ce qui change ici
 
-- **Le cœur technique est universel.** Aucun nom d'agence, aucune
-  exigence d'éditeur, aucun délai légal ne vit dans le corps d'un
-  runbook. Jamais.
-- **Chaque action a un chemin gratuit.** Chaque étape propose un outil
-  dédié et une alternative CLI/open source obtenant le même résultat —
-  un analyste avec seulement les outils natifs de l'OS peut exécuter le
-  runbook en entier.
-- **Bilingue par construction.** Anglais et français, même structure,
-  même profondeur — pas un résumé dans une langue et le vrai contenu
-  dans l'autre.
-- **La qualité se prouve, elle ne se déclare pas.** Un runbook reste un
-  brouillon jusqu'à ce que quelqu'un rapporte qu'il a tenu lors d'un
-  incident réel. Personne — pas même les mainteneurs — ne marque son
-  propre travail « validé ».
+<div class="irf-features" markdown>
+
+<div class="irf-feature-card" markdown>
+**🌐 Cœur technique universel**
+<br>
+Chaque action du runbook propose deux voies :
+- **Outil dédié** (CrowdStrike, SentinelOne, Splunk) 
+- **Alternative CLI & open source** (`tasklist`, `netstat`, Sysinternals, Volatility)
+<br>
+_un analyste sans EDR peut exécuter 100 % du runbook avec ce qui est natif._
+</div>
+
+<div class="irf-feature-card" markdown>
+**💰 Bas du spectre (low-resource first)**
+<br>
+Le projet supprime toute dépendance à un outil commercial comme prérequis.
+Les variantes commerciales sont un bonus, jamais une porte d'entrée.
+</div>
+
+<div class="irf-feature-card" markdown>
+**🌍 Bilingue FR/EN par construction**
+<br>
+- L'anglais est la langue de référence (cohérence MITRE, NIST, CISA)
+- Le français est une traduction de qualité égale, jamais un résumé
+- Règle d'or : une PR de runbook n'est mergeable que si elle livre les deux langues
+</div>
+
+<div class="irf-feature-card" markdown>
+**✅ Qualité vérifiable, jamais déclarée**
+<br>
+Le passage en v1.0 n'est déclenché que par la fermeture d'une Issue
+`real-world-tested` sur ce runbook. La qualité est une preuve, pas une opinion.
+</div>
+
+</div>
 
 ## Comment un runbook est construit
 
@@ -51,7 +72,27 @@ pour l'investigation approfondie, un renvoi générique vers l'autorité de
 votre propre juridiction — jamais une autorité précise — et ce qui
 détruit les preuves si on s'y prend mal.
 
-[Parcourir les runbooks →](runbooks/index.md)
+## Quoi de l'intérieur
+
+Dix scénarios d'incident, chacun sous forme de runbook complet (critères
+de déclenchement, objectifs de temps, arbre de décision, actions
+numérotées L1/L2, et écueils à éviter) plus une check-list d'aide-mémoire
+d'une page.
+
+- **Rançongiciel — 0.1 (brouillon)** ⧗
+- **Compromission de compte — 0.1 (brouillon)** ⧗
+- **Hameçonnage / BEC — 0.1 (brouillon)** ⧗
+- **DDoS — 0.1 (brouillon)** ⧗
+- **Compromission web — 0.1 (brouillon)** ⧗
+- **Vulnérabilité critique (exploitation active) — 0.1 (brouillon)** ⧗
+- **Compromission de chaîne d'approvisionnement — 0.1 (brouillon)** ⧗
+- **Fuite de données — 0.1 (brouillon)** ⧗
+- **Menace interne — 0.1 (brouillon)** ⧗
+- **Infection malware — 0.1 (brouillon)** ⧗
+
+_Chaque runbook est doublé d'une quick-reference : une page = une checklist
+L1 condensée (10–15 actions ordonnées), conçue pour être imprimée et utilisée
+en pleine crise._
 
 ## Contribuer
 
@@ -61,9 +102,24 @@ fait passer un runbook en v1.0. Un scénario manquant, ou une section
 française qui sonne comme une traduction plutôt que comme le vrai
 contenu ? Même porte, autre sujet.
 
+<div class="irf-cta" markdown>
+> **Votre incident réel peut faire passer un runbook en v1.0.**
+> Partagez votre expérience via une issue `Feedback` — c'est la contribution
+> la plus précieuse que ce projet puisse recevoir.
+</div>
+
 [Comment contribuer →](contributing.md)
 
 ---
+
+<div class="irf-disclaimer" markdown>
+> **Ces runbooks sont un guide technique, pas un conseil juridique.**
+> Ils ne contiennent volontairement aucun délai légal spécifique à une
+> juridiction et ne nomment aucune agence gouvernementale comme étape
+> obligatoire — voir [`finding-your-csirt.md`](fr/finding-your-csirt.md)
+> pour identifier qui contacter, et consultez votre propre conseil
+> juridique pour vos obligations de notification.
+</div>
 
 Le contenu est publié sous licence
 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
